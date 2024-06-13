@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wsy-5r-1ol">
-    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <device id="retina6_12" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
@@ -14,7 +14,7 @@
             <objects>
                 <viewController storyboardIdentifier="DiscoverViewController" id="qQo-SH-Sm8" userLabel="DiscoverViewController" customClass="DiscoverViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yvc-AN-zRs">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="rZI-lb-dO8"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -30,7 +30,7 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="sO0-o1-QKc" userLabel="ProfileViewController" customClass="ProfileViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xwq-cS-9zt">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="3RB-iG-AxC"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -45,13 +45,13 @@
         <scene sceneID="ZL1-ni-a3R">
             <objects>
                 <tabBarController id="Wsy-5r-1ol" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="JZ2-KB-00c">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JZ2-KB-00c">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                        <color key="selectedImageTintColor" systemColor="labelColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="ono-9c-4rg" kind="relationship" relationship="viewControllers" id="XnY-cR-lYr"/>
@@ -91,16 +91,32 @@
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" id="QgO-4C-BrE" userLabel="HomeViewController" customClass="HomeViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IMG-Iz-ScM">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="epl-T1-Bsl">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <sections/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="a1q-Pz-xK7"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="epl-T1-Bsl" secondAttribute="trailing" id="59I-9D-M4X"/>
+                            <constraint firstAttribute="bottom" secondItem="epl-T1-Bsl" secondAttribute="bottom" id="BPX-sf-0VN"/>
+                            <constraint firstItem="epl-T1-Bsl" firstAttribute="top" secondItem="IMG-Iz-ScM" secondAttribute="top" id="cZP-Ec-yko"/>
+                            <constraint firstItem="epl-T1-Bsl" firstAttribute="leading" secondItem="IMG-Iz-ScM" secondAttribute="leading" id="kAt-TC-0U8"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="dO0-ct-cFK"/>
+                    <navigationItem key="navigationItem" title="Hello Ahmed!" id="dO0-ct-cFK"/>
+                    <connections>
+                        <outlet property="tableView" destination="epl-T1-Bsl" id="D9d-bQ-FlK"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K1G-P9-KZd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-2015" y="739"/>
+            <point key="canvasLocation" x="-2016.030534351145" y="738.73239436619724"/>
         </scene>
         <!--DiscoverNav-->
         <scene sceneID="1fU-JE-uez">
@@ -113,6 +129,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="O2H-wB-OfL">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" systemColor="labelColor"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -128,7 +145,7 @@
             <objects>
                 <viewController storyboardIdentifier="InterestsViewController" id="NwA-zq-06h" userLabel="InterestsViewController" customClass="InterestsViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hpU-6t-Ru3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="G3J-Ch-M1O"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -142,15 +159,25 @@
         <!--HomeNav-->
         <scene sceneID="Cej-dE-i16">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ono-9c-4rg" userLabel="HomeNav" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="ono-9c-4rg" userLabel="HomeNav" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="MBH-fA-1Dv">
                         <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
+                        <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Brd-jo-EvI">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Brd-jo-EvI">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="barTintColor" systemColor="labelColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textShadowColor" systemColor="systemBackgroundColor"/>
+                        </textAttributes>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -188,8 +215,14 @@
         <image name="house" catalog="system" width="128" height="104"/>
         <image name="magnifyingglass" catalog="system" width="128" height="117"/>
         <image name="person.crop.circle" catalog="system" width="128" height="123"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
