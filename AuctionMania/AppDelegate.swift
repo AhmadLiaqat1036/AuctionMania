@@ -10,11 +10,19 @@ import CoreData
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
+    var window: UIWindow?
+    var rootNavigationController: UINavigationController?
+        let contentViewController = HomeViewController()
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
+        window = UIWindow()
+                
+        let navigationController = UINavigationController(rootViewController: contentViewController)
+        rootNavigationController = navigationController
+        
+        window?.rootViewController = navigationController
+        window?.rootViewController?.navigationController?.navigationBar.prefersLargeTitles = true
         return true
     }
 
