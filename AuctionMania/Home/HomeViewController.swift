@@ -8,7 +8,10 @@
 import UIKit
 
 class HomeViewController: UIViewController {
+    //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    //MARK: init
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let nib = UINib(nibName: "BigTableViewCell", bundle: nil)
@@ -16,8 +19,13 @@ class HomeViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
         tableView.dataSource = self
+        let headerView = HomeTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 300))
+//        headerView.backgroundColor = .blue
+        
+        tableView.tableHeaderView = headerView
     }
 }
+//MARK: extensions
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
