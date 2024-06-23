@@ -14,13 +14,12 @@ class HomeTableHeader: UIView {
     private let backgroundView: UIView = {
        let view = UIView()
        view.layer.masksToBounds = false
-        view.backgroundColor = .white
-        view.layer.cornerRadius = 10
-        view.layer.cornerRadius = 10
-        view.layer.shadowColor = UIColor.black.cgColor
-        view.layer.shadowOpacity = 0.5
-        view.layer.shadowOffset = CGSize(width: 0, height: 2)
-        view.layer.shadowRadius = 5 
+       view.backgroundColor = .white
+       view.layer.cornerRadius = 10
+       view.layer.shadowColor = UIColor.black.cgColor
+       view.layer.shadowOpacity = 0.5
+       view.layer.shadowOffset = CGSize(width: 0, height: 2)
+       view.layer.shadowRadius = 5
        view.translatesAutoresizingMaskIntoConstraints = false
         return view
     }()
@@ -38,7 +37,7 @@ class HomeTableHeader: UIView {
         let text = UILabel()
         text.text = "$25000"
         text.textColor = .label
-        text.font = UIFont.systemFont(ofSize: 23, weight: .semibold)
+        text.font = UIFont.systemFont(ofSize: 27, weight: .semibold)
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
@@ -47,7 +46,7 @@ class HomeTableHeader: UIView {
         text.text = "Honda Accord 2020"
         text.textColor = .label
 
-        text.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        text.font = UIFont.systemFont(ofSize: 23, weight: .semibold)
         text.numberOfLines = 1
         
         text.translatesAutoresizingMaskIntoConstraints = false

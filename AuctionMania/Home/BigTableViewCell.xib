@@ -26,20 +26,20 @@
                                     <constraint firstAttribute="width" constant="25" id="oVi-Ec-jNx"/>
                                 </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Company" lineBreakMode="wordWrap" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vr-lT-zL1">
-                                <rect key="frame" x="5" y="36" width="154" height="25.333333333333329"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="No Company" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vr-lT-zL1">
+                                <rect key="frame" x="5" y="35.999999999999993" width="154" height="81.333333333333314"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="154" id="8MC-RA-T5g"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="21"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Name" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gi-OR-sgK">
-                                <rect key="frame" x="5" y="66.333333333333329" width="154" height="18"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No Name" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5gi-OR-sgK">
+                                <rect key="frame" x="5" y="122.33333333333333" width="165" height="15.666666666666671"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="154" id="01B-pQ-1m7"/>
+                                    <constraint firstAttribute="width" constant="165" id="01B-pQ-1m7"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" style="UICTFontTextStyleSubhead"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleFootnote"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="p1i-HO-m9a">
@@ -136,7 +136,7 @@
                                     <constraint firstAttribute="trailing" secondItem="8Q9-1E-8tf" secondAttribute="trailing" constant="8" id="xpm-32-D7w"/>
                                 </constraints>
                             </view>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="undraw_delivery_truck_vt6p-2" translatesAutoresizingMaskIntoConstraints="NO" id="qh4-Vv-vTk">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="undraw_delivery_truck_vt6p-2" translatesAutoresizingMaskIntoConstraints="NO" id="qh4-Vv-vTk">
                                 <rect key="frame" x="213" y="8" width="200" height="130"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="130" id="HxA-4J-QL4"/>
@@ -150,6 +150,7 @@
                             <constraint firstItem="4vr-lT-zL1" firstAttribute="top" secondItem="HFL-Vg-0LJ" secondAttribute="bottom" constant="3" id="BSy-df-S35"/>
                             <constraint firstAttribute="trailing" secondItem="qh4-Vv-vTk" secondAttribute="trailing" constant="8" id="Edq-by-j7v"/>
                             <constraint firstItem="qh4-Vv-vTk" firstAttribute="top" secondItem="60q-5M-mDQ" secondAttribute="top" constant="8" id="IJ7-Eg-sE4"/>
+                            <constraint firstItem="p1i-HO-m9a" firstAttribute="top" secondItem="5gi-OR-sgK" secondAttribute="bottom" constant="21" id="Nbm-lW-Afe"/>
                             <constraint firstItem="HFL-Vg-0LJ" firstAttribute="leading" secondItem="60q-5M-mDQ" secondAttribute="leading" constant="8" id="Qvo-Wi-Jp6"/>
                             <constraint firstAttribute="bottom" secondItem="isR-4G-enI" secondAttribute="bottom" constant="10" id="T3K-Ug-nb7"/>
                             <constraint firstItem="isR-4G-enI" firstAttribute="leading" secondItem="p1i-HO-m9a" secondAttribute="trailing" constant="25" id="Wys-b3-xi7"/>

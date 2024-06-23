@@ -16,7 +16,7 @@
                     <view key="view" contentMode="scaleToFill" id="yvc-AN-zRs">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="rZI-lb-dO8"/>
+                        <viewLayoutGuide key="safeArea" id="API-yj-nZ7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="g9o-zr-GAj"/>
@@ -32,7 +32,7 @@
                     <view key="view" contentMode="scaleToFill" id="xwq-cS-9zt">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="3RB-iG-AxC"/>
+                        <viewLayoutGuide key="safeArea" id="l6w-gF-ugM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="BN2-hA-U4n"/>
@@ -44,7 +44,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ZL1-ni-a3R">
             <objects>
-                <tabBarController id="Wsy-5r-1ol" sceneMemberID="viewController">
+                <tabBarController id="Wsy-5r-1ol" customClass="TabBarController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JZ2-KB-00c">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -89,29 +89,29 @@
         <!--HomeViewController-->
         <scene sceneID="S0R-Bo-sNX">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="QgO-4C-BrE" userLabel="HomeViewController" customClass="HomeViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" wantsFullScreenLayout="YES" extendedLayoutIncludesOpaqueBars="YES" id="QgO-4C-BrE" userLabel="HomeViewController" customClass="HomeViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IMG-Iz-ScM">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="epl-T1-Bsl">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epl-T1-Bsl">
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <viewLayoutGuide key="contentLayoutGuide" id="1Ru-uz-BEb"/>
-                                <viewLayoutGuide key="frameLayoutGuide" id="0ED-Zi-pD8"/>
                                 <sections/>
                             </tableView>
                         </subviews>
-                        <viewLayoutGuide key="safeArea" id="a1q-Pz-xK7"/>
+                        <viewLayoutGuide key="safeArea" id="VOP-Zk-L3s"/>
                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="epl-T1-Bsl" secondAttribute="trailing" id="59I-9D-M4X"/>
-                            <constraint firstAttribute="bottom" secondItem="epl-T1-Bsl" secondAttribute="bottom" id="BPX-sf-0VN"/>
-                            <constraint firstItem="epl-T1-Bsl" firstAttribute="top" secondItem="IMG-Iz-ScM" secondAttribute="top" id="cZP-Ec-yko"/>
-                            <constraint firstItem="epl-T1-Bsl" firstAttribute="leading" secondItem="IMG-Iz-ScM" secondAttribute="leading" id="kAt-TC-0U8"/>
+                            <constraint firstItem="epl-T1-Bsl" firstAttribute="trailing" secondItem="VOP-Zk-L3s" secondAttribute="trailing" id="5ns-aZ-xTo"/>
+                            <constraint firstItem="epl-T1-Bsl" firstAttribute="leading" secondItem="VOP-Zk-L3s" secondAttribute="leading" id="TuW-SV-69a"/>
+                            <constraint firstAttribute="bottom" secondItem="epl-T1-Bsl" secondAttribute="bottom" id="WRI-lq-wyR"/>
+                            <constraint firstItem="epl-T1-Bsl" firstAttribute="top" secondItem="IMG-Iz-ScM" secondAttribute="top" id="bVS-5V-wha"/>
                         </constraints>
                     </view>
+                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Hello Ahmed!" id="dO0-ct-cFK"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="393" height="614"/>
                     <connections>
                         <outlet property="tableView" destination="epl-T1-Bsl" id="D9d-bQ-FlK"/>
                     </connections>
@@ -149,7 +149,7 @@
                     <view key="view" contentMode="scaleToFill" id="hpU-6t-Ru3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="G3J-Ch-M1O"/>
+                        <viewLayoutGuide key="safeArea" id="UZJ-Zr-vXT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <navigationItem key="navigationItem" id="FMX-kg-DN6"/>
@@ -167,18 +167,17 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Brd-jo-EvI">
+                    <navigationBar key="navigationBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="Brd-jo-EvI">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" systemColor="labelColor"/>
-                        <color key="barTintColor" systemColor="labelColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textShadowColor" systemColor="systemBackgroundColor"/>
                         </textAttributes>
-                        <textAttributes key="largeTitleTextAttributes">
-                            <color key="textColor" systemColor="labelColor"/>
-                        </textAttributes>
+                        <navigationBarAppearance key="standardAppearance"/>
+                        <navigationBarAppearance key="scrollEdgeAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -223,7 +222,7 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

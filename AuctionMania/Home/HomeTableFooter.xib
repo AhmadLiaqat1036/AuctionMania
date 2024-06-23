@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeTableFooter" customModule="AuctionMania" customModuleProvider="target">
+            <connections>
+                <outlet property="backgroundView" destination="l4F-ZF-LiM" id="ge9-MM-i2O"/>
+                <outlet property="footerview" destination="iN0-l3-epB" id="cyS-ce-WkZ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="footerview">
+            <rect key="frame" x="0.0" y="0.0" width="566" height="214"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l4F-ZF-LiM" userLabel="backgroundView">
+                    <rect key="frame" x="10" y="20" width="546" height="174"/>
+                    <subviews>
+                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Headover" translatesAutoresizingMaskIntoConstraints="NO" id="wHZ-Ah-TZv">
+                            <rect key="frame" x="366" y="0.0" width="180" height="174"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="180" id="bDc-VN-Vgh"/>
+                            </constraints>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Find more auctions at the discover page →" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Uo3-BE-jza">
+                            <rect key="frame" x="10" y="65.666666666666671" width="346" height="43"/>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="wHZ-Ah-TZv" secondAttribute="trailing" id="05e-PE-w7W"/>
+                        <constraint firstItem="Uo3-BE-jza" firstAttribute="leading" secondItem="l4F-ZF-LiM" secondAttribute="leading" constant="10" id="340-Fn-PEm"/>
+                        <constraint firstItem="wHZ-Ah-TZv" firstAttribute="top" secondItem="l4F-ZF-LiM" secondAttribute="top" id="3Eu-9W-fDd"/>
+                        <constraint firstItem="wHZ-Ah-TZv" firstAttribute="top" secondItem="l4F-ZF-LiM" secondAttribute="top" id="5MC-mc-ZeV"/>
+                        <constraint firstItem="Uo3-BE-jza" firstAttribute="centerY" secondItem="l4F-ZF-LiM" secondAttribute="centerY" id="5sk-Cf-JsC"/>
+                        <constraint firstItem="wHZ-Ah-TZv" firstAttribute="leading" secondItem="Uo3-BE-jza" secondAttribute="trailing" constant="10" id="79Q-Fm-wR0"/>
+                        <constraint firstAttribute="bottom" secondItem="wHZ-Ah-TZv" secondAttribute="bottom" id="gMY-GE-CmU"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="l4F-ZF-LiM" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="20" id="7YE-Yj-T51"/>
+                <constraint firstItem="l4F-ZF-LiM" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="OFC-i4-DLe"/>
+                <constraint firstItem="l4F-ZF-LiM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="jDz-EI-wbv"/>
+                <constraint firstItem="l4F-ZF-LiM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="nf2-YF-m1X"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="-24.427480916030532" y="-258.45070422535213"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Headover" width="4101" height="2343"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
