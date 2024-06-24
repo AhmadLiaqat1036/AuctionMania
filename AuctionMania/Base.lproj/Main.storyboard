@@ -12,18 +12,33 @@
         <!--DiscoverViewController-->
         <scene sceneID="ZXt-bn-JCz">
             <objects>
-                <viewController storyboardIdentifier="DiscoverViewController" id="qQo-SH-Sm8" userLabel="DiscoverViewController" customClass="DiscoverViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="DiscoverViewController" title="Discover" id="qQo-SH-Sm8" userLabel="DiscoverViewController" customClass="DiscoverViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yvc-AN-zRs">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sHb-ZR-0uO">
+                                <rect key="frame" x="0.0" y="155" width="393" height="614"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="API-yj-nZ7"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="API-yj-nZ7" firstAttribute="bottom" secondItem="sHb-ZR-0uO" secondAttribute="bottom" id="A4x-KZ-Ux9"/>
+                            <constraint firstItem="sHb-ZR-0uO" firstAttribute="top" secondItem="API-yj-nZ7" secondAttribute="top" id="UGT-Eu-JKJ"/>
+                            <constraint firstItem="sHb-ZR-0uO" firstAttribute="leading" secondItem="API-yj-nZ7" secondAttribute="leading" id="foW-97-3Rx"/>
+                            <constraint firstItem="API-yj-nZ7" firstAttribute="trailing" secondItem="sHb-ZR-0uO" secondAttribute="trailing" id="mnf-nk-t5i"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="g9o-zr-GAj"/>
+                    <navigationItem key="navigationItem" title="Discover" id="g9o-zr-GAj"/>
+                    <connections>
+                        <outlet property="discoverTable" destination="sHb-ZR-0uO" id="zB9-Xq-TFy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTo-rD-wOK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-976" y="740"/>
+            <point key="canvasLocation" x="-976.33587786259534" y="739.43661971830988"/>
         </scene>
         <!--ProfileViewController-->
         <scene sceneID="y9B-nl-pnw">
@@ -91,11 +106,11 @@
             <objects>
                 <viewController storyboardIdentifier="HomeViewController" wantsFullScreenLayout="YES" extendedLayoutIncludesOpaqueBars="YES" id="QgO-4C-BrE" userLabel="HomeViewController" customClass="HomeViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="IMG-Iz-ScM">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epl-T1-Bsl">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <sections/>
                             </tableView>
@@ -109,9 +124,9 @@
                             <constraint firstItem="epl-T1-Bsl" firstAttribute="top" secondItem="IMG-Iz-ScM" secondAttribute="top" id="bVS-5V-wha"/>
                         </constraints>
                     </view>
-                    <extendedEdge key="edgesForExtendedLayout" top="YES"/>
                     <navigationItem key="navigationItem" title="Hello Ahmed!" id="dO0-ct-cFK"/>
                     <value key="contentSizeForViewInPopover" type="size" width="393" height="614"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
                         <outlet property="tableView" destination="epl-T1-Bsl" id="D9d-bQ-FlK"/>
                     </connections>
@@ -128,10 +143,13 @@
                         <imageReference key="image" image="magnifyingglass" catalog="system" symbolScale="large"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="O2H-wB-OfL">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="O2H-wB-OfL">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="barTintColor" systemColor="labelColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -161,7 +179,7 @@
         <!--HomeNav-->
         <scene sceneID="Cej-dE-i16">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" hidesBarsOnSwipe="YES" id="ono-9c-4rg" userLabel="HomeNav" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ono-9c-4rg" userLabel="HomeNav" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Home" id="MBH-fA-1Dv">
                         <imageReference key="image" image="house" catalog="system" symbolScale="large"/>
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
