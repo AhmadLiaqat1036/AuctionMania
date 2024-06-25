@@ -10,7 +10,24 @@ import UIKit
 class HomeTableHeader: UIView {
     
     //i apologise for not adding comments as i was stuck on shadows for far too long
+    
+    struct headers{
+        let poster: String
+        let name: String
+        let bid: String
+    }
 
+    // ["Hypercars", "Hatchback", "Luxury", "Sedan", "Sports", "Supercars", "SUV"]
+    static let posters: [headers] = [
+    headers(poster: "Hypercars" , name: "Lamborghini Aventador", bid: "120000.99"),
+    headers(poster: "Hatchback", name: "VW Golf", bid: "34000.05"),
+    headers(poster: "Luxury", name: "Audi A8", bid: "55000.34"),
+    headers(poster: "Sedan", name: "Honda Accord 2020", bid: "24000.77"),
+    headers(poster: "Sports", name: "Cheverolet Camaro", bid: "88000.99"),
+    headers(poster: "Supercars", name: "Aston Martin", bid: "250000.08"),
+    headers(poster: "SUV", name: "Range Rover", bid: "75000.88")
+    ]
+    static let randomPoster = posters.randomElement()
     private let backgroundView: UIView = {
        let view = UIView()
        view.layer.masksToBounds = false
@@ -25,7 +42,7 @@ class HomeTableHeader: UIView {
     }()
     private let carPicture:UIImageView={
        let pic = UIImageView()
-        pic.image = UIImage(named: "Sedan")
+        pic.image = UIImage(named: randomPoster?.poster ?? "")
         pic.layer.cornerRadius = 10
         pic.contentMode = .scaleAspectFill
         pic.clipsToBounds = true
@@ -35,7 +52,7 @@ class HomeTableHeader: UIView {
     
     private let price: UILabel = {
         let text = UILabel()
-        text.text = "$25000"
+        text.text = randomPoster?.bid.formatToDollar
         text.textColor = .label
         text.font = UIFont.systemFont(ofSize: 27, weight: .semibold)
         text.translatesAutoresizingMaskIntoConstraints = false
@@ -43,7 +60,7 @@ class HomeTableHeader: UIView {
     }()
     private let CarName: UILabel = {
         let text = UILabel()
-        text.text = "Honda Accord 2020"
+        text.text = randomPoster?.name
         text.textColor = .label
 
         text.font = UIFont.systemFont(ofSize: 23, weight: .semibold)

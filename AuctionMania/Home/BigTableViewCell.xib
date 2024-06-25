@@ -19,12 +19,15 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="60q-5M-mDQ">
                         <rect key="frame" x="10" y="5" width="421" height="209"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="search-magnifier-with-a-cross" translatesAutoresizingMaskIntoConstraints="NO" id="HFL-Vg-0LJ">
-                                <rect key="frame" x="8" y="8" width="25" height="25"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="hand.thumbsup.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="HFL-Vg-0LJ">
+                                <rect key="frame" x="8" y="8.6666666666666679" width="25" height="23.666666666666661"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="81q-Em-rhK"/>
                                     <constraint firstAttribute="width" constant="25" id="oVi-Ec-jNx"/>
                                 </constraints>
+                                <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="font">
+                                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle1"/>
+                                </preferredSymbolConfiguration>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="No Company" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4vr-lT-zL1">
                                 <rect key="frame" x="5" y="35.999999999999993" width="154" height="81.333333333333314"/>
@@ -143,17 +146,25 @@
                                     <constraint firstAttribute="width" constant="200" id="bbJ-JG-qwO"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="32%" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8yJ-aO-IWi">
+                                <rect key="frame" x="33" y="9.9999999999999982" width="35.666666666666657" height="20.333333333333329"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="4vr-lT-zL1" firstAttribute="leading" secondItem="60q-5M-mDQ" secondAttribute="leading" constant="5" id="50i-YX-o0J"/>
                             <constraint firstItem="4vr-lT-zL1" firstAttribute="top" secondItem="HFL-Vg-0LJ" secondAttribute="bottom" constant="3" id="BSy-df-S35"/>
+                            <constraint firstItem="8yJ-aO-IWi" firstAttribute="leading" secondItem="HFL-Vg-0LJ" secondAttribute="trailing" id="DBC-sp-g68"/>
                             <constraint firstAttribute="trailing" secondItem="qh4-Vv-vTk" secondAttribute="trailing" constant="8" id="Edq-by-j7v"/>
                             <constraint firstItem="qh4-Vv-vTk" firstAttribute="top" secondItem="60q-5M-mDQ" secondAttribute="top" constant="8" id="IJ7-Eg-sE4"/>
                             <constraint firstItem="p1i-HO-m9a" firstAttribute="top" secondItem="5gi-OR-sgK" secondAttribute="bottom" constant="21" id="Nbm-lW-Afe"/>
                             <constraint firstItem="HFL-Vg-0LJ" firstAttribute="leading" secondItem="60q-5M-mDQ" secondAttribute="leading" constant="8" id="Qvo-Wi-Jp6"/>
                             <constraint firstAttribute="bottom" secondItem="isR-4G-enI" secondAttribute="bottom" constant="10" id="T3K-Ug-nb7"/>
                             <constraint firstItem="isR-4G-enI" firstAttribute="leading" secondItem="p1i-HO-m9a" secondAttribute="trailing" constant="25" id="Wys-b3-xi7"/>
+                            <constraint firstItem="8yJ-aO-IWi" firstAttribute="top" secondItem="60q-5M-mDQ" secondAttribute="top" constant="10" id="a5H-nu-PFD"/>
                             <constraint firstAttribute="trailing" secondItem="isR-4G-enI" secondAttribute="trailing" constant="12" id="aBA-EA-T7n"/>
                             <constraint firstItem="5gi-OR-sgK" firstAttribute="leading" secondItem="60q-5M-mDQ" secondAttribute="leading" constant="5" id="bsf-f6-Ku7"/>
                             <constraint firstAttribute="bottom" secondItem="p1i-HO-m9a" secondAttribute="bottom" constant="10" id="bsk-PD-uFZ"/>
@@ -176,6 +187,7 @@
                 <outlet property="BidBackground" destination="E1X-pU-blw" id="CVs-M8-hvb"/>
                 <outlet property="CarComapanyName" destination="4vr-lT-zL1" id="p90-Zu-o6P"/>
                 <outlet property="CarCompanyImage" destination="HFL-Vg-0LJ" id="IQn-fn-Crp"/>
+                <outlet property="CarCompanyImageLabel" destination="8yJ-aO-IWi" id="F14-oA-BJv"/>
                 <outlet property="CarImage" destination="qh4-Vv-vTk" id="Eqe-9n-dz2"/>
                 <outlet property="CarName" destination="5gi-OR-sgK" id="7go-Sj-tcy"/>
                 <outlet property="CarType" destination="hv6-iy-yIv" id="rWr-oj-AYg"/>
@@ -191,7 +203,7 @@
         <image name="auction" width="512" height="512"/>
         <image name="car.side.fill" catalog="system" width="128" height="58"/>
         <image name="clock.fill" catalog="system" width="128" height="123"/>
-        <image name="search-magnifier-with-a-cross" width="512" height="512"/>
+        <image name="hand.thumbsup.circle.fill" catalog="system" width="128" height="123"/>
         <image name="undraw_delivery_truck_vt6p-2" width="1245" height="581"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

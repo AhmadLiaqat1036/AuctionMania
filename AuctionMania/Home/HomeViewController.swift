@@ -7,16 +7,40 @@
 
 import UIKit
 import SDWebImage
-
+import JGProgressHUD
 class HomeViewController: UIViewController {
-     private var Products = [Product]()
+    let viewModel = HomeViewModel()
     
     //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
+    
+    //MARK: huds
+    var hud: JGProgressHUD = {
+        let hud = JGProgressHUD(style: .extraLight)
+        hud.hudView.layer.borderWidth = 1
+        hud.hudView.layer.borderColor = UIColor.systemYellow.cgColor
+        hud.textLabel.text = "Loading"
+        hud.textLabel.textColor = .label
+        return hud
+    }()
+    
+    let successHud: JGProgressHUD = {
+        let hud = JGProgressHUD(style: .extraLight)
+        hud.indicatorView = JGProgressHUDSuccessIndicatorView()
+        hud.hudView.layer.borderWidth = 1
+        hud.hudView.layer.borderColor = UIColor.systemGreen.cgColor
+        hud.textLabel.text = 
+"""
+Login
+Successful
+"""
+        return hud
+    }()
     //MARK: init
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bindViewModel()
         let nib = UINib(nibName: "BigTableViewCell", bundle: nil)
         tableView.register(nib, forCellReuseIdentifier: "BigTableViewCell")
         tableView.showsVerticalScrollIndicator = false
@@ -24,33 +48,44 @@ class HomeViewController: UIViewController {
         tableView.dataSource = self
         let headerView = HomeTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 330))
         let footer = HomeTableFooter(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 150))
+        headerView.isHidden = true
+        footer.isHidden = true
         
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footer
-        fetchAllProducts()
+        
+       
+        hud.show(in: self.view)
+        
+
+        viewModel.fetchAllProducts()
     }
     
-    func fetchAllProducts(){
-        APICaller.shared.getAllProductsFromFakeStore { [weak self] results in
-            switch results{
-            case .success(let products):
-                print("fetch success")
-                self?.Products = products
-                DispatchQueue.main.async {
-                    self?.tableView.reloadData()
-                }
-            case .failure(let error):
-                print("fetch failure")
-                print(error)
-            }
-        }
+    func bindViewModel(){
+        viewModel.APISuccessDidChange = { [weak self] success in
+           if success {
+               print("fetch success")
+               DispatchQueue.main.async {
+                   self?.hud.dismiss(afterDelay: 0.3)
+                   self?.successHud.show(in: (self?.view)!)
+                   self?.successHud.dismiss(afterDelay: 1)
+                   self?.tableView.tableHeaderView?.isHidden = false
+                   self?.tableView.tableFooterView?.isHidden = false
+                   self?.tableView.reloadData()
+               }
+           }else{
+               print("fetch failure")
+           }
+       }
     }
+    
+    
 }
 //MARK: extensions
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        Products.count
+        viewModel.Products.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 220
@@ -77,14 +112,32 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         //            break
         //        }
         
-        let product = Products[indexPath.row]
+        let product = viewModel.Products[indexPath.row]
         
         guard let urlImg = URL(string: product.image ?? "") else {return UITableViewCell()}
         cell.CarImage.sd_setImage(with: urlImg, completed: nil)
         cell.CarType.text = product.category
-        cell.Bid.text = "$"+String(product.price)
+        cell.Bid.text = String(product.price).formatToDollar
         cell.CarComapanyName.text = product.title
         cell.CarName.text = product.description
+        cell.CarCompanyImageLabel.text = String(Int((product.rating.rate ?? 0) / 5.0 * 100)) + "%"
+        switch product.rating.rate ?? 0{
+        case 0.0...0.9:
+            cell.CarCompanyImage.tintColor = .systemRed
+            cell.CarCompanyImageLabel.textColor = .systemRed
+        case 1.0...1.9:
+            cell.CarCompanyImage.tintColor = .systemRed.withAlphaComponent(0.5)
+            cell.CarCompanyImageLabel.textColor = .systemRed.withAlphaComponent(0.5)
+        case 2.0...2.9:
+            cell.CarCompanyImage.tintColor = .systemOrange
+            cell.CarCompanyImageLabel.textColor = .systemOrange
+        case 3.0...3.9:
+            cell.CarCompanyImage.tintColor = .systemYellow
+            cell.CarCompanyImageLabel.textColor = .systemYellow
+        default:
+            cell.CarCompanyImage.tintColor = .systemGreen
+            cell.CarCompanyImageLabel.textColor = .systemGreen
+        }
         return cell
     }
 }

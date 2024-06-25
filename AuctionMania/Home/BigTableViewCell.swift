@@ -14,6 +14,7 @@ class BigTableViewCell: UITableViewCell {
     @IBOutlet weak var CarImage: UIImageView!
     @IBOutlet weak var BackgroundCellView: UIView!
     @IBOutlet weak var CarCompanyImage: UIImageView!
+    @IBOutlet weak var CarCompanyImageLabel: UILabel!
     @IBOutlet weak var CarComapanyName: UILabel!
     @IBOutlet weak var CarName: UILabel!
     @IBOutlet weak var BidBackground: UIView!

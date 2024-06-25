@@ -11,8 +11,9 @@ class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         NotificationCenter.default.addObserver(self, selector: #selector(changeIndex(notification:)), name: NSNotification.Name("GoToDiscover"), object: nil)
+        
     }
     @objc func changeIndex(notification: NSNotification){
         let index = notification.userInfo?["index"] as! Int
