@@ -10,9 +10,13 @@ import Foundation
 
 class DiscoverViewModel{
     var Products = [Product]()
-    
+    var categories = [Product]()
+    var categoriesSelected: Bool = false
     var APISuccess: Bool = false
+    var categorySuccess = false
     var APISuccessDidChange: ((Bool)->Void)?
+    var categorySuccessDidChange: ((Bool)->Void)?
+    var categorySelectedDidChange: ((Bool)->Void)?
     
     func fetchAllProducts(){
         APICaller.shared.getAllProductsFromFakeStore { [weak self] results in
@@ -28,6 +32,20 @@ class DiscoverViewModel{
             self?.APISuccessDidChange?(success)
         }
     }
+    func fetchAllProductsFromCategory(category: String){
+        APICaller.shared.getAllProductsFromCategoriesFakeStore(category: category) { [weak self] results in
+            let success:Bool
+            switch results{
+            case .success(let products):
+                self?.categories = products
+                success = true
+            case .failure(let error):
+                success = false
+                print(error)
+            }
+            self?.categorySuccessDidChange?(success)
+        }
+    }
     func findUpDownTagBackgroundWidth(_ tag: Int)->CGFloat{
         switch tag{
         case 0...9:
@@ -40,4 +58,6 @@ class DiscoverViewModel{
             return 77
         }
     }
+    
+    
 }

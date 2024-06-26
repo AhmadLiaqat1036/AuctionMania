@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="DiscoverTableHeaderCell" id="gTV-IL-0wX" customClass="DiscoverTableHeaderCell" customModule="AuctionMania" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="148"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="400" height="148"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWU-a1-HjF">
+                        <rect key="frame" x="0.0" y="10" width="400" height="128"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Electronics" lineBreakMode="tailTruncation" numberOfLines="2" minimumFontSize="14" translatesAutoresizingMaskIntoConstraints="NO" id="Pze-oR-CKw">
+                                <rect key="frame" x="60" y="54.333333333333321" width="330" height="19.666666666666664"/>
+                                <fontDescription key="fontDescription" name="Futura-Bold" family="Futura" pointSize="15"/>
+                                <color key="textColor" systemColor="systemYellowColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="xbf-CV-JKc">
+                                <rect key="frame" x="5" y="0.0" width="50" height="128"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="ctf-hm-w1e"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <constraints>
+                            <constraint firstItem="xbf-CV-JKc" firstAttribute="top" secondItem="DWU-a1-HjF" secondAttribute="top" id="8gN-g9-T7x"/>
+                            <constraint firstAttribute="trailing" secondItem="Pze-oR-CKw" secondAttribute="trailing" constant="10" id="921-hQ-Sr5"/>
+                            <constraint firstAttribute="bottom" secondItem="xbf-CV-JKc" secondAttribute="bottom" id="Blq-M0-34J"/>
+                            <constraint firstItem="xbf-CV-JKc" firstAttribute="centerY" secondItem="DWU-a1-HjF" secondAttribute="centerY" id="Qw1-lq-PIc"/>
+                            <constraint firstItem="xbf-CV-JKc" firstAttribute="leading" secondItem="DWU-a1-HjF" secondAttribute="leading" constant="5" id="cOT-HS-3n9"/>
+                            <constraint firstItem="Pze-oR-CKw" firstAttribute="centerY" secondItem="DWU-a1-HjF" secondAttribute="centerY" id="jXP-Pw-uXX"/>
+                            <constraint firstItem="Pze-oR-CKw" firstAttribute="leading" secondItem="xbf-CV-JKc" secondAttribute="trailing" constant="5" id="xU8-JN-fre"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <constraints>
+                <constraint firstItem="DWU-a1-HjF" firstAttribute="centerX" secondItem="gTV-IL-0wX" secondAttribute="centerX" id="0Q3-M3-DBI"/>
+                <constraint firstAttribute="bottom" secondItem="DWU-a1-HjF" secondAttribute="bottom" constant="10" id="D2c-cA-PVv"/>
+                <constraint firstAttribute="trailing" secondItem="DWU-a1-HjF" secondAttribute="trailing" id="Hsj-jJ-Pwo"/>
+                <constraint firstItem="DWU-a1-HjF" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="Xir-YX-dTw"/>
+                <constraint firstItem="DWU-a1-HjF" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="imK-At-13e"/>
+                <constraint firstItem="DWU-a1-HjF" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="jx4-US-nGn"/>
+            </constraints>
+            <size key="customSize" width="400" height="148"/>
+            <connections>
+                <outlet property="Background" destination="DWU-a1-HjF" id="2lI-BT-4rD"/>
+                <outlet property="Image" destination="xbf-CV-JKc" id="DVm-HL-7DO"/>
+                <outlet property="Label" destination="Pze-oR-CKw" id="a5N-tR-Ztv"/>
+            </connections>
+            <point key="canvasLocation" x="367.93893129770993" y="73.239436619718319"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemYellowColor">
+            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

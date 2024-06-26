@@ -27,5 +27,9 @@ struct Product: Codable {
 struct Rating: Codable {
     let rate: Double?
     let count: Int?
-    
+}
+
+
+struct Category: Codable{
+    let name: String?
 }

@@ -10,20 +10,24 @@ import UIKit
 class BigTableViewCell: UITableViewCell {
     
 //MARK: IBOutlets
-    @IBOutlet weak var CarTypeConstraintBetweenLogoAndText: NSLayoutConstraint!
+   
     @IBOutlet weak var CarImage: UIImageView!
     @IBOutlet weak var BackgroundCellView: UIView!
     @IBOutlet weak var CarCompanyImage: UIImageView!
     @IBOutlet weak var CarCompanyImageLabel: UILabel!
     @IBOutlet weak var CarComapanyName: UILabel!
     @IBOutlet weak var CarName: UILabel!
-    @IBOutlet weak var BidBackground: UIView!
-    @IBOutlet weak var Bid: UILabel!
+    @IBOutlet weak var BigPriceLabel: UILabel!
+    @IBOutlet weak var SellerBackground: UIView!
+    @IBOutlet weak var Seller: UILabel!
     @IBOutlet weak var CarTypeBackground: UIView!
     @IBOutlet weak var CarType: UILabel!
     @IBOutlet weak var TimeLeftBackground: UIView!
     @IBOutlet weak var TimeLeft: UILabel!
     
+    @IBOutlet weak var SellerBackgroundWidth: NSLayoutConstraint!
+    @IBOutlet weak var CategoryBackgroundWidth: NSLayoutConstraint!
+    @IBOutlet weak var TimeLeftBackgroundWidth: NSLayoutConstraint!
     //MARK: init
 
     override func awakeFromNib() {
@@ -31,20 +35,12 @@ class BigTableViewCell: UITableViewCell {
         BackgroundCellView.layer.cornerRadius = 10
         BackgroundCellView.layer.borderWidth = 1
         BackgroundCellView.layer.borderColor = UIColor.label.cgColor
-        BidBackground.layer.cornerRadius=20
-        CarTypeBackground.layer.cornerRadius=20
-        TimeLeftBackground.layer.cornerRadius=20
+        SellerBackground.layer.cornerRadius=15
+        CarTypeBackground.layer.cornerRadius=15
+        TimeLeftBackground.layer.cornerRadius=15
     }
     override func layoutSubviews() {
         super.layoutSubviews()
-        if CarType.text?.count ?? 0 < 7{
-            CarTypeConstraintBetweenLogoAndText.constant = 12
-        }else{
-            CarTypeConstraintBetweenLogoAndText.constant = 5
-        }
-        if Bid.text?.count ?? 0 > 7{
-            Bid.text? = (Bid.text?.prefix(7) ?? "")+"+"
-        }
         
     }
 

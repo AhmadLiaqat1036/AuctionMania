@@ -9,25 +9,7 @@ import UIKit
 
 class HomeTableHeader: UIView {
     
-    //i apologise for not adding comments as i was stuck on shadows for far too long
-    
-    struct headers{
-        let poster: String
-        let name: String
-        let bid: String
-    }
-
-    // ["Hypercars", "Hatchback", "Luxury", "Sedan", "Sports", "Supercars", "SUV"]
-    static let posters: [headers] = [
-    headers(poster: "Hypercars" , name: "Lamborghini Aventador", bid: "120000.99"),
-    headers(poster: "Hatchback", name: "VW Golf", bid: "34000.05"),
-    headers(poster: "Luxury", name: "Audi A8", bid: "55000.34"),
-    headers(poster: "Sedan", name: "Honda Accord 2020", bid: "24000.77"),
-    headers(poster: "Sports", name: "Cheverolet Camaro", bid: "88000.99"),
-    headers(poster: "Supercars", name: "Aston Martin", bid: "250000.08"),
-    headers(poster: "SUV", name: "Range Rover", bid: "75000.88")
-    ]
-    static let randomPoster = posters.randomElement()
+    static let randomPoster = Constants.posters.randomElement()
     private let backgroundView: UIView = {
        let view = UIView()
        view.layer.masksToBounds = false

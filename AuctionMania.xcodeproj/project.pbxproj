@@ -26,6 +26,12 @@
 		5774A6132C2ADAB40087C34D /* DiscoverViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A6122C2ADAB30087C34D /* DiscoverViewModel.swift */; };
 		5774A6152C2AE92E0087C34D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A6142C2AE92E0087C34D /* HomeViewModel.swift */; };
 		5774A6182C2AFA3B0087C34D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 5774A6172C2AFA3B0087C34D /* JGProgressHUD */; };
+		5774A61B2C2C00A90087C34D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A61A2C2C00A90087C34D /* StringExtensions.swift */; };
+		5774A61E2C2C00F00087C34D /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A61D2C2C00F00087C34D /* APIConstants.swift */; };
+		5774A6202C2C1F4D0087C34D /* DiscoverTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5774A61F2C2C1F4C0087C34D /* DiscoverTableHeader.xib */; };
+		5774A6222C2C20490087C34D /* DiscoverTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A6212C2C20490087C34D /* DiscoverTableHeader.swift */; };
+		5774A6292C2C2B440087C34D /* DiscoverTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A6272C2C2B440087C34D /* DiscoverTableHeaderCell.swift */; };
+		5774A62A2C2C2B440087C34D /* DiscoverTableHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5774A6282C2C2B440087C34D /* DiscoverTableHeaderCell.xib */; };
 		57B0EA9D2C19B733008811BC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B0EA9C2C19B733008811BC /* AppDelegate.swift */; };
 		57B0EA9F2C19B733008811BC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B0EA9E2C19B733008811BC /* SceneDelegate.swift */; };
 		57B0EAA42C19B733008811BC /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 57B0EAA32C19B733008811BC /* Base */; };
@@ -75,6 +81,12 @@
 		5774A60F2C2974A70087C34D /* SmallTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SmallTableCellView.swift; sourceTree = "<group>"; };
 		5774A6122C2ADAB30087C34D /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
 		5774A6142C2AE92E0087C34D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		5774A61A2C2C00A90087C34D /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		5774A61D2C2C00F00087C34D /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		5774A61F2C2C1F4C0087C34D /* DiscoverTableHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverTableHeader.xib; sourceTree = "<group>"; };
+		5774A6212C2C20490087C34D /* DiscoverTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableHeader.swift; sourceTree = "<group>"; };
+		5774A6272C2C2B440087C34D /* DiscoverTableHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableHeaderCell.swift; sourceTree = "<group>"; };
+		5774A6282C2C2B440087C34D /* DiscoverTableHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverTableHeaderCell.xib; sourceTree = "<group>"; };
 		57B0EA992C19B733008811BC /* AuctionMania.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AuctionMania.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		57B0EA9C2C19B733008811BC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		57B0EA9E2C19B733008811BC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,12 +160,25 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		5774A6192C2C006B0087C34D /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5774A61A2C2C00A90087C34D /* StringExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5774A61C2C2C00DB0087C34D /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				5774A61D2C2C00F00087C34D /* APIConstants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
 		57B0EA902C19B733008811BC = {
 			isa = PBXGroup;
 			children = (
-				5774A6112C2ADA980087C34D /* ViewModels */,
-				5774A5F62C255A540087C34D /* Managers */,
-				57B0EADC2C1ABF3D008811BC /* Models */,
 				57B0EA9B2C19B733008811BC /* AuctionMania */,
 				57B0EAB52C19B737008811BC /* AuctionManiaTests */,
 				57B0EABF2C19B737008811BC /* AuctionManiaUITests */,
@@ -176,11 +201,16 @@
 			children = (
 				57B0EA9C2C19B733008811BC /* AppDelegate.swift */,
 				57B0EA9E2C19B733008811BC /* SceneDelegate.swift */,
+				5774A5F62C255A540087C34D /* Managers */,
+				5774A6192C2C006B0087C34D /* Extensions */,
+				5774A61C2C2C00DB0087C34D /* Constants */,
 				57B0EACF2C19BBC4008811BC /* Home */,
 				57B0EAD02C19BBCD008811BC /* Discover */,
 				57B0EAD22C19BBE1008811BC /* Interests */,
 				57B0EAD32C19BBEB008811BC /* Profile */,
 				5774A6042C2949C30087C34D /* General */,
+				5774A6112C2ADA980087C34D /* ViewModels */,
+				57B0EADC2C1ABF3D008811BC /* Models */,
 				57B0EAA22C19B733008811BC /* Main.storyboard */,
 				5774A5F42C244AEE0087C34D /* TabBarController.swift */,
 				57B0EAA82C19B736008811BC /* Assets.xcassets */,
@@ -225,10 +255,14 @@
 			isa = PBXGroup;
 			children = (
 				57B0EAD62C19BE0F008811BC /* DiscoverViewController.swift */,
+				5774A6212C2C20490087C34D /* DiscoverTableHeader.swift */,
+				5774A61F2C2C1F4C0087C34D /* DiscoverTableHeader.xib */,
+				5774A6272C2C2B440087C34D /* DiscoverTableHeaderCell.swift */,
+				5774A6282C2C2B440087C34D /* DiscoverTableHeaderCell.xib */,
 				5774A6092C2956400087C34D /* SmallTableCell.swift */,
 				5774A60A2C2956400087C34D /* SmallTableCell.xib */,
-				5774A60D2C2973EA0087C34D /* SmallTableCellView.xib */,
 				5774A60F2C2974A70087C34D /* SmallTableCellView.swift */,
+				5774A60D2C2973EA0087C34D /* SmallTableCellView.xib */,
 			);
 			path = Discover;
 			sourceTree = "<group>";
@@ -371,12 +405,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				57B0EAA92C19B736008811BC /* Assets.xcassets in Resources */,
+				5774A6202C2C1F4D0087C34D /* DiscoverTableHeader.xib in Resources */,
 				5774A6062C294A130087C34D /* FiveStarRatingView.xib in Resources */,
 				57B0EAAC2C19B736008811BC /* Base in Resources */,
 				5774A60E2C2973EA0087C34D /* SmallTableCellView.xib in Resources */,
 				5774A5F32C241A840087C34D /* HomeTableFooter.xib in Resources */,
 				5774A60C2C2956400087C34D /* SmallTableCell.xib in Resources */,
 				57019C1E2C1AE504001987A9 /* BigTableViewCell.xib in Resources */,
+				5774A62A2C2C2B440087C34D /* DiscoverTableHeaderCell.xib in Resources */,
 				57B0EAA42C19B733008811BC /* Base in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,9 +453,13 @@
 				57B0EAD92C19BE3E008811BC /* InterestsViewController.swift in Sources */,
 				5774A6082C294B580087C34D /* FiveStarRatingView.swift in Sources */,
 				5774A5F82C255A6D0087C34D /* API_Caller.swift in Sources */,
+				5774A61E2C2C00F00087C34D /* APIConstants.swift in Sources */,
 				5774A5FA2C255C090087C34D /* FakeStoreModel.swift in Sources */,
 				5774A6102C2974A70087C34D /* SmallTableCellView.swift in Sources */,
+				5774A6292C2C2B440087C34D /* DiscoverTableHeaderCell.swift in Sources */,
 				5774A6132C2ADAB40087C34D /* DiscoverViewModel.swift in Sources */,
+				5774A61B2C2C00A90087C34D /* StringExtensions.swift in Sources */,
+				5774A6222C2C20490087C34D /* DiscoverTableHeader.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

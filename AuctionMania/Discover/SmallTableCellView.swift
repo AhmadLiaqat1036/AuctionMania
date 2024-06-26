@@ -18,6 +18,7 @@ class SmallTableCellView: UIView {
     @IBOutlet weak var productName: UILabel!
     @IBOutlet weak var productBid: UILabel!
     @IBOutlet weak var rating: FiveStarRatingView!
+    @IBOutlet weak var InterestButton: UIButton!
     override init(frame: CGRect) {
         super.init(frame: frame)
         viewInit()

@@ -116,10 +116,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         
         guard let urlImg = URL(string: product.image ?? "") else {return UITableViewCell()}
         cell.CarImage.sd_setImage(with: urlImg, completed: nil)
-        cell.CarType.text = product.category
-        cell.Bid.text = String(product.price).formatToDollar
+        
+        cell.BigPriceLabel.text = String(product.price).formatToDollar
         cell.CarComapanyName.text = product.title
-        cell.CarName.text = product.description
+       
+        
         cell.CarCompanyImageLabel.text = String(Int((product.rating.rate ?? 0) / 5.0 * 100)) + "%"
         switch product.rating.rate ?? 0{
         case 0.0...0.9:
@@ -138,6 +139,31 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
             cell.CarCompanyImage.tintColor = .systemGreen
             cell.CarCompanyImageLabel.textColor = .systemGreen
         }
+        
+        
+        let randomSeller = Constants.sellerNames.randomElement()
+        cell.Seller.text = randomSeller
+        let label = UILabel()
+        label.text = randomSeller
+        label.font = .systemFont(ofSize: 14, weight: .regular)
+        cell.SellerBackgroundWidth.constant = 5+20+5+label.intrinsicContentSize.width+5
+        
+        
+        
+        cell.CarType.text = product.category?.capitalized
+        let anotherlabel = UILabel()
+        anotherlabel.text =  product.category?.capitalized
+        anotherlabel.font = .systemFont(ofSize: 14, weight: .regular)
+        cell.CategoryBackgroundWidth.constant =
+        5+20+5+anotherlabel.intrinsicContentSize.width+5
+        
+        let randomTime = Constants.timeLeft.randomElement()
+        cell.TimeLeft.text = randomTime
+        let anotheranotherlabel = UILabel()
+        anotheranotherlabel.text =  randomTime
+        anotheranotherlabel.font = .systemFont(ofSize: 14, weight: .regular)
+        cell.TimeLeftBackgroundWidth.constant = 5+20+5+anotheranotherlabel.intrinsicContentSize.width+5
+        
         return cell
     }
 }

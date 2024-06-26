@@ -10,6 +10,8 @@ import SDWebImage
 import JGProgressHUD
 
 class DiscoverViewController: UIViewController {
+    
+    
 
     var viewModel = DiscoverViewModel()
     
@@ -37,6 +39,7 @@ class DiscoverViewController: UIViewController {
         discoverTable.showsVerticalScrollIndicator = false
         discoverTable.delegate = self
         discoverTable.dataSource = self
+        discoverTable.tableHeaderView = DiscoverTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 100))
         hud.show(in: self.view)
         viewModel.fetchAllProducts()
         
@@ -45,6 +48,7 @@ class DiscoverViewController: UIViewController {
         viewModel.APISuccessDidChange = { [weak self] success in
            if success {
                print("fetch success")
+               self?.viewModel.categoriesSelected = false
                DispatchQueue.main.async {
                    self?.hud.dismiss(afterDelay: 0.5)
                   
@@ -54,6 +58,20 @@ class DiscoverViewController: UIViewController {
                print("fetch failure")
            }
        }
+        viewModel.categorySuccessDidChange = { [weak self] success in
+            if success {
+                print("fetch success")
+                DispatchQueue.main.async {
+                    self?.viewModel.categoriesSelected = true
+//                    self?.hud.dismiss(afterDelay: 0.5)
+                    self?.discoverTable.reloadData()
+                }
+            }else{
+                print("fetch failure")
+            }
+            
+        }
+    
     }
      
     
@@ -61,7 +79,11 @@ class DiscoverViewController: UIViewController {
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        viewModel.Products.count / 2
+        if !viewModel.categoriesSelected{
+            viewModel.Products.count / 2
+        }else{
+            viewModel.categories.count / 2
+        }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         350
@@ -69,29 +91,39 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = discoverTable.dequeueReusableCell(withIdentifier: "SmallTableCell", for: indexPath) as? SmallTableCell else {return UITableViewCell()}
+        let p1:Product
+        let p2:Product
+        if !viewModel.categoriesSelected{
+             p1 = viewModel.Products[indexPath.row * 2]
+             p2 = viewModel.Products[(indexPath.row * 2) + 1]
+        }else{
+             p1 = viewModel.categories[indexPath.row * 2]
+             p2 = viewModel.categories[(indexPath.row * 2) + 1]
+        }
+            cell.firstCell.productName.text = p1.title
+            cell.secondCell.productName.text = p2 .title
+            
+            cell.firstCell.productBid.text = String(p1.price).formatToDollar
+            cell.secondCell.productBid.text = String(p2.price).formatToDollar
+            
+            cell.firstCell.rating.rate = p1.rating.rate ?? 0
+            cell.secondCell.rating.rate = p2.rating.rate ?? 0
+            
+            cell.firstCell.upDownTag.text = String(p1.rating.count ?? 0)
+            cell.secondCell.upDownTag.text = String(p2.rating.count ?? 0)
+            
+            cell.firstCell.upDownTagBackgroundWidth.constant = viewModel.findUpDownTagBackgroundWidth(p1.rating.count ?? 0)
+            cell.secondCell.upDownTagBackgroundWidth.constant = viewModel.findUpDownTagBackgroundWidth(p2.rating.count ?? 0)
+            
+            guard let url1 = URL(string: p1.image ?? "") else {return UITableViewCell()}
+            cell.firstCell.image.sd_setImage(with: url1, completed: nil)
+            guard let url2 = URL(string: p2.image ?? "") else {return UITableViewCell()}
+            cell.secondCell.image.sd_setImage(with: url2, completed: nil)
         
-        let p1 = viewModel.Products[indexPath.row * 2]
-        let p2 = viewModel.Products[(indexPath.row * 2) + 1]
+        cell.firstCell.InterestButton.tintColor = [.systemYellow, .label].randomElement()
+        cell.secondCell.InterestButton.tintColor = [.systemYellow, .label].randomElement()
         
-        cell.firstCell.productName.text = p1.title
-        cell.secondCell.productName.text = p2 .title
         
-        cell.firstCell.productBid.text = String(p1.price).formatToDollar
-        cell.secondCell.productBid.text = String(p2.price).formatToDollar
-        
-        cell.firstCell.rating.rate = p1.rating.rate ?? 0
-        cell.secondCell.rating.rate = p2.rating.rate ?? 0
-           
-        cell.firstCell.upDownTag.text = String(p1.rating.count ?? 0)
-        cell.secondCell.upDownTag.text = String(p2.rating.count ?? 0)
-
-        cell.firstCell.upDownTagBackgroundWidth.constant = viewModel.findUpDownTagBackgroundWidth(p1.rating.count ?? 0)
-        cell.secondCell.upDownTagBackgroundWidth.constant = viewModel.findUpDownTagBackgroundWidth(p2.rating.count ?? 0)
-
-        guard let url1 = URL(string: p1.image ?? "") else {return UITableViewCell()}
-        cell.firstCell.image.sd_setImage(with: url1, completed: nil)
-        guard let url2 = URL(string: p2.image ?? "") else {return UITableViewCell()}
-        cell.secondCell.image.sd_setImage(with: url2, completed: nil)
         
         return cell
     }
