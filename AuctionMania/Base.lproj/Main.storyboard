@@ -194,7 +194,7 @@
                         <textAttributes key="titleTextAttributes">
                             <color key="textShadowColor" systemColor="systemBackgroundColor"/>
                         </textAttributes>
-                        <navigationBarAppearance key="standardAppearance" backgroundEffect="regular"/>
+                        <navigationBarAppearance key="standardAppearance"/>
                         <navigationBarAppearance key="scrollEdgeAppearance"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

@@ -12,17 +12,32 @@
             <connections>
                 <outlet property="DiscoverTableHeaderView" destination="iN0-l3-epB" id="1il-Io-p5b"/>
                 <outlet property="collectionView" destination="htg-C1-ehZ" id="cwD-gY-Mmf"/>
+                <outlet property="smallCollectionView" destination="Pq3-gX-inY" id="Pi8-2k-gLs"/>
+                <outlet property="smallCollectionViewHeight" destination="Cva-mu-hIH" id="kAS-l4-ymK"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="662" height="142"/>
+            <rect key="frame" x="0.0" y="0.0" width="662" height="250"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="htg-C1-ehZ">
-                    <rect key="frame" x="10" y="10" width="642" height="122"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="htg-C1-ehZ">
+                    <rect key="frame" x="10" y="10" width="642" height="185"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="5" id="fMC-a0-hF0">
+                        <size key="itemSize" width="128" height="128"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" directionalLockEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Pq3-gX-inY">
+                    <rect key="frame" x="10" y="200" width="642" height="40"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="Cva-mu-hIH"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="2" minimumInteritemSpacing="2" id="71d-eY-Ggd">
                         <size key="itemSize" width="128" height="128"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
@@ -33,15 +48,17 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="Pq3-gX-inY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="5lH-3n-XLd"/>
+                <constraint firstAttribute="bottom" secondItem="Pq3-gX-inY" secondAttribute="bottom" constant="10" id="6W4-VC-iu9"/>
+                <constraint firstItem="Pq3-gX-inY" firstAttribute="top" secondItem="htg-C1-ehZ" secondAttribute="bottom" constant="5" id="7bC-AC-0rG"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="htg-C1-ehZ" secondAttribute="trailing" constant="10" id="HOd-sR-7jH"/>
-                <constraint firstItem="htg-C1-ehZ" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="Me4-9Y-Hy5"/>
                 <constraint firstItem="htg-C1-ehZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="RHg-No-cC1"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Pq3-gX-inY" secondAttribute="trailing" constant="10" id="aSi-hY-RGM"/>
                 <constraint firstItem="htg-C1-ehZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="fnJ-P6-1wb"/>
                 <constraint firstItem="htg-C1-ehZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="i3u-SE-yG6"/>
-                <constraint firstAttribute="bottom" secondItem="htg-C1-ehZ" secondAttribute="bottom" constant="10" id="tss-Rr-yGz"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="288.54961832061065" y="-230.28169014084509"/>
+            <point key="canvasLocation" x="287.02290076335879" y="-192.25352112676057"/>
         </view>
     </objects>
     <resources>

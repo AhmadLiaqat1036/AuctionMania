@@ -11,20 +11,9 @@ import JGProgressHUD
 
 class DiscoverViewController: UIViewController {
     
-    
-
-    var viewModel = DiscoverViewModel()
-    
     @IBOutlet weak var discoverTable: UITableView!
     
-    let hud: JGProgressHUD = {
-        let hud = JGProgressHUD(style: .light)
-        hud.hudView.layer.borderWidth = 1
-        hud.hudView.layer.borderColor = UIColor.systemYellow.cgColor
-        hud.textLabel.text = "Loading"
-        hud.textLabel.textColor = .label
-        return hud
-    }()
+    
    
     
     override func viewDidLoad() {
@@ -39,32 +28,38 @@ class DiscoverViewController: UIViewController {
         discoverTable.showsVerticalScrollIndicator = false
         discoverTable.delegate = self
         discoverTable.dataSource = self
-        discoverTable.tableHeaderView = DiscoverTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 100))
-        hud.show(in: self.view)
-        viewModel.fetchAllProducts()
+        discoverTable.tableHeaderView = DiscoverTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 130))
+        showHUD()
+        DiscoverViewModel.shared.fetchAllProducts()
         
     }
+    
+    func showHUD(){
+        DispatchQueue.main.async{
+            DiscoverViewModel.shared.hud.show(in: self.view)
+        }
+    }
+    
     func bindViewModel(){
-        viewModel.APISuccessDidChange = { [weak self] success in
+        DiscoverViewModel.shared.APISuccessDidChange = { [weak self] success in
            if success {
                print("fetch success")
-               self?.viewModel.categoriesSelected = false
+               DiscoverViewModel.shared.categoriesSelected = false
                DispatchQueue.main.async {
-                   self?.hud.dismiss(afterDelay: 0.5)
-                  
+                   DiscoverViewModel.shared.hud.dismiss(afterDelay: 0.5)
                    self?.discoverTable.reloadData()
                }
            }else{
                print("fetch failure")
            }
        }
-        viewModel.categorySuccessDidChange = { [weak self] success in
+        DiscoverViewModel.shared.categorySuccessDidChange = { [weak self] success in
             if success {
                 print("fetch success")
+                DiscoverViewModel.shared.categoriesSelected = true
                 DispatchQueue.main.async {
-                    self?.viewModel.categoriesSelected = true
-//                    self?.hud.dismiss(afterDelay: 0.5)
                     self?.discoverTable.reloadData()
+                    DiscoverViewModel.shared.hud.dismiss(afterDelay: 0.5)
                 }
             }else{
                 print("fetch failure")
@@ -79,10 +74,10 @@ class DiscoverViewController: UIViewController {
 
 extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !viewModel.categoriesSelected{
-            viewModel.Products.count / 2
+        if !DiscoverViewModel.shared.categoriesSelected{
+            DiscoverViewModel.shared.Products.count / 2
         }else{
-            viewModel.categories.count / 2
+            DiscoverViewModel.shared.categories.count / 2
         }
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -93,12 +88,12 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = discoverTable.dequeueReusableCell(withIdentifier: "SmallTableCell", for: indexPath) as? SmallTableCell else {return UITableViewCell()}
         let p1:Product
         let p2:Product
-        if !viewModel.categoriesSelected{
-             p1 = viewModel.Products[indexPath.row * 2]
-             p2 = viewModel.Products[(indexPath.row * 2) + 1]
+        if !DiscoverViewModel.shared.categoriesSelected{
+            p1 = DiscoverViewModel.shared.Products[indexPath.row * 2]
+            p2 = DiscoverViewModel.shared.Products[(indexPath.row * 2) + 1]
         }else{
-             p1 = viewModel.categories[indexPath.row * 2]
-             p2 = viewModel.categories[(indexPath.row * 2) + 1]
+            p1 = DiscoverViewModel.shared.categories[indexPath.row * 2]
+            p2 = DiscoverViewModel.shared.categories[(indexPath.row * 2) + 1]
         }
             cell.firstCell.productName.text = p1.title
             cell.secondCell.productName.text = p2 .title
@@ -112,8 +107,8 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
             cell.firstCell.upDownTag.text = String(p1.rating.count ?? 0)
             cell.secondCell.upDownTag.text = String(p2.rating.count ?? 0)
             
-            cell.firstCell.upDownTagBackgroundWidth.constant = viewModel.findUpDownTagBackgroundWidth(p1.rating.count ?? 0)
-            cell.secondCell.upDownTagBackgroundWidth.constant = viewModel.findUpDownTagBackgroundWidth(p2.rating.count ?? 0)
+        cell.firstCell.upDownTagBackgroundWidth.constant = DiscoverViewModel.shared.findUpDownTagBackgroundWidth(p1.rating.count ?? 0)
+        cell.secondCell.upDownTagBackgroundWidth.constant = DiscoverViewModel.shared.findUpDownTagBackgroundWidth(p2.rating.count ?? 0)
             
             guard let url1 = URL(string: p1.image ?? "") else {return UITableViewCell()}
             cell.firstCell.image.sd_setImage(with: url1, completed: nil)

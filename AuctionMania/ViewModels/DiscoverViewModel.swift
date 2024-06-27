@@ -6,14 +6,27 @@
 //
 
 import Foundation
-
+import JGProgressHUD
 
 class DiscoverViewModel{
+    
+    static var shared = DiscoverViewModel()
+    
+    let hud: JGProgressHUD = {
+        let hud = JGProgressHUD(style: .light)
+        hud.hudView.layer.borderWidth = 1
+        hud.hudView.layer.borderColor = UIColor.systemYellow.cgColor
+        hud.textLabel.text = "Loading"
+        hud.textLabel.textColor = .label
+        return hud
+    }()
+    
+    var callHUD: ((UIView)->Void)?
+    
     var Products = [Product]()
     var categories = [Product]()
     var categoriesSelected: Bool = false
-    var APISuccess: Bool = false
-    var categorySuccess = false
+    
     var APISuccessDidChange: ((Bool)->Void)?
     var categorySuccessDidChange: ((Bool)->Void)?
     var categorySelectedDidChange: ((Bool)->Void)?
@@ -37,13 +50,26 @@ class DiscoverViewModel{
             let success:Bool
             switch results{
             case .success(let products):
-                self?.categories = products
+                self?.categories += products
                 success = true
             case .failure(let error):
                 success = false
                 print(error)
             }
+            
             self?.categorySuccessDidChange?(success)
+        }
+        print(categories)
+    }
+    
+    func deleteProducts(inCategory category: String) {
+        let cat = category.lowercased()
+        categories = categories.filter { $0.category != cat }
+        if categories.isEmpty{
+            categorySuccessDidChange?(false)
+            fetchAllProducts()
+        }else{
+            categorySuccessDidChange?(true)
         }
     }
     func findUpDownTagBackgroundWidth(_ tag: Int)->CGFloat{

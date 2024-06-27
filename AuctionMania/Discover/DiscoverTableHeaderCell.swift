@@ -18,5 +18,13 @@ class DiscoverTableHeaderCell: UICollectionViewCell {
         super.awakeFromNib()
         Background.layer.cornerRadius = 10
     }
+    func selected(){
+        Background.layer.borderWidth = 3
+        Background.layer.borderColor = UIColor.systemYellow.cgColor
+    }
+    func deselected(){
+        Background.layer.borderWidth = 0
+    }
+   
 
 }
