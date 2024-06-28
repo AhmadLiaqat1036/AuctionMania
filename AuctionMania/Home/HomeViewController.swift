@@ -88,7 +88,8 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         viewModel.Products.count
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 220
+        return 250
+        
     }
     
     
@@ -122,13 +123,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
        
         
         cell.CarCompanyImageLabel.text = String(Int((product.rating.rate ?? 0) / 5.0 * 100)) + "%"
+        
         switch product.rating.rate ?? 0{
         case 0.0...0.9:
             cell.CarCompanyImage.tintColor = .systemRed
             cell.CarCompanyImageLabel.textColor = .systemRed
         case 1.0...1.9:
-            cell.CarCompanyImage.tintColor = .systemRed.withAlphaComponent(0.5)
-            cell.CarCompanyImageLabel.textColor = .systemRed.withAlphaComponent(0.5)
+            cell.CarCompanyImage.tintColor = .systemPink.withAlphaComponent(0.8)
+            cell.CarCompanyImageLabel.textColor = .systemPink.withAlphaComponent(0.8)
         case 2.0...2.9:
             cell.CarCompanyImage.tintColor = .systemOrange
             cell.CarCompanyImageLabel.textColor = .systemOrange

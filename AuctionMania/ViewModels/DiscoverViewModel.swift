@@ -25,11 +25,16 @@ class DiscoverViewModel{
     
     var Products = [Product]()
     var categories = [Product]()
+    var results = [Product]()
     var categoriesSelected: Bool = false
+    
+    var selectedIndexPaths: [IndexPath] = []
+    var selectedCategories: [String] = []
     
     var APISuccessDidChange: ((Bool)->Void)?
     var categorySuccessDidChange: ((Bool)->Void)?
     var categorySelectedDidChange: ((Bool)->Void)?
+    var resultsDidChange: ((Bool)->Void)?
     
     func fetchAllProducts(){
         APICaller.shared.getAllProductsFromFakeStore { [weak self] results in
@@ -59,7 +64,17 @@ class DiscoverViewModel{
             
             self?.categorySuccessDidChange?(success)
         }
-        print(categories)
+//        print(categories)
+    }
+    func getResultsProduct(from search: String){
+        results = Products
+        if(!search.isEmpty){
+            results = results.filter { product in
+                return product.title.lowercased() == search.lowercased() || product.title.lowercased().range(of: search.lowercased()) != nil
+            }
+        }
+        print("\(search) = \(results)")
+        resultsDidChange?(true)
     }
     
     func deleteProducts(inCategory category: String) {

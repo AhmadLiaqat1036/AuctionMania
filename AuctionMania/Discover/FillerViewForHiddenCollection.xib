@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FillerViewForHiddenCollection" customModule="AuctionMania" customModuleProvider="target">
+            <connections>
+                <outlet property="Background" destination="9eB-hZ-ZoN" id="LKu-R3-f2c"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="512" height="85"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9eB-hZ-ZoN">
+                    <rect key="frame" x="0.0" y="0.0" width="512" height="85"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="21" translatesAutoresizingMaskIntoConstraints="NO" id="Ayq-I6-h5f">
+                            <rect key="frame" x="2" y="2" width="508" height="81"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Paris-rafiki" translatesAutoresizingMaskIntoConstraints="NO" id="omL-yy-nuT">
+                                    <rect key="frame" x="0.0" y="0.0" width="84.666666666666671" height="81"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="85" id="gTf-uY-PPX"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="World-pana" translatesAutoresizingMaskIntoConstraints="NO" id="R3i-N2-hnk">
+                                    <rect key="frame" x="105.66666666666669" y="0.0" width="85" height="81"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="85" id="w4k-WQ-vL9"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Time machine-rafiki" translatesAutoresizingMaskIntoConstraints="NO" id="Lxz-aX-aBa">
+                                    <rect key="frame" x="211.66666666666666" y="0.0" width="84.666666666666657" height="81"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="85" id="fKi-Wz-z0i"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rio de Janeiro-rafiki" translatesAutoresizingMaskIntoConstraints="NO" id="E0W-ph-JRm">
+                                    <rect key="frame" x="317.33333333333331" y="0.0" width="85" height="81"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="85" id="T78-xn-XI9"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Athens-amico" translatesAutoresizingMaskIntoConstraints="NO" id="8xC-GF-N5X">
+                                    <rect key="frame" x="423.33333333333331" y="0.0" width="84.666666666666686" height="81"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="85" id="pAw-Uj-7bI"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="0.85070110700000001" blue="0.69168707080000003" alpha="0.13752756690000001" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Ayq-I6-h5f" secondAttribute="bottom" constant="2" id="5V4-Xt-7Ao"/>
+                        <constraint firstAttribute="trailing" secondItem="Ayq-I6-h5f" secondAttribute="trailing" constant="2" id="Wx9-v0-Cct"/>
+                        <constraint firstItem="Ayq-I6-h5f" firstAttribute="top" secondItem="9eB-hZ-ZoN" secondAttribute="top" constant="2" id="fmc-oh-5Wc"/>
+                        <constraint firstItem="Ayq-I6-h5f" firstAttribute="leading" secondItem="9eB-hZ-ZoN" secondAttribute="leading" constant="2" id="kYY-aq-Lka"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <constraints>
+                <constraint firstItem="9eB-hZ-ZoN" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="UkK-wU-F1P"/>
+                <constraint firstItem="9eB-hZ-ZoN" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="Yle-3G-Vh3"/>
+                <constraint firstItem="9eB-hZ-ZoN" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Z5c-7R-Mbj"/>
+                <constraint firstAttribute="bottom" secondItem="9eB-hZ-ZoN" secondAttribute="bottom" id="ql7-73-hAd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="201.52671755725191" y="-250.35211267605635"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Athens-amico" width="2000" height="2000"/>
+        <image name="Paris-rafiki" width="2000" height="2000"/>
+        <image name="Rio de Janeiro-rafiki" width="2000" height="2000"/>
+        <image name="Time machine-rafiki" width="2000" height="2000"/>
+        <image name="World-pana" width="2000" height="2000"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

@@ -11,6 +11,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DiscoverTableHeader" customModule="AuctionMania" customModuleProvider="target">
             <connections>
                 <outlet property="DiscoverTableHeaderView" destination="iN0-l3-epB" id="1il-Io-p5b"/>
+                <outlet property="SmallCollectionHiddenView" destination="FQv-aW-yb2" id="v3u-Ud-ytt"/>
                 <outlet property="collectionView" destination="htg-C1-ehZ" id="cwD-gY-Mmf"/>
                 <outlet property="smallCollectionView" destination="Pq3-gX-inY" id="Pi8-2k-gLs"/>
                 <outlet property="smallCollectionViewHeight" destination="Cva-mu-hIH" id="kAS-l4-ymK"/>
@@ -44,6 +45,9 @@
                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     </collectionViewFlowLayout>
                 </collectionView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FQv-aW-yb2" customClass="FillerViewForHiddenCollection" customModule="AuctionMania" customModuleProvider="target">
+                    <rect key="frame" x="10" y="195" width="642" height="55"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -51,11 +55,15 @@
                 <constraint firstItem="Pq3-gX-inY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="5lH-3n-XLd"/>
                 <constraint firstAttribute="bottom" secondItem="Pq3-gX-inY" secondAttribute="bottom" constant="10" id="6W4-VC-iu9"/>
                 <constraint firstItem="Pq3-gX-inY" firstAttribute="top" secondItem="htg-C1-ehZ" secondAttribute="bottom" constant="5" id="7bC-AC-0rG"/>
+                <constraint firstItem="FQv-aW-yb2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="Eix-gg-CAC"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="htg-C1-ehZ" secondAttribute="trailing" constant="10" id="HOd-sR-7jH"/>
                 <constraint firstItem="htg-C1-ehZ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="RHg-No-cC1"/>
+                <constraint firstAttribute="bottom" secondItem="FQv-aW-yb2" secondAttribute="bottom" id="RcP-1M-D2l"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Pq3-gX-inY" secondAttribute="trailing" constant="10" id="aSi-hY-RGM"/>
                 <constraint firstItem="htg-C1-ehZ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="10" id="fnJ-P6-1wb"/>
                 <constraint firstItem="htg-C1-ehZ" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="i3u-SE-yG6"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="FQv-aW-yb2" secondAttribute="trailing" constant="10" id="jHS-WP-GVK"/>
+                <constraint firstItem="FQv-aW-yb2" firstAttribute="top" secondItem="htg-C1-ehZ" secondAttribute="bottom" id="ldz-6B-u2Z"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="287.02290076335879" y="-192.25352112676057"/>

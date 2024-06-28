@@ -8,6 +8,12 @@
 import Foundation
 
 
+extension Int {
+    var isEven: Bool {
+        return self % 2 == 0
+    }
+}
+
 extension String{
     
     var addCommaAfterThree: String{

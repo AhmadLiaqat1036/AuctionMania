@@ -13,9 +13,9 @@ class DiscoverTableHeader: UIView {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var smallCollectionView: UICollectionView!
     
+    @IBOutlet weak var SmallCollectionHiddenView: UIView!
     @IBOutlet weak var smallCollectionViewHeight: NSLayoutConstraint!
-    var selectedIndexPaths: [IndexPath] = []
-    var selectedCategories: [String] = []
+    
         
         
        
@@ -30,8 +30,17 @@ class DiscoverTableHeader: UIView {
         collectionView.delegate = self
         let smallNib = UINib(nibName: "DiscoverTableHeaderSmallCell", bundle: nil)
         smallCollectionView.register(smallNib, forCellWithReuseIdentifier: "DiscoverTableHeaderSmallCell")
+        
         smallCollectionView.delegate = self
         smallCollectionView.dataSource = self
+        
+        smallCollectionView.isHidden = true
+        SmallCollectionHiddenView.isHidden = false
+        
+        SmallCollectionHiddenView.layer.cornerRadius = 10
+        SmallCollectionHiddenView.layer.borderWidth = 1
+        SmallCollectionHiddenView.layer.masksToBounds = true
+        
         
         
     }
@@ -42,15 +51,15 @@ class DiscoverTableHeader: UIView {
         makeNib()
     }
     func deselectAllItems() {
-        for indexPath in selectedIndexPaths {
+        for indexPath in DiscoverViewModel.shared.selectedIndexPaths {
             if let cell = collectionView.cellForItem(at: indexPath) as? DiscoverTableHeaderCell{
                 cell.deselected()
                 DiscoverViewModel.shared.deleteProducts(inCategory: Constants.categories[indexPath.row])
             }
         }
         DiscoverViewModel.shared.categories.removeAll()
-        selectedIndexPaths.removeAll()
-        selectedCategories.removeAll()
+        DiscoverViewModel.shared.selectedIndexPaths.removeAll()
+        DiscoverViewModel.shared.selectedCategories.removeAll()
         smallCollectionView.reloadData()
     }
     
@@ -70,7 +79,12 @@ extension DiscoverTableHeader: UICollectionViewDelegate, UICollectionViewDataSou
             if indexPath.row == 0{
                 return CGSize(width: 40, height: 40)
             }else{
-                return CGSize(width: 130, height: 40)
+                let Label = UILabel()
+                Label.text = DiscoverViewModel.shared.selectedCategories[indexPath.row - 1]
+                Label.font = .systemFont(ofSize: 16, weight: .regular)
+//                print("size in sizeForItemAt: ")
+//                print(selectedCategories[indexPath.row - 1])
+                return CGSize(width: Label.intrinsicContentSize.width+30, height: 40)
             }
         }
         return CGSize(width: 0, height: 0)
@@ -89,7 +103,7 @@ extension DiscoverTableHeader: UICollectionViewDelegate, UICollectionViewDataSou
         if collectionView == self.collectionView {
             return Constants.categories.count
         } else if collectionView == self.smallCollectionView {
-            return selectedIndexPaths.count + 1
+            return DiscoverViewModel.shared.selectedIndexPaths.count + 1
         }
         return 0
     }
@@ -104,11 +118,12 @@ extension DiscoverTableHeader: UICollectionViewDelegate, UICollectionViewDataSou
         }else if collectionView == self.smallCollectionView {
             guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DiscoverTableHeaderSmallCell", for: indexPath) as? DiscoverTableHeaderSmallCell else {return UICollectionViewCell()}
             if(indexPath.row == 0){
-                if(selectedCategories.isEmpty){
+                if(DiscoverViewModel.shared.selectedCategories.isEmpty){
                     smallCollectionView.isHidden = true
-                    
+                    SmallCollectionHiddenView.isHidden = false
                 }else{
                     smallCollectionView.isHidden = false
+                    SmallCollectionHiddenView.isHidden = true
                     
                 }
                 cell.Background.layer.cornerRadius = 10
@@ -121,7 +136,7 @@ extension DiscoverTableHeader: UICollectionViewDelegate, UICollectionViewDataSou
                 cell.Background.layer.borderWidth = 1
                 cell.Background.layer.borderColor = UIColor.systemGray3.cgColor
                 cell.Background.backgroundColor = .systemGray5
-                cell.Label.text = selectedCategories[indexPath.row - 1]
+                cell.Label.text = DiscoverViewModel.shared.selectedCategories[indexPath.row - 1]
                 cell.Label.textColor = .darkGray
             }
             return cell
@@ -137,16 +152,16 @@ extension DiscoverTableHeader: UICollectionViewDelegate, UICollectionViewDataSou
                     cell.deselected()
                     DiscoverViewModel.shared.hud.show(in: self.DiscoverTableHeaderView.superview?.superview ?? self.DiscoverTableHeaderView)
                     DiscoverViewModel.shared.deleteProducts(inCategory: Constants.categories[indexPath.row])
-                    selectedIndexPaths.removeAll {
+                    DiscoverViewModel.shared.selectedIndexPaths.removeAll {
                         $0 == indexPath
                     }
-                    selectedCategories.removeAll {
+                    DiscoverViewModel.shared.selectedCategories.removeAll {
                         $0 == cell.Label.text
                     }
                 }else{
                     cell.selected()
-                    selectedIndexPaths.append(indexPath)
-                    selectedCategories.append(cell.Label.text ?? "")
+                    DiscoverViewModel.shared.selectedIndexPaths.append(indexPath)
+                    DiscoverViewModel.shared.selectedCategories.append(cell.Label.text ?? "")
                     DiscoverViewModel.shared.hud.show(in: self.DiscoverTableHeaderView.superview?.superview ?? self.DiscoverTableHeaderView)
                     print("collection view cell pressed...")
                     DiscoverViewModel.shared.fetchAllProductsFromCategory(category: Constants.categories[indexPath.row].lowercased())
@@ -154,7 +169,7 @@ extension DiscoverTableHeader: UICollectionViewDelegate, UICollectionViewDataSou
             }
         }else if collectionView == self.smallCollectionView {
             if(indexPath.row == 0){
-                print(selectedIndexPaths)
+                //print(selectedIndexPaths)
                deselectAllItems()
                 DiscoverViewModel.shared.hud.show(in: self.DiscoverTableHeaderView.superview?.superview ?? self.DiscoverTableHeaderView)
                 DiscoverViewModel.shared.fetchAllProducts()

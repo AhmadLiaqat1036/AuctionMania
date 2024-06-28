@@ -14,14 +14,20 @@ class DiscoverViewController: UIViewController {
     @IBOutlet weak var discoverTable: UITableView!
     
     
-   
+   let searchBar = UISearchController(searchResultsController: ResultsViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        
         title = "Discover"
+        navigationItem.searchController = searchBar
+        navigationItem.searchController?.showsSearchResultsController = true
+        searchBar.searchResultsUpdater = self
         navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isHidden = false
+        navigationController!.navigationBar.sizeToFit()
+        navigationItem.hidesSearchBarWhenScrolling = false
+        //navigationController?.navigationBar.prefersLargeTitles = true
         let nib = UINib(nibName: "SmallTableCell", bundle: nil)
         discoverTable.register(nib, forCellReuseIdentifier: "SmallTableCell")
         discoverTable.allowsSelection = false
@@ -33,7 +39,6 @@ class DiscoverViewController: UIViewController {
         DiscoverViewModel.shared.fetchAllProducts()
         
     }
-    
     func showHUD(){
         DispatchQueue.main.async{
             DiscoverViewModel.shared.hud.show(in: self.view)
@@ -88,12 +93,33 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = discoverTable.dequeueReusableCell(withIdentifier: "SmallTableCell", for: indexPath) as? SmallTableCell else {return UITableViewCell()}
         let p1:Product
         let p2:Product
+        cell.secondCell.isHidden = false
         if !DiscoverViewModel.shared.categoriesSelected{
-            p1 = DiscoverViewModel.shared.Products[indexPath.row * 2]
-            p2 = DiscoverViewModel.shared.Products[(indexPath.row * 2) + 1]
+            if(DiscoverViewModel.shared.Products.count.isEven){
+                p1 = DiscoverViewModel.shared.Products[indexPath.row * 2]
+                p2 = DiscoverViewModel.shared.Products[(indexPath.row * 2) + 1]
+            }else{
+                p1 = DiscoverViewModel.shared.Products[indexPath.row * 2]
+                if (indexPath.row * 2) + 1 == DiscoverViewModel.shared.Products.count{
+                    p2 = Product(id: 0, title: "", price: 0, description: "", category: "", image: "jkgjgj", rating: Rating(rate: 0.0, count: 0))
+                    cell.secondCell.isHidden = true
+                }else{
+                    p2 = DiscoverViewModel.shared.Products[(indexPath.row * 2) + 1]
+                }
+            }
         }else{
-            p1 = DiscoverViewModel.shared.categories[indexPath.row * 2]
-            p2 = DiscoverViewModel.shared.categories[(indexPath.row * 2) + 1]
+            if(DiscoverViewModel.shared.categories.count.isEven){
+                p1 = DiscoverViewModel.shared.categories[indexPath.row * 2]
+                p2 = DiscoverViewModel.shared.categories[(indexPath.row * 2) + 1]
+            }else{
+                p1 = DiscoverViewModel.shared.categories[indexPath.row * 2]
+                if (indexPath.row * 2) + 1 == DiscoverViewModel.shared.categories.count{
+                    p2 = Product(id: 0, title: "", price: 0, description: "", category: "", image: "jkgjgj", rating: Rating(rate: 0.0, count: 0))
+                    cell.secondCell.isHidden = true
+                }else{
+                    p2 = DiscoverViewModel.shared.categories[(indexPath.row * 2) + 1]
+                }
+            }
         }
             cell.firstCell.productName.text = p1.title
             cell.secondCell.productName.text = p2 .title
@@ -125,4 +151,12 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
     
     
     
+}
+
+extension DiscoverViewController: UISearchResultsUpdating{
+    func updateSearchResults(for searchController: UISearchController) {
+        guard let text = searchController.searchBar.text else {return}
+        //guard let vc = searchController.searchResultsController as? ResultsViewController else {return}
+        DiscoverViewModel.shared.getResultsProduct(from: text)
+    }
 }

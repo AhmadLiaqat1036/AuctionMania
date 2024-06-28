@@ -13,6 +13,7 @@ class BigTableViewCell: UITableViewCell {
    
     @IBOutlet weak var CarImage: UIImageView!
     @IBOutlet weak var BackgroundCellView: UIView!
+    @IBOutlet weak var CarCompanyImageBackground: UIView!
     @IBOutlet weak var CarCompanyImage: UIImageView!
     @IBOutlet weak var CarCompanyImageLabel: UILabel!
     @IBOutlet weak var CarComapanyName: UILabel!
@@ -38,6 +39,8 @@ class BigTableViewCell: UITableViewCell {
         SellerBackground.layer.cornerRadius=15
         CarTypeBackground.layer.cornerRadius=15
         TimeLeftBackground.layer.cornerRadius=15
+        CarCompanyImageBackground.layer.cornerRadius = 15
+        CarCompanyImageBackground.layer.masksToBounds = true
     }
     override func layoutSubviews() {
         super.layoutSubviews()
