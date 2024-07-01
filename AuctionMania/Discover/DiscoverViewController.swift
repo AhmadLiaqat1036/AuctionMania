@@ -27,7 +27,6 @@ class DiscoverViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController!.navigationBar.sizeToFit()
         navigationItem.hidesSearchBarWhenScrolling = false
-        //navigationController?.navigationBar.prefersLargeTitles = true
         let nib = UINib(nibName: "SmallTableCell", bundle: nil)
         discoverTable.register(nib, forCellReuseIdentifier: "SmallTableCell")
         discoverTable.allowsSelection = false
@@ -141,8 +140,7 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
             guard let url2 = URL(string: p2.image ?? "") else {return UITableViewCell()}
             cell.secondCell.image.sd_setImage(with: url2, completed: nil)
         
-        cell.firstCell.InterestButton.tintColor = [.systemYellow, .label].randomElement()
-        cell.secondCell.InterestButton.tintColor = [.systemYellow, .label].randomElement()
+       
         
         
         

@@ -70,6 +70,9 @@
                     <buttonConfiguration key="configuration" style="plain" image="bell.square.fill" catalog="system">
                         <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="25" scale="large" weight="light"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="buttonTapped:" destination="-1" eventType="touchUpInside" id="6P5-bp-Eyh"/>
+                    </connections>
                 </button>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Luxury" translatesAutoresizingMaskIntoConstraints="NO" id="0GD-rd-a68">
                     <rect key="frame" x="10" y="52" width="222" height="180"/>

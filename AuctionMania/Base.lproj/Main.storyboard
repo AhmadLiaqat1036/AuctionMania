@@ -167,10 +167,25 @@
                     <view key="view" contentMode="scaleToFill" id="hpU-6t-Ru3">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Fdy-pC-TQr">
+                                <rect key="frame" x="0.0" y="155" width="393" height="614"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="UZJ-Zr-vXT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="UZJ-Zr-vXT" firstAttribute="trailing" secondItem="Fdy-pC-TQr" secondAttribute="trailing" id="GiF-7A-bUJ"/>
+                            <constraint firstItem="Fdy-pC-TQr" firstAttribute="top" secondItem="UZJ-Zr-vXT" secondAttribute="top" id="Qmf-k6-S5G"/>
+                            <constraint firstItem="UZJ-Zr-vXT" firstAttribute="bottom" secondItem="Fdy-pC-TQr" secondAttribute="bottom" id="U2q-kP-jvu"/>
+                            <constraint firstItem="Fdy-pC-TQr" firstAttribute="leading" secondItem="UZJ-Zr-vXT" secondAttribute="leading" id="eoX-qo-zUi"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="FMX-kg-DN6"/>
+                    <navigationItem key="navigationItem" title="Interests" id="FMX-kg-DN6"/>
+                    <connections>
+                        <outlet property="InterestsTable" destination="Fdy-pC-TQr" id="thb-oF-Q8M"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rd8-Xn-Ox3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -214,9 +229,12 @@
                         <imageReference key="image" image="heart" catalog="system" symbolScale="large" variableValue="1"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="ONC-7N-WEa">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="ONC-7N-WEa">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="labelColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>

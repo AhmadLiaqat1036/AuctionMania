@@ -39,3 +39,7 @@ extension String{
         return "$" + self.removeDecimal.addCommaAfterThree
     }
 }
+extension Notification.Name{
+    static let on = NSNotification.Name("InterestIsOn")
+    static let off = NSNotification.Name("InterestIsOff")
+}

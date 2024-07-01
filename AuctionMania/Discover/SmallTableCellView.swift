@@ -19,6 +19,7 @@ class SmallTableCellView: UIView {
     @IBOutlet weak var productBid: UILabel!
     @IBOutlet weak var rating: FiveStarRatingView!
     @IBOutlet weak var InterestButton: UIButton!
+    var buttonSelected = false
     override init(frame: CGRect) {
         super.init(frame: frame)
         viewInit()
@@ -36,12 +37,56 @@ class SmallTableCellView: UIView {
         }
         upDownTagBackground.layer.cornerRadius = 10
         upDownTagBackground.layer.masksToBounds = true
-       
+        
+        InterestsViewModel.shared.getAllTitlesFromCoreData()
+        if(InterestsViewModel.shared.InterestsCore.contains(where: { interest in
+            interest.name == productName.text
+        })){
+            InterestButton.isSelected = true
+            InterestButton.tintColor = .systemYellow
+            InterestsViewModel.shared.interestsNames.append(productName.text ?? "")
+        }else{
+            InterestButton.isSelected = false
+            InterestButton.tintColor = .label
+        }
+
     }
     func viewInit(){
         let xibView = Bundle.main.loadNibNamed("SmallTableCellView", owner: self, options: nil)![0] as! UIView
         addSubview(xibView)
         xibView.frame = self.bounds
         xibView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    }
+    
+//    @objc private func interestButtonTapped(sender: UIButton, title: String){
+//        sender.isSelected = !sender.isSelected
+//            if sender.isSelected {
+//                print("Switch is ON")
+//                InterestButton.tintColor = .systemYellow
+////                NotificationCenter.default.post(name: NSNotification.Name("InterestIsOn"), object: nil, userInfo: ["name": title])
+//            } else {
+//                print("Switch is OFF")
+//                InterestButton.tintColor = .label
+////                NotificationCenter.default.post(name: NSNotification.Name("InterestIsOff"), object: nil, userInfo: ["name": title])
+//            }
+//       
+//    }
+    
+    @IBAction func buttonTapped(_ sender: Any) {
+        if buttonSelected{
+            buttonSelected = false
+            InterestButton.tintColor = .label
+            InterestsViewModel.shared.interestsNames.removeAll { name in
+                name == productName.text ?? ""
+            }
+            InterestsViewModel.shared.fetchAllProducts()
+            print(InterestsViewModel.shared.interestsNames)
+        }else{
+            buttonSelected = true
+            InterestButton.tintColor = .systemYellow
+            InterestsViewModel.shared.interestsNames.append(productName.text ?? "")
+            InterestsViewModel.shared.fetchAllProducts()
+            print(InterestsViewModel.shared.interestsNames)
+        }
     }
 }
