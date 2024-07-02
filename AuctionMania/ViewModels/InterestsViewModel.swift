@@ -19,6 +19,8 @@ class InterestsViewModel{
     var InterestsCore = [Interest]()
     var interestsNames = [String]()
     
+    var APISuccess = false
+    
     var APISuccessDidChange: ((Bool)->Void)?
     var deleteAllSuccessDidChange: ((Bool)->Void)?
 
@@ -27,16 +29,15 @@ class InterestsViewModel{
     
     func fetchAllProducts(){
         APICaller.shared.getAllProductsFromFakeStore { [weak self] results in
-            let success: Bool
             switch results{
             case .success(let products):
-                success = true
+                self?.APISuccess = true
                 self?.Products = products
             case .failure(let error):
-                success = false
+                self?.APISuccess = false
                 print(error)
             }
-            self?.APISuccessDidChange?(success)
+            self?.APISuccessDidChange?(self?.APISuccess ?? false)
         }
     }
     func deleteAllInterests() {
@@ -53,6 +54,23 @@ class InterestsViewModel{
         }
         deleteAllSuccessDidChange?(true)
     }
+    
+    func putInterestsInCoreData(){
+        if !interestsNames.isEmpty{
+            do{
+                for name in interestsNames{
+                    try addInterest(name: name)
+                }
+            }catch{
+                puttingCoreDataSuccessDidChange?(false)
+            }
+            puttingCoreDataSuccessDidChange?(true)
+        }
+        else{
+            InterestsCore = []
+            puttingCoreDataSuccessDidChange?(true)
+        }
+    }
     func getAllTitlesFromCoreData(){
         do{
             let items = try context.fetch(Interest.fetchRequest())
@@ -63,17 +81,6 @@ class InterestsViewModel{
             fetchingCoreDataSuccessDidChange?(false)
         }
         fetchingCoreDataSuccessDidChange?(true)
-    }
-    func putInterestsInCoreData(){
-    
-        do{
-            for name in interestsNames{
-                try addInterest(name: name)
-            }
-        }catch{
-            puttingCoreDataSuccessDidChange?(false)
-        }
-        puttingCoreDataSuccessDidChange?(true)
     }
     
     enum InterestError: Error {
@@ -123,6 +130,8 @@ class InterestsViewModel{
     func deleteCell(at indexPath: IndexPath) {
         // Fetch the managed object to be deleted
         let objectToDelete = InterestsCore[indexPath.row]
+        InterestsCore.remove(at: indexPath.row)
+        interestsNames.remove(at: indexPath.row)
         
         // Delete the object from the managed object context
         context.delete(objectToDelete)
@@ -132,6 +141,14 @@ class InterestsViewModel{
             try context.save()
         } catch {
             print("Failed to delete object: \(error)")
+        }
+    }
+    
+    func fetchInterestNamesFromInterestsCore(){
+        interestsNames.removeAll()
+        for item in InterestsCore{
+            guard let name = item.name else {return}
+            interestsNames.append(name)
         }
     }
     

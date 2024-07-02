@@ -36,7 +36,12 @@ class DiscoverViewController: UIViewController {
         discoverTable.tableHeaderView = DiscoverTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 130))
         showHUD()
         DiscoverViewModel.shared.fetchAllProducts()
+        InterestsViewModel.shared.getAllTitlesFromCoreData()
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        discoverTable.reloadData()
     }
     func showHUD(){
         DispatchQueue.main.async{
@@ -140,8 +145,26 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
             guard let url2 = URL(string: p2.image ?? "") else {return UITableViewCell()}
             cell.secondCell.image.sd_setImage(with: url2, completed: nil)
         
-       
         
+        
+        if InterestsViewModel.shared.InterestsCore.contains(where: { interest in
+            interest.name == p1.title
+        }){
+            cell.firstCell.buttonSelected = true
+            cell.firstCell.InterestButton.tintColor = .systemYellow
+        }else{
+            cell.firstCell.buttonSelected = false
+            cell.firstCell.InterestButton.tintColor = .label
+        }
+        if InterestsViewModel.shared.InterestsCore.contains(where: { interest in
+            interest.name == p2.title
+        }){
+            cell.secondCell.buttonSelected = true
+            cell.secondCell.InterestButton.tintColor = .systemYellow
+        }else{
+            cell.secondCell.buttonSelected = false
+            cell.secondCell.InterestButton.tintColor = .label
+        }
         
         
         return cell
@@ -154,7 +177,9 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
 extension DiscoverViewController: UISearchResultsUpdating{
     func updateSearchResults(for searchController: UISearchController) {
         guard let text = searchController.searchBar.text else {return}
-        //guard let vc = searchController.searchResultsController as? ResultsViewController else {return}
+        
         DiscoverViewModel.shared.getResultsProduct(from: text)
     }
 }
+
+

@@ -7,78 +7,122 @@
 
 import UIKit
 
+
+
 class InterestsViewController: UIViewController {
 
     @IBOutlet weak var InterestsTable: UITableView!
+    @IBOutlet weak var NoResultPic: UIImageView!
+    @IBOutlet weak var NoResultLabel: UILabel!
+    
+    var shouldDelete = false
+    var deleteConfirmationAlert: UIAlertController{
+        let alert = UIAlertController(title: "Delete from interests?", message: nil, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Delete", style: UIAlertAction.Style.destructive))
+                        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel))
+        return alert
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        
+        navigationItem.rightBarButtonItem = editButtonItem
         
         let nib = UINib(nibName: "BigTableViewCell", bundle: nil)
         InterestsTable.register(nib, forCellReuseIdentifier: "BigTableViewCell")
         InterestsTable.showsVerticalScrollIndicator = false
         InterestsTable.delegate = self
         InterestsTable.dataSource = self
+        InterestsTable.isHidden = false
+        NoResultPic.isHidden = true
+        NoResultLabel.isHidden = true
+        print("IVC-> \(InterestsViewModel.shared.interestsNames)")
         InterestsViewModel.shared.getAllTitlesFromCoreData()
     }
     
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        InterestsTable.setEditing(editing, animated: animated)
+    }
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.isEditing = false
+        if InterestsViewModel.shared.InterestsCore.isEmpty{
+            navigationItem.rightBarButtonItem?.isHidden = true
+            InterestsTable.isHidden = true
+            NoResultPic.isHidden = false
+            NoResultLabel.isHidden = false
+        }else{
+            navigationItem.rightBarButtonItem?.isHidden = false
+            InterestsTable.isHidden = false
+            NoResultPic.isHidden = true
+            NoResultLabel.isHidden = true
+        }
+    }
     func bindViewModel(){
         InterestsViewModel.shared.APISuccessDidChange = {success in
            if success {
-               print("API fetch success")
+               print("API fetch-> success")
                InterestsViewModel.shared.deleteAllInterests()
            }else{
-               print("API fetch failure")
+               print("API fetch-> failure")
            }
        }
         InterestsViewModel.shared.deleteAllSuccessDidChange = {
             success in
                if success {
-                   print("delete all success")
+                   print("delete all-> success")
                    InterestsViewModel.shared.putInterestsInCoreData()
                }else{
-                   print("delete all failure")
+                   print("delete all-> failure")
                }
         }
         InterestsViewModel.shared.puttingCoreDataSuccessDidChange = {success in
             if success{
-                print("putting in COREDATA success")
+                print("putting in COREDATA-> success")
                 InterestsViewModel.shared.getAllTitlesFromCoreData()
             }else{
-                print("putting in COREDATA failure")
+                print("putting in COREDATA-> failure")
             }
             
         }
-        InterestsViewModel.shared.fetchingCoreDataSuccessDidChange = {success in
+        InterestsViewModel.shared.fetchingCoreDataSuccessDidChange = {[weak self] success in
             if success{
-                print("fetching from COREDATA success")
-                DispatchQueue.main.async {
-                    self.InterestsTable.reloadData()
+                print("fetching from COREDATA-> success")
+                if InterestsViewModel.shared.InterestsCore.isEmpty{
+                    print("->Going to show No result")
+                    DispatchQueue.main.async{
+                        self?.InterestsTable.isHidden = true
+                        self?.NoResultPic.isHidden = false
+                        self?.NoResultLabel.isHidden = false
+                        self?.InterestsTable.reloadData()
+                    }
+                }else{
+                    InterestsViewModel.shared.fetchInterestNamesFromInterestsCore()
+                    DispatchQueue.main.async {
+                        self?.InterestsTable.isHidden = false
+                        self?.NoResultPic.isHidden = true
+                        self?.NoResultLabel.isHidden = true
+                        self?.InterestsTable.reloadData()
+                    }
                 }
             }else{
-                print("fetching from COREDATA failure")
+                print("fetching from COREDATA-> failure")
             }
             
         }
     }
-    @objc func handleInterestIsOffNotification(_ notification: Notification) {
-        print("reached viewmodel off")
-        if let userInfo = notification.userInfo {
-            if let productName = userInfo["name"] as? String {
-                print("Received InterestIsOff notification for product: \(productName)")
-                // Handle the notification as needed
-            }
-        }
-    }
-    @objc func handleInterestIsOnNotification(_ notification: Notification) {
-        print("reached viewmodel on")
-        if let userInfo = notification.userInfo {
-            if let productName = userInfo["name"] as? String {
-                print("Received InterestIsOff notification for product: \(productName)")
-                // Handle the notification as needed
-            }
-        }
-    }
+    func showAlert(_ title: String? = "Message", message: String?, completion: @escaping (_ isYes: Bool) -> Void) -> Void {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { alert in
+          completion(true)
+        })
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { alert in
+          completion(false)
+        })
+        self.present(alert, animated: true)
+      }
 
 }
 
@@ -148,18 +192,19 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let deleteAction = UIContextualAction(style: .destructive, title: "Delete") { (action, view, completionHandler) in
-            self.InterestsTable.deselectRow(at: indexPath, animated: true)
-                // Handle delete action
-            InterestsViewModel.shared.deleteCell(at: indexPath)
-                completionHandler(true)
-            }
-            
-            // Customize the delete action
-            deleteAction.backgroundColor = .red
-            
-            // Return swipe actions configuration
-            return UISwipeActionsConfiguration(actions: [deleteAction])
+    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        .delete
+    }
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete{
+            showAlert("Delete product", message: "Are you sure you want to delete product from interests?", completion: { yes in
+                if yes {
+                    tableView.beginUpdates()
+                    InterestsViewModel.shared.deleteCell(at: indexPath)
+                    tableView.deleteRows(at: [indexPath], with: .fade)
+                    tableView.endUpdates()
+                    }
+                })
+        }
     }
 }

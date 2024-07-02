@@ -38,17 +38,8 @@ class SmallTableCellView: UIView {
         upDownTagBackground.layer.cornerRadius = 10
         upDownTagBackground.layer.masksToBounds = true
         
-        InterestsViewModel.shared.getAllTitlesFromCoreData()
-        if(InterestsViewModel.shared.InterestsCore.contains(where: { interest in
-            interest.name == productName.text
-        })){
-            InterestButton.isSelected = true
-            InterestButton.tintColor = .systemYellow
-            InterestsViewModel.shared.interestsNames.append(productName.text ?? "")
-        }else{
-            InterestButton.isSelected = false
-            InterestButton.tintColor = .label
-        }
+        InterestButton.isSelected = false
+        InterestButton.tintColor = .label
 
     }
     func viewInit(){
@@ -79,13 +70,23 @@ class SmallTableCellView: UIView {
             InterestsViewModel.shared.interestsNames.removeAll { name in
                 name == productName.text ?? ""
             }
-            InterestsViewModel.shared.fetchAllProducts()
+            if(InterestsViewModel.shared.APISuccess){
+                InterestsViewModel.shared.deleteAllInterests()
+            }else{
+                InterestsViewModel.shared.fetchAllProducts()
+            }
+            print("Button clicked!")
             print(InterestsViewModel.shared.interestsNames)
         }else{
             buttonSelected = true
             InterestButton.tintColor = .systemYellow
             InterestsViewModel.shared.interestsNames.append(productName.text ?? "")
-            InterestsViewModel.shared.fetchAllProducts()
+            if(InterestsViewModel.shared.APISuccess){
+                InterestsViewModel.shared.deleteAllInterests()
+            }else{
+                InterestsViewModel.shared.fetchAllProducts()
+            }
+            print("Button clicked!")
             print(InterestsViewModel.shared.interestsNames)
         }
     }
