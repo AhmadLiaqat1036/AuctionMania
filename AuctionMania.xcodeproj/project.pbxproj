@@ -11,6 +11,9 @@
 		57019C1E2C1AE504001987A9 /* BigTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57019C1C2C1AE504001987A9 /* BigTableViewCell.xib */; };
 		57019C242C1C2E8F001987A9 /* HomeTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57019C232C1C2E8F001987A9 /* HomeTableHeader.swift */; };
 		57019C262C2413B7001987A9 /* HomeTableFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57019C252C2413B7001987A9 /* HomeTableFooter.swift */; };
+		57084E0B2C35B8C30033025F /* ProductDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 57084E0A2C35B8C30033025F /* ProductDetailViewController.xib */; };
+		57084E0C2C35B8C30033025F /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57084E092C35B8C30033025F /* ProductDetailViewController.swift */; };
+		57084E0E2C35CE400033025F /* Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57084E0D2C35CE400033025F /* Gradient.swift */; };
 		5774A5F32C241A840087C34D /* HomeTableFooter.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5774A5F22C241A840087C34D /* HomeTableFooter.xib */; };
 		5774A5F52C244AEF0087C34D /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A5F42C244AEE0087C34D /* TabBarController.swift */; };
 		5774A5F82C255A6D0087C34D /* API_Caller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A5F72C255A6D0087C34D /* API_Caller.swift */; };
@@ -78,6 +81,9 @@
 		57019C1C2C1AE504001987A9 /* BigTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BigTableViewCell.xib; sourceTree = "<group>"; };
 		57019C232C1C2E8F001987A9 /* HomeTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableHeader.swift; sourceTree = "<group>"; };
 		57019C252C2413B7001987A9 /* HomeTableFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableFooter.swift; sourceTree = "<group>"; };
+		57084E092C35B8C30033025F /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
+		57084E0A2C35B8C30033025F /* ProductDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProductDetailViewController.xib; sourceTree = "<group>"; };
+		57084E0D2C35CE400033025F /* Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gradient.swift; sourceTree = "<group>"; };
 		5774A5F22C241A840087C34D /* HomeTableFooter.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeTableFooter.xib; sourceTree = "<group>"; };
 		5774A5F42C244AEE0087C34D /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		5774A5F72C255A6D0087C34D /* API_Caller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Caller.swift; sourceTree = "<group>"; };
@@ -165,6 +171,9 @@
 			children = (
 				5774A6052C294A130087C34D /* FiveStarRatingView.xib */,
 				5774A6072C294B580087C34D /* FiveStarRatingView.swift */,
+				57084E092C35B8C30033025F /* ProductDetailViewController.swift */,
+				57084E0A2C35B8C30033025F /* ProductDetailViewController.xib */,
+				57084E0D2C35CE400033025F /* Gradient.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -434,6 +443,7 @@
 				57B0EAA92C19B736008811BC /* Assets.xcassets in Resources */,
 				5774A6202C2C1F4D0087C34D /* DiscoverTableHeader.xib in Resources */,
 				5774A6062C294A130087C34D /* FiveStarRatingView.xib in Resources */,
+				57084E0B2C35B8C30033025F /* ProductDetailViewController.xib in Resources */,
 				5774A62E2C2D6B3F0087C34D /* DiscoverTableHeaderSmallCell.xib in Resources */,
 				5774A6382C2ECB640087C34D /* ResultsViewController.xib in Resources */,
 				57B0EAAC2C19B736008811BC /* Base in Resources */,
@@ -473,6 +483,7 @@
 				57019C242C1C2E8F001987A9 /* HomeTableHeader.swift in Sources */,
 				57B0EAD52C19BC81008811BC /* HomeViewController.swift in Sources */,
 				5774A5F52C244AEF0087C34D /* TabBarController.swift in Sources */,
+				57084E0E2C35CE400033025F /* Gradient.swift in Sources */,
 				57B0EA9D2C19B733008811BC /* AppDelegate.swift in Sources */,
 				5774A62D2C2D6B3F0087C34D /* DiscoverTableHeaderSmallCell.swift in Sources */,
 				57B0EAD72C19BE0F008811BC /* DiscoverViewController.swift in Sources */,
@@ -481,6 +492,7 @@
 				57019C262C2413B7001987A9 /* HomeTableFooter.swift in Sources */,
 				57B0EADB2C19BE5D008811BC /* ProfileViewController.swift in Sources */,
 				57019C1D2C1AE504001987A9 /* BigTableViewCell.swift in Sources */,
+				57084E0C2C35B8C30033025F /* ProductDetailViewController.swift in Sources */,
 				57B0EAD92C19BE3E008811BC /* InterestsViewController.swift in Sources */,
 				5774A6322C2E9AFB0087C34D /* FillerViewForHiddenCollection.swift in Sources */,
 				5774A6082C294B580087C34D /* FiveStarRatingView.swift in Sources */,
