@@ -13,6 +13,8 @@ class ResultsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        
+        navigationController?.navigationBar.prefersLargeTitles = false
         let nib = UINib(nibName: "SmallTableCell", bundle: nil)
         table.register(nib, forCellReuseIdentifier: "SmallTableCell")
         table.allowsSelection = false

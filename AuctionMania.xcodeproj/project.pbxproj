@@ -30,7 +30,7 @@
 		5774A6152C2AE92E0087C34D /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A6142C2AE92E0087C34D /* HomeViewModel.swift */; };
 		5774A6182C2AFA3B0087C34D /* JGProgressHUD in Frameworks */ = {isa = PBXBuildFile; productRef = 5774A6172C2AFA3B0087C34D /* JGProgressHUD */; };
 		5774A61B2C2C00A90087C34D /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A61A2C2C00A90087C34D /* StringExtensions.swift */; };
-		5774A61E2C2C00F00087C34D /* APIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A61D2C2C00F00087C34D /* APIConstants.swift */; };
+		5774A61E2C2C00F00087C34D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A61D2C2C00F00087C34D /* Constants.swift */; };
 		5774A6202C2C1F4D0087C34D /* DiscoverTableHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5774A61F2C2C1F4C0087C34D /* DiscoverTableHeader.xib */; };
 		5774A6222C2C20490087C34D /* DiscoverTableHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A6212C2C20490087C34D /* DiscoverTableHeader.swift */; };
 		5774A6292C2C2B440087C34D /* DiscoverTableHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5774A6272C2C2B440087C34D /* DiscoverTableHeaderCell.swift */; };
@@ -57,6 +57,9 @@
 		57B0EAD72C19BE0F008811BC /* DiscoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B0EAD62C19BE0F008811BC /* DiscoverViewController.swift */; };
 		57B0EAD92C19BE3E008811BC /* InterestsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B0EAD82C19BE3E008811BC /* InterestsViewController.swift */; };
 		57B0EADB2C19BE5D008811BC /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B0EADA2C19BE5D008811BC /* ProfileViewController.swift */; };
+		57B283632C37DC4C0001D492 /* ProductDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B283622C37DC4C0001D492 /* ProductDetailViewModel.swift */; };
+		57B283652C382C590001D492 /* NoResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 57B283642C382C580001D492 /* NoResultView.swift */; };
+		CE3FD75B2C367ACE00FA482D /* CircleProgressBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE3FD75A2C367ACE00FA482D /* CircleProgressBar.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,7 +100,7 @@
 		5774A6122C2ADAB30087C34D /* DiscoverViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewModel.swift; sourceTree = "<group>"; };
 		5774A6142C2AE92E0087C34D /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		5774A61A2C2C00A90087C34D /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
-		5774A61D2C2C00F00087C34D /* APIConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConstants.swift; sourceTree = "<group>"; };
+		5774A61D2C2C00F00087C34D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		5774A61F2C2C1F4C0087C34D /* DiscoverTableHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DiscoverTableHeader.xib; sourceTree = "<group>"; };
 		5774A6212C2C20490087C34D /* DiscoverTableHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableHeader.swift; sourceTree = "<group>"; };
 		5774A6272C2C2B440087C34D /* DiscoverTableHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverTableHeaderCell.swift; sourceTree = "<group>"; };
@@ -128,6 +131,9 @@
 		57B0EAD62C19BE0F008811BC /* DiscoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiscoverViewController.swift; sourceTree = "<group>"; };
 		57B0EAD82C19BE3E008811BC /* InterestsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterestsViewController.swift; sourceTree = "<group>"; };
 		57B0EADA2C19BE5D008811BC /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		57B283622C37DC4C0001D492 /* ProductDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewModel.swift; sourceTree = "<group>"; };
+		57B283642C382C580001D492 /* NoResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoResultView.swift; sourceTree = "<group>"; };
+		CE3FD75A2C367ACE00FA482D /* CircleProgressBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleProgressBar.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -174,6 +180,7 @@
 				57084E092C35B8C30033025F /* ProductDetailViewController.swift */,
 				57084E0A2C35B8C30033025F /* ProductDetailViewController.xib */,
 				57084E0D2C35CE400033025F /* Gradient.swift */,
+				CE3FD75A2C367ACE00FA482D /* CircleProgressBar.swift */,
 			);
 			path = General;
 			sourceTree = "<group>";
@@ -182,8 +189,8 @@
 			isa = PBXGroup;
 			children = (
 				5774A6142C2AE92E0087C34D /* HomeViewModel.swift */,
-				5774A6122C2ADAB30087C34D /* DiscoverViewModel.swift */,
 				5774A6392C32980C0087C34D /* InterestsViewModel.swift */,
+				57B283622C37DC4C0001D492 /* ProductDetailViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -199,7 +206,7 @@
 		5774A61C2C2C00DB0087C34D /* Constants */ = {
 			isa = PBXGroup;
 			children = (
-				5774A61D2C2C00F00087C34D /* APIConstants.swift */,
+				5774A61D2C2C00F00087C34D /* Constants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -305,6 +312,7 @@
 			isa = PBXGroup;
 			children = (
 				57B0EAD82C19BE3E008811BC /* InterestsViewController.swift */,
+				57B283642C382C580001D492 /* NoResultView.swift */,
 			);
 			path = Interests;
 			sourceTree = "<group>";
@@ -313,6 +321,7 @@
 			isa = PBXGroup;
 			children = (
 				57B0EADA2C19BE5D008811BC /* ProfileViewController.swift */,
+				5774A6122C2ADAB30087C34D /* DiscoverViewModel.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -485,6 +494,7 @@
 				5774A5F52C244AEF0087C34D /* TabBarController.swift in Sources */,
 				57084E0E2C35CE400033025F /* Gradient.swift in Sources */,
 				57B0EA9D2C19B733008811BC /* AppDelegate.swift in Sources */,
+				57B283652C382C590001D492 /* NoResultView.swift in Sources */,
 				5774A62D2C2D6B3F0087C34D /* DiscoverTableHeaderSmallCell.swift in Sources */,
 				57B0EAD72C19BE0F008811BC /* DiscoverViewController.swift in Sources */,
 				57B0EAA72C19B733008811BC /* AuctionMania.xcdatamodeld in Sources */,
@@ -497,14 +507,16 @@
 				5774A6322C2E9AFB0087C34D /* FillerViewForHiddenCollection.swift in Sources */,
 				5774A6082C294B580087C34D /* FiveStarRatingView.swift in Sources */,
 				5774A5F82C255A6D0087C34D /* API_Caller.swift in Sources */,
-				5774A61E2C2C00F00087C34D /* APIConstants.swift in Sources */,
+				5774A61E2C2C00F00087C34D /* Constants.swift in Sources */,
 				5774A6412C32C6050087C34D /* Interest+CoreDataClass.swift in Sources */,
 				5774A6422C32C6050087C34D /* Interest+CoreDataProperties.swift in Sources */,
 				5774A6372C2ECB640087C34D /* ResultsViewController.swift in Sources */,
+				57B283632C37DC4C0001D492 /* ProductDetailViewModel.swift in Sources */,
 				5774A5FA2C255C090087C34D /* FakeStoreModel.swift in Sources */,
 				5774A63A2C32980C0087C34D /* InterestsViewModel.swift in Sources */,
 				5774A6102C2974A70087C34D /* SmallTableCellView.swift in Sources */,
 				5774A6292C2C2B440087C34D /* DiscoverTableHeaderCell.swift in Sources */,
+				CE3FD75B2C367ACE00FA482D /* CircleProgressBar.swift in Sources */,
 				5774A6132C2ADAB40087C34D /* DiscoverViewModel.swift in Sources */,
 				5774A61B2C2C00A90087C34D /* StringExtensions.swift in Sources */,
 				5774A6222C2C20490087C34D /* DiscoverTableHeader.swift in Sources */,

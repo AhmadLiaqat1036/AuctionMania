@@ -61,10 +61,17 @@ Successful
         viewModel.fetchAllProducts()
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = .systemBackground
+    }
+    
     func bindViewModel(){
         viewModel.APISuccessDidChange = { [weak self] success in
            if success {
-               print("fetch success")
+//               print("fetch success")
                DispatchQueue.main.async {
                    self?.hud.dismiss(afterDelay: 0.3)
                    self?.successHud.show(in: (self?.view)!)
@@ -74,7 +81,7 @@ Successful
                    self?.tableView.reloadData()
                }
            }else{
-               print("fetch failure")
+//               print("fetch failure")
            }
        }
     }
@@ -124,24 +131,9 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         
         cell.CarCompanyImageLabel.text = String(Int((product.rating.rate ?? 0) / 5.0 * 100)) + "%"
         
-        switch product.rating.rate ?? 0{
-        case 0.0...0.9:
-            cell.CarCompanyImage.tintColor = .systemRed
-            cell.CarCompanyImageLabel.textColor = .systemRed
-        case 1.0...1.9:
-            cell.CarCompanyImage.tintColor = .systemPink.withAlphaComponent(0.8)
-            cell.CarCompanyImageLabel.textColor = .systemPink.withAlphaComponent(0.8)
-        case 2.0...2.9:
-            cell.CarCompanyImage.tintColor = .systemOrange
-            cell.CarCompanyImageLabel.textColor = .systemOrange
-        case 3.0...3.9:
-            cell.CarCompanyImage.tintColor = .systemYellow
-            cell.CarCompanyImageLabel.textColor = .systemYellow
-        default:
-            cell.CarCompanyImage.tintColor = .systemGreen
-            cell.CarCompanyImageLabel.textColor = .systemGreen
-        }
         
+        cell.CarCompanyImage.tintColor = Constants.getColourOnRating(rating: product.rating.rate ?? 0.0)
+        cell.CarCompanyImageLabel.textColor = Constants.getColourOnRating(rating: product.rating.rate ?? 0.0)
         
         let randomSeller = Constants.sellerNames.randomElement()
         cell.Seller.text = randomSeller
@@ -169,8 +161,66 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        navigationController?.pushViewController(ProductDetailViewController(), animated: true)
+        DispatchQueue.main.async { [weak self] in
+            tableView.deselectRow(at: indexPath, animated: true)
+            
+            let randomPrice = Constants.mergedPrices.randomElement() ?? Constants.PriceInfo(originalPrice: "$0", price100Less: "$0")
+
+            // Instantiate ProductDetailViewController from .xib
+            
+            let vc = ProductDetailViewController(nibName: "ProductDetailViewController", bundle: nil)
+
+            // Configure ProductDetailViewController with data
+            guard let product = self?.viewModel.Products[indexPath.row] else { return }
+            vc.configureItems(categoryName: product.category?.capitalized ?? "No Category",
+                              productName: product.title,
+                              productImage: product.image ?? "",
+                              topBidName: Constants.randomFullNames.randomElement() ?? "",
+                              topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "",
+                              topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "No Date",
+                              topBidPrice: randomPrice.originalPrice,
+                              prRate: String(product.rating.rate ?? 0.0),
+                              prVote: String(product.rating.count ?? 0),
+                              prDesc: Constants.description(for: product.rating.rate ?? 6.0),
+                              cpBackgroundClr: Constants.getColourOnRating(rating: product.rating.rate ?? 0.0).withAlphaComponent(0.5).cgColor,
+                              cpPrimaryClr: Constants.getColourOnRating(rating: product.rating.rate ?? 0.0).cgColor,
+                              cpPercentClr: Constants.getColourOnRating(rating: product.rating.rate ?? 0.0),
+                              cpPercentage: Int((product.rating.rate ?? 0.0) / 5.0) * 100,
+                              cpStrokeEnd: (product.rating.rate ?? 0.0) / 5.0,
+                              sName: Constants.sellerNames.randomElement() ?? "No Name",
+                              sPrice: randomPrice.price100Less,
+                              sLoc: Constants.moreAsianPlaces.randomElement() ?? "No Location",
+                              description: product.description ?? "")
+
+            // Push ProductDetailViewController onto navigation stack
+            self?.navigationController?.pushViewController(vc, animated: true)
+        }
     }
+
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        
+//        tableView.deselectRow(at: indexPath, animated: true)
+//        let randomPrice = Constants.mergedPrices.randomElement() ?? Constants.PriceInfo(originalPrice: "$0", price100Less: "$0")
+//        let product = viewModel.Products[indexPath.row]
+//            
+//
+//        DispatchQueue.main.async { [weak self] in
+////            guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProductDetailViewController") as? ProductDetailViewController else {
+////                return
+////            }
+//            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProductDetailViewController") as! ProductDetailViewController
+//            self?.navigationController?.pushViewController(vc, animated: false)
+////            let vc = ProductDetailViewController()
+////
+////            self?.navigationController?.pushViewController(vc, animated: true)
+//            
+////            performSegue(withIdentifier: "showDetail", sender: self)
+//            
+//            vc.configureItems(productName: product.title, productImage: product.image ?? "" , topBidName: Constants.randomFullNames.randomElement() ?? "", topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "", topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "No Date", topBidPrice: randomPrice.originalPrice, prRate: String(product.rating.rate ?? 0.0), prVote: String(product.rating.count ?? 0), prDesc: Constants.description(for: product.rating.rate ?? 6.0), cpBackgroundClr: UIColor.orange.withAlphaComponent(0.5).cgColor, cpPrimaryClr: UIColor.systemYellow.cgColor, cpPercentClr: .green, cpPercentage: Int((product.rating.rate ?? 0.0)/5.0)*100, cpStrokeEnd: (product.rating.rate ?? 0.0)/5.0, sName: Constants.sellerNames.randomElement() ?? "No Name", sPrice: randomPrice.price100Less, sLoc: Constants.moreAsianPlaces.randomElement() ?? "No Location", description: product.description ?? "")
+//            
+//            
+//        }
+//        
+//    }
 }
 

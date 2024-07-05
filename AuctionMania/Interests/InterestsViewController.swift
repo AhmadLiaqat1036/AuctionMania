@@ -12,8 +12,6 @@ import UIKit
 class InterestsViewController: UIViewController {
 
     @IBOutlet weak var InterestsTable: UITableView!
-    @IBOutlet weak var NoResultPic: UIImageView!
-    @IBOutlet weak var NoResultLabel: UILabel!
     
     var shouldDelete = false
     var deleteConfirmationAlert: UIAlertController{
@@ -26,18 +24,19 @@ class InterestsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
+        navigationController?.modalPresentationStyle = .overCurrentContext
         
         navigationItem.rightBarButtonItem = editButtonItem
-        
+        navigationController?.navigationBar.backgroundColor = .systemBackground
         let nib = UINib(nibName: "BigTableViewCell", bundle: nil)
         InterestsTable.register(nib, forCellReuseIdentifier: "BigTableViewCell")
         InterestsTable.showsVerticalScrollIndicator = false
         InterestsTable.delegate = self
         InterestsTable.dataSource = self
         InterestsTable.isHidden = false
-        NoResultPic.isHidden = true
-        NoResultLabel.isHidden = true
-        print("IVC-> \(InterestsViewModel.shared.interestsNames)")
+        InterestsTable.tableHeaderView = NoResultView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
+        InterestsTable.tableHeaderView?.isHidden = true
+//        print("IVC-> \(InterestsViewModel.shared.interestsNames)")
         InterestsViewModel.shared.getAllTitlesFromCoreData()
     }
     
@@ -47,68 +46,64 @@ class InterestsViewController: UIViewController {
     }
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = .systemBackground
         self.isEditing = false
         if InterestsViewModel.shared.InterestsCore.isEmpty{
             navigationItem.rightBarButtonItem?.isHidden = true
-            InterestsTable.isHidden = true
-            NoResultPic.isHidden = false
-            NoResultLabel.isHidden = false
+            InterestsTable.tableHeaderView?.isHidden = false
         }else{
             navigationItem.rightBarButtonItem?.isHidden = false
-            InterestsTable.isHidden = false
-            NoResultPic.isHidden = true
-            NoResultLabel.isHidden = true
+            
+            InterestsTable.tableHeaderView?.isHidden = true
         }
     }
     func bindViewModel(){
         InterestsViewModel.shared.APISuccessDidChange = {success in
            if success {
-               print("API fetch-> success")
+//               print("API fetch-> success")
                InterestsViewModel.shared.deleteAllInterests()
            }else{
-               print("API fetch-> failure")
+//               print("API fetch-> failure")
            }
        }
         InterestsViewModel.shared.deleteAllSuccessDidChange = {
             success in
                if success {
-                   print("delete all-> success")
+//                   print("delete all-> success")
                    InterestsViewModel.shared.putInterestsInCoreData()
                }else{
-                   print("delete all-> failure")
+//                   print("delete all-> failure")
                }
         }
         InterestsViewModel.shared.puttingCoreDataSuccessDidChange = {success in
             if success{
-                print("putting in COREDATA-> success")
+//                print("putting in COREDATA-> success")
                 InterestsViewModel.shared.getAllTitlesFromCoreData()
             }else{
-                print("putting in COREDATA-> failure")
+//                print("putting in COREDATA-> failure")
             }
             
         }
         InterestsViewModel.shared.fetchingCoreDataSuccessDidChange = {[weak self] success in
             if success{
-                print("fetching from COREDATA-> success")
+//                print("fetching from COREDATA-> success")
                 if InterestsViewModel.shared.InterestsCore.isEmpty{
-                    print("->Going to show No result")
+//                    print("->Going to show No result")
                     DispatchQueue.main.async{
-                        self?.InterestsTable.isHidden = true
-                        self?.NoResultPic.isHidden = false
-                        self?.NoResultLabel.isHidden = false
+                        self?.InterestsTable.tableHeaderView?.isHidden = false
                         self?.InterestsTable.reloadData()
                     }
                 }else{
                     InterestsViewModel.shared.fetchInterestNamesFromInterestsCore()
                     DispatchQueue.main.async {
-                        self?.InterestsTable.isHidden = false
-                        self?.NoResultPic.isHidden = true
-                        self?.NoResultLabel.isHidden = true
+                        self?.InterestsTable.tableHeaderView?.isHidden = true
                         self?.InterestsTable.reloadData()
                     }
                 }
             }else{
-                print("fetching from COREDATA-> failure")
+//                print("fetching from COREDATA-> failure")
             }
             
         }
@@ -142,7 +137,7 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
         
         cell.BigPriceLabel.text = String(product.price).formatToDollar
         cell.CarComapanyName.text = product.name
-       
+        
         
         cell.CarCompanyImageLabel.text = String(Int((product.rate) / 5.0 * 100)) + "%"
         
@@ -192,19 +187,61 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
         return cell
     }
     
-    func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
-        .delete
-    }
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete{
-            showAlert("Delete product", message: "Are you sure you want to delete product from interests?", completion: { yes in
-                if yes {
-                    tableView.beginUpdates()
-                    InterestsViewModel.shared.deleteCell(at: indexPath)
-                    tableView.deleteRows(at: [indexPath], with: .fade)
-                    tableView.endUpdates()
-                    }
-                })
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        DispatchQueue.main.async { [weak self] in
+            self?.InterestsTable.deselectRow(at: indexPath, animated: true)
+            
+            let randomPrice = Constants.mergedPrices.randomElement() ?? Constants.PriceInfo(originalPrice: "$0", price100Less: "$0")
+            
+            // Instantiate ProductDetailViewController from .xib
+            
+            let vc = ProductDetailViewController(nibName: "ProductDetailViewController", bundle: nil)
+            
+            // Configure ProductDetailViewController with data
+            let product = InterestsViewModel.shared.InterestsCore[indexPath.row]
+            vc.configureItems(categoryName: product.category?.capitalized ?? "No Category",
+                              productName: product.name ?? "No Name",
+                              productImage: product.image ?? "",
+                              topBidName: Constants.randomFullNames.randomElement() ?? "",
+                              topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "",
+                              topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "No Date",
+                              topBidPrice: randomPrice.originalPrice,
+                              prRate: String(product.rate),
+                              prVote: String(product.count),
+                              prDesc: Constants.description(for: product.rate),
+                              cpBackgroundClr: Constants.getColourOnRating(rating: product.rate).withAlphaComponent(0.5).cgColor,
+                              cpPrimaryClr: Constants.getColourOnRating(rating: product.rate).cgColor,
+                              cpPercentClr: Constants.getColourOnRating(rating: product.rate),
+                              cpPercentage: Int((product.rate) / 5.0) * 100,
+                              cpStrokeEnd: (product.rate) / 5.0,
+                              sName: Constants.sellerNames.randomElement() ?? "No Name",
+                              sPrice: randomPrice.price100Less,
+                              sLoc: Constants.moreAsianPlaces.randomElement() ?? "No Location",
+                              description: product.desc ?? "")
+            
+            // Push ProductDetailViewController onto navigation stack
+            
+            self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
-}
+        
+        func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+            .delete
+        }
+        func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+            if editingStyle == .delete{
+                showAlert("Delete product", message: "Are you sure you want to delete product from interests?", completion: {[weak self] yes in
+                    if yes {
+                        tableView.beginUpdates()
+                        InterestsViewModel.shared.deleteCell(at: indexPath)
+                        tableView.deleteRows(at: [indexPath], with: .fade)
+                        tableView.endUpdates()
+                        if InterestsViewModel.shared.InterestsCore.isEmpty{
+                            self?.navigationItem.rightBarButtonItem?.isHidden = true
+                            self?.InterestsTable.tableHeaderView?.isHidden = false
+                        }
+                    }
+                })
+            }
+        }
+    }

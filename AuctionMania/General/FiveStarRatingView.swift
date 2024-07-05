@@ -8,7 +8,18 @@
 import UIKit
 
 class FiveStarRatingView: UIView {
+    
+    var Colour = UIColor.systemYellow{
+        didSet{
+            star5.textColor = Colour
+            star4.textColor = Colour
+            star3.textColor = Colour
+            star2.textColor = Colour
+            star1.textColor = Colour
+        }
+    }
 
+    @IBOutlet weak var StackView: UIStackView!
     @IBOutlet weak var star1: UILabel!
     @IBOutlet weak var star2: UILabel!
     @IBOutlet weak var star3: UILabel!

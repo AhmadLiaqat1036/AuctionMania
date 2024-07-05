@@ -9,6 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FiveStarRatingView" customModule="AuctionMania" customModuleProvider="target">
             <connections>
+                <outlet property="StackView" destination="aMn-V9-9Pa" id="le1-1A-K0B"/>
                 <outlet property="star1" destination="OPi-cG-q2f" id="Tb5-tC-1ft"/>
                 <outlet property="star2" destination="oVD-ul-Jnt" id="eSA-Iw-Gzx"/>
                 <outlet property="star3" destination="5qv-br-3BK" id="Veo-2e-pQ0"/>

@@ -24,6 +24,7 @@ class DiscoverViewController: UIViewController {
         navigationItem.searchController = searchBar
         navigationItem.searchController?.showsSearchResultsController = true
         searchBar.searchResultsUpdater = self
+        searchBar.delegate = self
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController!.navigationBar.sizeToFit()
         navigationItem.hidesSearchBarWhenScrolling = false
@@ -33,7 +34,7 @@ class DiscoverViewController: UIViewController {
         discoverTable.showsVerticalScrollIndicator = false
         discoverTable.delegate = self
         discoverTable.dataSource = self
-        discoverTable.tableHeaderView = DiscoverTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 130))
+        discoverTable.tableHeaderView = DiscoverTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 140))
         showHUD()
         DiscoverViewModel.shared.fetchAllProducts()
         InterestsViewModel.shared.getAllTitlesFromCoreData()
@@ -41,42 +42,14 @@ class DiscoverViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        discoverTable.isHidden = false
         discoverTable.reloadData()
-    }
-    func showHUD(){
-        DispatchQueue.main.async{
-            DiscoverViewModel.shared.hud.show(in: self.view)
-        }
-    }
-    
-    func bindViewModel(){
-        DiscoverViewModel.shared.APISuccessDidChange = { [weak self] success in
-           if success {
-               print("fetch success")
-               DiscoverViewModel.shared.categoriesSelected = false
-               DispatchQueue.main.async {
-                   DiscoverViewModel.shared.hud.dismiss(afterDelay: 0.5)
-                   self?.discoverTable.reloadData()
-               }
-           }else{
-               print("fetch failure")
-           }
-       }
-        DiscoverViewModel.shared.categorySuccessDidChange = { [weak self] success in
-            if success {
-                print("fetch success")
-                DiscoverViewModel.shared.categoriesSelected = true
-                DispatchQueue.main.async {
-                    self?.discoverTable.reloadData()
-                    DiscoverViewModel.shared.hud.dismiss(afterDelay: 0.5)
-                }
-            }else{
-                print("fetch failure")
-            }
-            
-        }
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.backgroundColor = .systemBackground
     
     }
+    
      
     
 }
@@ -125,6 +98,21 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
                 }
             }
         }
+        
+        let p1RandomPrice = Constants.mergedPrices.randomElement()
+        let p1Rating = p1.rating.rate ?? 0
+        let p2RandomPrice = Constants.mergedPrices.randomElement()
+        let p2Rating = p2.rating.rate ?? 0
+        
+        let tapFirstCell = MyTapGesture(target: self, action: #selector(handleTap(_:)))
+        let tapSecondCell = MyTapGesture(target: self, action: #selector(handleTap(_:)))
+        cell.firstCell.addGestureRecognizer(tapFirstCell)
+        cell.secondCell.addGestureRecognizer(tapSecondCell)
+        
+        tapFirstCell.detail = ProductDetailViewModel(categoryName: p1.category?.capitalized ?? "", productName: p1.title, productImage: p1.image ?? "", topBidName: Constants.randomFullNames.randomElement() ?? "", topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "", topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "" , topBidPrice: p1RandomPrice?.originalPrice ?? "", prRate: String(p1Rating), prVote: String(p1.rating.count ?? 0), prDesc: Constants.description(for: p1Rating), cpBackgroundClr: Constants.getColourOnRating(rating: p1Rating).withAlphaComponent(0.5).cgColor, cpPrimaryClr: Constants.getColourOnRating(rating: p1Rating).cgColor, cpPercentClr: Constants.getColourOnRating(rating: p1Rating), cpPercentage: Int((p1Rating/5.0))*100, cpStrokeEnd: p1Rating/5.0, sName: Constants.sellerNames.randomElement() ?? "", sPrice: p1RandomPrice?.price100Less ?? "", sLoc: Constants.moreAsianPlaces.randomElement() ?? "", description: p1.description ?? "")
+        
+        tapSecondCell.detail = ProductDetailViewModel(categoryName: p2.category?.capitalized ?? "", productName: p2.title, productImage: p2.image ?? "", topBidName: Constants.randomFullNames.randomElement() ?? "", topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "", topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "" , topBidPrice: p2RandomPrice?.originalPrice ?? "", prRate: String(p2Rating), prVote: String(p2.rating.count ?? 0), prDesc: Constants.description(for: p2Rating), cpBackgroundClr: Constants.getColourOnRating(rating: p2Rating).withAlphaComponent(0.5).cgColor, cpPrimaryClr: Constants.getColourOnRating(rating: p2Rating).cgColor, cpPercentClr: Constants.getColourOnRating(rating: p2Rating), cpPercentage: Int((p2Rating/5.0))*100, cpStrokeEnd: p2Rating/5.0, sName: Constants.sellerNames.randomElement() ?? "", sPrice: p2RandomPrice?.price100Less ?? "", sLoc: Constants.moreAsianPlaces.randomElement() ?? "", description: p2.description ?? "")
+        
             cell.firstCell.productName.text = p1.title
             cell.secondCell.productName.text = p2 .title
             
@@ -174,12 +162,84 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
     
 }
 
-extension DiscoverViewController: UISearchResultsUpdating{
+extension DiscoverViewController: UISearchResultsUpdating, UISearchControllerDelegate{
+    func willPresentSearchController(_ searchController: UISearchController) {
+        discoverTable.isHidden = true
+        navigationController?.navigationBar.prefersLargeTitles = false
+    }
+    func willDismissSearchController(_ searchController: UISearchController) {
+        discoverTable.isHidden = false
+        navigationController?.navigationBar.prefersLargeTitles = true
+    }
     func updateSearchResults(for searchController: UISearchController) {
+        
         guard let text = searchController.searchBar.text else {return}
         
         DiscoverViewModel.shared.getResultsProduct(from: text)
     }
+}
+
+extension DiscoverViewController{
+    func showHUD(){
+        DispatchQueue.main.async{
+            DiscoverViewModel.shared.hud.show(in: self.view)
+        }
+    }
+    
+    func bindViewModel(){
+        DiscoverViewModel.shared.APISuccessDidChange = { [weak self] success in
+           if success {
+//               print("fetch success")
+               DiscoverViewModel.shared.categoriesSelected = false
+               DispatchQueue.main.async {
+                   DiscoverViewModel.shared.hud.dismiss(afterDelay: 0.5)
+                   self?.discoverTable.reloadData()
+               }
+           }else{
+//               print("fetch failure")
+           }
+       }
+        DiscoverViewModel.shared.categorySuccessDidChange = { [weak self] success in
+            if success {
+//                print("fetch success")
+                DiscoverViewModel.shared.categoriesSelected = true
+                DispatchQueue.main.async {
+                    self?.discoverTable.reloadData()
+                    DiscoverViewModel.shared.hud.dismiss(afterDelay: 0.5)
+                }
+            }else{
+//                print("fetch failure")
+            }
+            
+        }
+    
+    }
+    @objc func handleTap(_ sender: MyTapGesture? = nil) {
+        let vc = ProductDetailViewController(nibName: "ProductDetailViewController", bundle: nil)
+        let product = sender?.detail
+        
+        vc.configureItems(categoryName: product!.categoryName,
+                          productName: product!.productName,
+                          productImage: product!.productImage,
+                          topBidName: product!.topBidName,
+                          topBidLocation: product!.topBidLocation,
+                          topBidTime: product!.topBidTime,
+                          topBidPrice: product!.topBidPrice,
+                          prRate: product!.prRate,
+                          prVote: product!.prVote,
+                          prDesc: product!.prDesc,
+                          cpBackgroundClr: product!.cpBackgroundClr,
+                          cpPrimaryClr: product!.cpPrimaryClr,
+                          cpPercentClr: product!.cpPercentClr,
+                          cpPercentage: product!.cpPercentage,
+                          cpStrokeEnd: product!.cpStrokeEnd,
+                          sName: product!.sName,
+                          sPrice: product!.sPrice,
+                          sLoc: product!.sLoc,
+                          description: product!.description)
+        navigationController?.pushViewController(vc, animated: true)
+    }
+
 }
 
 
