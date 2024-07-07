@@ -43,6 +43,46 @@
             </objects>
             <point key="canvasLocation" x="-976.33587786259534" y="739.43661971830988"/>
         </scene>
+        <!--Interest-->
+        <scene sceneID="lGR-lx-DMk">
+            <objects>
+                <viewController storyboardIdentifier="InterestsViewController" id="MXc-TC-3Lp" customClass="InterestsViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="iMg-73-OY6">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmz-rN-Ki5" customClass="NoResultView" customModule="AuctionMania" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="155" width="393" height="614"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9TZ-Nv-COd">
+                                <rect key="frame" x="0.0" y="155" width="393" height="614"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="2ZY-S8-hiY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="2ZY-S8-hiY" firstAttribute="trailing" secondItem="9TZ-Nv-COd" secondAttribute="trailing" id="AXY-nk-3yp"/>
+                            <constraint firstItem="9TZ-Nv-COd" firstAttribute="leading" secondItem="2ZY-S8-hiY" secondAttribute="leading" id="Eog-lg-8lz"/>
+                            <constraint firstItem="9TZ-Nv-COd" firstAttribute="top" secondItem="2ZY-S8-hiY" secondAttribute="top" id="GIc-Ns-dyI"/>
+                            <constraint firstItem="wmz-rN-Ki5" firstAttribute="leading" secondItem="2ZY-S8-hiY" secondAttribute="leading" id="I60-7I-0pL"/>
+                            <constraint firstItem="2ZY-S8-hiY" firstAttribute="bottom" secondItem="9TZ-Nv-COd" secondAttribute="bottom" id="T3b-mv-sRk"/>
+                            <constraint firstItem="2ZY-S8-hiY" firstAttribute="trailing" secondItem="wmz-rN-Ki5" secondAttribute="trailing" id="YgD-TB-h37"/>
+                            <constraint firstItem="2ZY-S8-hiY" firstAttribute="bottom" secondItem="wmz-rN-Ki5" secondAttribute="bottom" id="c03-vo-Nd4"/>
+                            <constraint firstItem="wmz-rN-Ki5" firstAttribute="top" secondItem="2ZY-S8-hiY" secondAttribute="top" id="nGu-zT-Mzl"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Interest" id="DVy-ub-5wA"/>
+                    <connections>
+                        <outlet property="InterestsTable" destination="9TZ-Nv-COd" id="srP-e1-pnL"/>
+                        <outlet property="NoResultView" destination="wmz-rN-Ki5" id="dGr-pn-5ze"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oez-qc-eNw" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="165" y="736"/>
+        </scene>
         <!--ProfileViewController-->
         <scene sceneID="y9B-nl-pnw">
             <objects>
@@ -50,10 +90,51 @@
                     <view key="view" contentMode="scaleToFill" id="xwq-cS-9zt">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6N7-u4-TzH">
+                                <rect key="frame" x="0.0" y="103" width="393" height="666"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="vGg-5x-KUd" detailTextLabel="HaF-xZ-Z1o" style="IBUITableViewCellStyleValue1" id="l1U-zp-lRQ">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l1U-zp-lRQ" id="jD6-uy-AeD">
+                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vGg-5x-KUd">
+                                                    <rect key="frame" x="20" y="15" width="25" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HaF-xZ-Z1o">
+                                                    <rect key="frame" x="340.33333333333331" y="15" width="32.666666666666664" height="14.333333333333334"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="l6w-gF-ugM"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="l6w-gF-ugM" firstAttribute="trailing" secondItem="6N7-u4-TzH" secondAttribute="trailing" id="L8V-9Z-zuX"/>
+                            <constraint firstItem="l6w-gF-ugM" firstAttribute="bottom" secondItem="6N7-u4-TzH" secondAttribute="bottom" id="VRL-Sr-W3n"/>
+                            <constraint firstItem="6N7-u4-TzH" firstAttribute="leading" secondItem="l6w-gF-ugM" secondAttribute="leading" id="VRt-rX-T5K"/>
+                            <constraint firstItem="6N7-u4-TzH" firstAttribute="top" secondItem="l6w-gF-ugM" secondAttribute="top" id="yaR-4Q-p1n"/>
+                        </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="BN2-hA-U4n"/>
+                    <navigationItem key="navigationItem" title="Profile" id="BN2-hA-U4n"/>
+                    <connections>
+                        <outlet property="ProfileTable" destination="6N7-u4-TzH" id="d5O-wf-mJI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sP9-NH-IoP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -70,6 +151,12 @@
                         <color key="tintColor" systemColor="systemYellowColor"/>
                         <color key="barTintColor" systemColor="labelColor"/>
                         <color key="selectedImageTintColor" systemColor="systemYellowColor"/>
+                        <tabBarAppearance key="standardAppearance" stackedItemWidth="0.0">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        </tabBarAppearance>
+                        <tabBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                        </tabBarAppearance>
                     </tabBar>
                     <connections>
                         <segue destination="ono-9c-4rg" kind="relationship" relationship="viewControllers" id="XnY-cR-lYr"/>
@@ -91,9 +178,27 @@
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="vUW-MT-Bna">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="vUW-MT-Bna">
+                        <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -147,12 +252,29 @@
                     </tabBarItem>
                     <toolbarItems/>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <navigationBar key="navigationBar" contentMode="scaleAspectFit" largeTitles="YES" id="O2H-wB-OfL">
+                    <navigationBar key="navigationBar" contentMode="scaleAspectFit" largeTitles="YES" translatesAutoresizingMaskIntoConstraints="NO" id="O2H-wB-OfL">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <color key="tintColor" systemColor="labelColor"/>
-                        <navigationBarAppearance key="scrollEdgeAppearance"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -163,40 +285,6 @@
             </objects>
             <point key="canvasLocation" x="-976" y="-9"/>
         </scene>
-        <!--InterestsViewController-->
-        <scene sceneID="zKv-G4-vBp">
-            <objects>
-                <viewController storyboardIdentifier="InterestsViewController" id="NwA-zq-06h" userLabel="InterestsViewController" customClass="InterestsViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hpU-6t-Ru3">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Fdy-pC-TQr">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <color key="separatorColor" systemColor="systemBackgroundColor"/>
-                                <color key="sectionIndexBackgroundColor" systemColor="systemBackgroundColor"/>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="UZJ-Zr-vXT"/>
-                        <color key="backgroundColor" systemColor="systemCyanColor"/>
-                        <constraints>
-                            <constraint firstItem="UZJ-Zr-vXT" firstAttribute="trailing" secondItem="Fdy-pC-TQr" secondAttribute="trailing" id="4pB-2i-bne"/>
-                            <constraint firstItem="Fdy-pC-TQr" firstAttribute="leading" secondItem="UZJ-Zr-vXT" secondAttribute="leading" id="TbP-G1-VqJ"/>
-                            <constraint firstAttribute="top" secondItem="Fdy-pC-TQr" secondAttribute="top" id="v6H-SB-Ceg"/>
-                            <constraint firstItem="UZJ-Zr-vXT" firstAttribute="bottom" secondItem="Fdy-pC-TQr" secondAttribute="bottom" id="ye9-Hs-xYc"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Interests" id="FMX-kg-DN6"/>
-                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
-                    <connections>
-                        <outlet property="InterestsTable" destination="Fdy-pC-TQr" id="thb-oF-Q8M"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Rd8-Xn-Ox3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="174.80916030534351" y="738.73239436619724"/>
-        </scene>
         <!--HomeNav-->
         <scene sceneID="Cej-dE-i16">
             <objects>
@@ -206,17 +294,35 @@
                         <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
                     </tabBarItem>
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleAspectFit" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="Brd-jo-EvI">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="Brd-jo-EvI">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <color key="tintColor" systemColor="labelColor"/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
+                        <color key="tintColor" systemColor="systemYellowColor"/>
+                        <color key="barTintColor" red="0.95865022759999996" green="1" blue="0.58641157659999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <textAttributes key="titleTextAttributes">
-                            <color key="textShadowColor" systemColor="systemBackgroundColor"/>
+                            <color key="textColor" systemColor="systemYellowColor"/>
                         </textAttributes>
-                        <navigationBarAppearance key="standardAppearance"/>
-                        <navigationBarAppearance key="scrollEdgeAppearance"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" systemColor="systemYellowColor"/>
+                        </textAttributes>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -244,11 +350,28 @@
                         <textAttributes key="titleTextAttributes">
                             <color key="textShadowColor" systemColor="systemBackgroundColor"/>
                         </textAttributes>
-                        <navigationBarAppearance key="scrollEdgeAppearance"/>
+                        <navigationBarAppearance key="standardAppearance">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
+                        <navigationBarAppearance key="scrollEdgeAppearance">
+                            <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <textAttributes key="titleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                            <textAttributes key="largeTitleTextAttributes">
+                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </textAttributes>
+                        </navigationBarAppearance>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="NwA-zq-06h" kind="relationship" relationship="rootViewController" id="j6k-MQ-77M"/>
+                        <segue destination="MXc-TC-3Lp" kind="relationship" relationship="rootViewController" id="7nM-jd-YT8"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H0x-vw-0Do" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -267,11 +390,11 @@
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
-        <systemColor name="systemCyanColor">
-            <color red="0.1960784314" green="0.67843137249999996" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

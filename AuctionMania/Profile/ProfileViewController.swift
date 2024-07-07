@@ -9,9 +9,11 @@ import UIKit
 
 class ProfileViewController: UIViewController {
 
+    @IBOutlet weak var ProfileTable: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .blue
+        ProfileTable.tableHeaderView = ProfileTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 170))
     }
     
 

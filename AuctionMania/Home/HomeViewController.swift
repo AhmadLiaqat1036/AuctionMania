@@ -50,7 +50,6 @@ Successful
         let footer = HomeTableFooter(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 150))
         headerView.isHidden = true
         footer.isHidden = true
-        
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footer
         
@@ -63,9 +62,6 @@ Successful
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationController?.navigationBar.isTranslucent = false
-        navigationController?.navigationBar.backgroundColor = .systemBackground
     }
     
     func bindViewModel(){

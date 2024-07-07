@@ -33,7 +33,7 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <color key="backgroundColor" systemColor="scrollViewTexturedBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="xbf-CV-JKc" firstAttribute="top" secondItem="DWU-a1-HjF" secondAttribute="top" id="8gN-g9-T7x"/>
                             <constraint firstAttribute="trailing" secondItem="Pze-oR-CKw" secondAttribute="trailing" constant="10" id="921-hQ-Sr5"/>
@@ -65,8 +65,8 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <systemColor name="labelColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        <systemColor name="scrollViewTexturedBackgroundColor">
+            <color red="0.43529411764705883" green="0.44313725490196076" blue="0.47450980392156861" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

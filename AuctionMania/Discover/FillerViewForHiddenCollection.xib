@@ -26,38 +26,23 @@
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Paris-rafiki" translatesAutoresizingMaskIntoConstraints="NO" id="omL-yy-nuT">
                                     <rect key="frame" x="0.0" y="0.0" width="84.666666666666671" height="81"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="85" id="gTf-uY-PPX"/>
-                                    </constraints>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="World-pana" translatesAutoresizingMaskIntoConstraints="NO" id="R3i-N2-hnk">
-                                    <rect key="frame" x="105.66666666666669" y="0.0" width="85" height="81"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="85" id="w4k-WQ-vL9"/>
-                                    </constraints>
+                                    <rect key="frame" x="105.66666666666674" y="0.0" width="85" height="81"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Time machine-rafiki" translatesAutoresizingMaskIntoConstraints="NO" id="Lxz-aX-aBa">
-                                    <rect key="frame" x="211.66666666666666" y="0.0" width="84.666666666666657" height="81"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="85" id="fKi-Wz-z0i"/>
-                                    </constraints>
+                                    <rect key="frame" x="211.66666666666652" y="0.0" width="84.66666666666697" height="81"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Rio de Janeiro-rafiki" translatesAutoresizingMaskIntoConstraints="NO" id="E0W-ph-JRm">
-                                    <rect key="frame" x="317.33333333333331" y="0.0" width="85" height="81"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="85" id="T78-xn-XI9"/>
-                                    </constraints>
+                                    <rect key="frame" x="317.33333333333303" y="0.0" width="85" height="81"/>
                                 </imageView>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Athens-amico" translatesAutoresizingMaskIntoConstraints="NO" id="8xC-GF-N5X">
-                                    <rect key="frame" x="423.33333333333331" y="0.0" width="84.666666666666686" height="81"/>
-                                    <constraints>
-                                        <constraint firstAttribute="width" constant="85" id="pAw-Uj-7bI"/>
-                                    </constraints>
+                                    <rect key="frame" x="423.33333333333303" y="0.0" width="84.66666666666697" height="81"/>
                                 </imageView>
                             </subviews>
                         </stackView>
                     </subviews>
-                    <color key="backgroundColor" red="1" green="0.85070110700000001" blue="0.69168707080000003" alpha="0.13752756690000001" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" systemColor="systemGray6Color"/>
                     <constraints>
                         <constraint firstAttribute="bottom" secondItem="Ayq-I6-h5f" secondAttribute="bottom" constant="2" id="5V4-Xt-7Ao"/>
                         <constraint firstAttribute="trailing" secondItem="Ayq-I6-h5f" secondAttribute="trailing" constant="2" id="Wx9-v0-Cct"/>
@@ -86,6 +71,9 @@
         <image name="World-pana" width="2000" height="2000"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

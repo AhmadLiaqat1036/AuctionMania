@@ -12,6 +12,7 @@ import UIKit
 class InterestsViewController: UIViewController {
 
     @IBOutlet weak var InterestsTable: UITableView!
+    @IBOutlet weak var NoResultView: NoResultView!
     
     var shouldDelete = false
     var deleteConfirmationAlert: UIAlertController{
@@ -34,8 +35,7 @@ class InterestsViewController: UIViewController {
         InterestsTable.delegate = self
         InterestsTable.dataSource = self
         InterestsTable.isHidden = false
-        InterestsTable.tableHeaderView = NoResultView(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 500))
-        InterestsTable.tableHeaderView?.isHidden = true
+        NoResultView.isHidden = true
 //        print("IVC-> \(InterestsViewModel.shared.interestsNames)")
         InterestsViewModel.shared.getAllTitlesFromCoreData()
     }
@@ -52,11 +52,12 @@ class InterestsViewController: UIViewController {
         self.isEditing = false
         if InterestsViewModel.shared.InterestsCore.isEmpty{
             navigationItem.rightBarButtonItem?.isHidden = true
-            InterestsTable.tableHeaderView?.isHidden = false
+            InterestsTable.isHidden = true
+            NoResultView.isHidden = false
         }else{
             navigationItem.rightBarButtonItem?.isHidden = false
-            
-            InterestsTable.tableHeaderView?.isHidden = true
+            InterestsTable.isHidden = false
+            NoResultView.isHidden = true
         }
     }
     func bindViewModel(){
@@ -92,13 +93,15 @@ class InterestsViewController: UIViewController {
                 if InterestsViewModel.shared.InterestsCore.isEmpty{
 //                    print("->Going to show No result")
                     DispatchQueue.main.async{
-                        self?.InterestsTable.tableHeaderView?.isHidden = false
+                        self?.InterestsTable.isHidden = true
+                        self?.NoResultView.isHidden = false
                         self?.InterestsTable.reloadData()
                     }
                 }else{
                     InterestsViewModel.shared.fetchInterestNamesFromInterestsCore()
                     DispatchQueue.main.async {
-                        self?.InterestsTable.tableHeaderView?.isHidden = true
+                        self?.InterestsTable.isHidden = false
+                        self?.NoResultView.isHidden = true
                         self?.InterestsTable.reloadData()
                     }
                 }
@@ -238,7 +241,8 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
                         tableView.endUpdates()
                         if InterestsViewModel.shared.InterestsCore.isEmpty{
                             self?.navigationItem.rightBarButtonItem?.isHidden = true
-                            self?.InterestsTable.tableHeaderView?.isHidden = false
+                            self?.InterestsTable.isHidden = true
+                            self?.NoResultView.isHidden = false
                         }
                     }
                 })
