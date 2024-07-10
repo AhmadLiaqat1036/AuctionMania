@@ -41,7 +41,8 @@ class ProductDetailViewController: UIViewController {
     @IBOutlet weak var Description: UILabel!
     
 
-    var product = ProductDetailViewModel(categoryName: "No Category", productName: "No Name", productImage: "", topBidName: "No Name", topBidLocation: "No Location", topBidTime: "", topBidPrice: "$0", prRate: "0.0", prVote: "0", prDesc: "", cpBackgroundClr: UIColor.gray.cgColor, cpPrimaryClr: UIColor.tertiarySystemBackground.cgColor, cpPercentClr: .gray, cpPercentage: 100, cpStrokeEnd: 1.0, sName: "No Name", sPrice: "$0", sLoc: "No Location", description: "")
+    @IBOutlet weak var PlaceBidButton: UIButton!
+    var product = ProductDetailViewModel(categoryName: "No Category", productName: "No Name", productImage: "", topBidName: "No Name", topBidLocation: "No Location", topBidTime: "", topBidPrice: "$0",topBidImage: "", prRate: "0.0", prVote: "0", prDesc: "", cpBackgroundClr: UIColor.gray.cgColor, cpPrimaryClr: UIColor.tertiarySystemBackground.cgColor, cpPercentClr: .gray, cpPercentage: 100, cpStrokeEnd: 1.0, sName: "No Name", sPrice: "$0", sLoc: "No Location",sImage: "", description: "", timeLeft: 0)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +58,8 @@ class ProductDetailViewController: UIViewController {
         configureBack(SellerBack)
         configureBack(DecriptionBack)
         
+        TopBidImage.layer.cornerRadius = TopBidImage.frame.height/2
+        SellerImage.layer.cornerRadius = SellerImage.frame.height/2
         RatingView.Colour = .systemYellow
         RatingView.StackView.alignment = .top
         
@@ -77,7 +80,10 @@ class ProductDetailViewController: UIViewController {
         TopBidLocation.text = product.topBidLocation
         TopBidTime.text = product.topBidTime
         TopBidPrice.text = product.topBidPrice
-//        TopBidImage
+        guard let urlT = URL(string: product.topBidImage) else{
+            return
+        }
+        TopBidImage.sd_setImage(with: urlT)
         
         ProductRatingRate.text = product.prRate
         ProductRatingVotes.text = product.prVote
@@ -93,11 +99,18 @@ class ProductDetailViewController: UIViewController {
         SellerName.text = product.sName
         SellerPrice.text = product.sPrice
         SellerLocation.text = product.sLoc
-        
+        guard let urlS = URL(string: product.sImage) else{
+            return
+        }
+        SellerImage.sd_setImage(with: urlS)
         RatingView.rate = [0.1, 1.1, 2.1, 3.1, 4.1, 5.0].randomElement() ?? 0.0
         
         Description.text = product.description
         
+        
+        PlaceBidButton.layer.shadowRadius = 5
+        PlaceBidButton.layer.shadowOpacity = 0.3
+        PlaceBidButton.layer.shadowOffset = CGSize(width: 0, height: 8)
     }
 
 
@@ -107,8 +120,30 @@ class ProductDetailViewController: UIViewController {
         back.layer.borderColor = UIColor.darkGray.cgColor
     }
 
-    public func configureItems(categoryName: String, productName: String, productImage:String, topBidName: String, topBidLocation: String, topBidTime: String, topBidPrice: String, prRate:String, prVote:String, prDesc:String, cpBackgroundClr: CGColor, cpPrimaryClr: CGColor, cpPercentClr: UIColor, cpPercentage: Int, cpStrokeEnd: Double, sName: String, sPrice: String, sLoc: String, description: String){
+    public func configureItems(categoryName: String, productName: String, productImage:String, topBidName: String, topBidLocation: String, topBidTime: String, topBidPrice: String, topBidImg:String, prRate:String, prVote:String, prDesc:String, cpBackgroundClr: CGColor, cpPrimaryClr: CGColor, cpPercentClr: UIColor, cpPercentage: Int, cpStrokeEnd: Double, sName: String, sPrice: String, sLoc: String, sImg:String, description: String, tLeft: Int){
         
-        product = ProductDetailViewModel(categoryName: categoryName, productName: productName, productImage: productImage, topBidName: topBidName, topBidLocation: topBidLocation, topBidTime: topBidTime, topBidPrice: topBidPrice, prRate: prRate, prVote: prVote, prDesc: prDesc, cpBackgroundClr: cpBackgroundClr, cpPrimaryClr: cpPrimaryClr, cpPercentClr: cpPercentClr, cpPercentage: cpPercentage, cpStrokeEnd: cpStrokeEnd, sName: sName, sPrice: sPrice, sLoc: sLoc, description: description)
+        product = ProductDetailViewModel(categoryName: categoryName, productName: productName, productImage: productImage, topBidName: topBidName, topBidLocation: topBidLocation, topBidTime: topBidTime, topBidPrice: topBidPrice,topBidImage: topBidImg, prRate: prRate, prVote: prVote, prDesc: prDesc, cpBackgroundClr: cpBackgroundClr, cpPrimaryClr: cpPrimaryClr, cpPercentClr: cpPercentClr, cpPercentage: cpPercentage, cpStrokeEnd: cpStrokeEnd, sName: sName, sPrice: sPrice, sLoc: sLoc,sImage: sImg, description: description, timeLeft: tLeft)
+    }
+   
+    @IBAction func BidTapped(_ sender: Any) {
+        let bidView = PlaceBidController()
+        bidView.configure(minA: TopBidPrice.text ?? "" , sellN: SellerName.text ?? "", sellL: SellerLocation.text ?? "", topN: TopBidName.text ?? "", sellImg: product.sImage, topBidImg: product.topBidImage, tLeft: product.timeLeft)
+        let nav = UINavigationController(rootViewController: bidView)
+        nav.modalPresentationStyle = .pageSheet
+        nav.isModalInPresentation = true
+        if let sheet = nav.sheetPresentationController{
+            sheet.detents = [.medium(), .large()]
+            sheet.prefersScrollingExpandsWhenScrolledToEdge = true
+            sheet.prefersGrabberVisible = true
+        }
+        let cancel = UIBarButtonItem(title: "Cancel", primaryAction: UIAction(handler: { _ in
+            self.dismiss(animated: true)
+        }))
+        let done = UIBarButtonItem(title: "00:00:00", primaryAction: nil)
+        bidView.navigationItem.leftBarButtonItem = cancel
+        bidView.navigationItem.rightBarButtonItem = done
+        bidView.navigationController?.navigationBar.tintColor = .systemGray5
+        
+        present(nav, animated: true, completion: nil)
     }
 }

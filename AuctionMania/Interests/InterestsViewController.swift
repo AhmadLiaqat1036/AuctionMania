@@ -38,6 +38,7 @@ class InterestsViewController: UIViewController {
         NoResultView.isHidden = true
 //        print("IVC-> \(InterestsViewModel.shared.interestsNames)")
         InterestsViewModel.shared.getAllTitlesFromCoreData()
+        InterestsViewModel.shared.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stepTime), userInfo: nil, repeats: true)
     }
     
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -60,67 +61,7 @@ class InterestsViewController: UIViewController {
             NoResultView.isHidden = true
         }
     }
-    func bindViewModel(){
-        InterestsViewModel.shared.APISuccessDidChange = {success in
-           if success {
-//               print("API fetch-> success")
-               InterestsViewModel.shared.deleteAllInterests()
-           }else{
-//               print("API fetch-> failure")
-           }
-       }
-        InterestsViewModel.shared.deleteAllSuccessDidChange = {
-            success in
-               if success {
-//                   print("delete all-> success")
-                   InterestsViewModel.shared.putInterestsInCoreData()
-               }else{
-//                   print("delete all-> failure")
-               }
-        }
-        InterestsViewModel.shared.puttingCoreDataSuccessDidChange = {success in
-            if success{
-//                print("putting in COREDATA-> success")
-                InterestsViewModel.shared.getAllTitlesFromCoreData()
-            }else{
-//                print("putting in COREDATA-> failure")
-            }
-            
-        }
-        InterestsViewModel.shared.fetchingCoreDataSuccessDidChange = {[weak self] success in
-            if success{
-//                print("fetching from COREDATA-> success")
-                if InterestsViewModel.shared.InterestsCore.isEmpty{
-//                    print("->Going to show No result")
-                    DispatchQueue.main.async{
-                        self?.InterestsTable.isHidden = true
-                        self?.NoResultView.isHidden = false
-                        self?.InterestsTable.reloadData()
-                    }
-                }else{
-                    InterestsViewModel.shared.fetchInterestNamesFromInterestsCore()
-                    DispatchQueue.main.async {
-                        self?.InterestsTable.isHidden = false
-                        self?.NoResultView.isHidden = true
-                        self?.InterestsTable.reloadData()
-                    }
-                }
-            }else{
-//                print("fetching from COREDATA-> failure")
-            }
-            
-        }
-    }
-    func showAlert(_ title: String? = "Message", message: String?, completion: @escaping (_ isYes: Bool) -> Void) -> Void {
-        let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default) { alert in
-          completion(true)
-        })
-        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel) { alert in
-          completion(false)
-        })
-        self.present(alert, animated: true)
-      }
+    
 
 }
 
@@ -179,12 +120,9 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.CategoryBackgroundWidth.constant =
         5+20+5+anotherlabel.intrinsicContentSize.width+5
         
-        let randomTime = Constants.timeLeft.randomElement()
-        cell.TimeLeft.text = randomTime
-        let anotheranotherlabel = UILabel()
-        anotheranotherlabel.text =  randomTime
-        anotheranotherlabel.font = .systemFont(ofSize: 14, weight: .regular)
-        cell.TimeLeftBackgroundWidth.constant = 5+20+5+anotheranotherlabel.intrinsicContentSize.width+5
+        
+        cell.TimeLeft.text = InterestsViewModel.shared.counterLabels[indexPath.row]
+        
         
         
         return cell
@@ -195,6 +133,14 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
             self?.InterestsTable.deselectRow(at: indexPath, animated: true)
             
             let randomPrice = Constants.mergedPrices.randomElement() ?? Constants.PriceInfo(originalPrice: "$0", price100Less: "$0")
+            let randomName = Constants.fullNames.randomElement() ?? "Zayn Malik"
+            let randomImage = Constants.menNames.contains { name in
+                name == randomName
+            } ? Constants.randomProfilesMen : Constants.randomProfilesWomen
+            
+            let sellerName = Constants.fullNames.randomElement() ?? "Zayn Malik"
+            let sellerImage = Constants.menNames.contains { name in
+                name == sellerName } ? Constants.randomProfilesMen : Constants.randomProfilesWomen
             
             // Instantiate ProductDetailViewController from .xib
             
@@ -205,10 +151,11 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
             vc.configureItems(categoryName: product.category?.capitalized ?? "No Category",
                               productName: product.name ?? "No Name",
                               productImage: product.image ?? "",
-                              topBidName: Constants.randomFullNames.randomElement() ?? "",
+                              topBidName: randomName,
                               topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "",
                               topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "No Date",
                               topBidPrice: randomPrice.originalPrice,
+                              topBidImg: randomImage,
                               prRate: String(product.rate),
                               prVote: String(product.count),
                               prDesc: Constants.description(for: product.rate),
@@ -217,13 +164,16 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
                               cpPercentClr: Constants.getColourOnRating(rating: product.rate),
                               cpPercentage: Int((product.rate) / 5.0) * 100,
                               cpStrokeEnd: (product.rate) / 5.0,
-                              sName: Constants.sellerNames.randomElement() ?? "No Name",
+                              sName: sellerName,
                               sPrice: randomPrice.price100Less,
                               sLoc: Constants.moreAsianPlaces.randomElement() ?? "No Location",
-                              description: product.desc ?? "")
+                              sImg: sellerImage,
+                              description: product.desc ?? "", tLeft: InterestsViewModel.shared.counters[indexPath.row])
             
             // Push ProductDetailViewController onto navigation stack
-            
+            let backItem = UIBarButtonItem()
+            backItem.title = "Go Back"
+            self?.navigationItem.backBarButtonItem = backItem
             self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
@@ -249,3 +199,75 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
             }
         }
     }
+extension InterestsViewController{
+    func bindViewModel(){
+        InterestsViewModel.shared.APISuccessDidChange = {success in
+           if success {
+//               print("API fetch-> success")
+               InterestsViewModel.shared.deleteAllInterests()
+           }else{
+//               print("API fetch-> failure")
+           }
+       }
+        InterestsViewModel.shared.deleteAllSuccessDidChange = {
+            success in
+               if success {
+//                   print("delete all-> success")
+                   InterestsViewModel.shared.putInterestsInCoreData()
+               }else{
+//                   print("delete all-> failure")
+               }
+        }
+        InterestsViewModel.shared.puttingCoreDataSuccessDidChange = {success in
+            if success{
+//                print("putting in COREDATA-> success")
+                InterestsViewModel.shared.getAllTitlesFromCoreData()
+            }else{
+//                print("putting in COREDATA-> failure")
+            }
+            
+        }
+        InterestsViewModel.shared.fetchingCoreDataSuccessDidChange = {[weak self] success in
+            if success{
+//                print("fetching from COREDATA-> success")
+                if InterestsViewModel.shared.InterestsCore.isEmpty{
+//                    print("->Going to show No result")
+                    DispatchQueue.main.async{
+                        self?.InterestsTable.isHidden = true
+                        self?.NoResultView.isHidden = false
+                        self?.InterestsTable.reloadData()
+                    }
+                }else{
+                    InterestsViewModel.shared.fetchInterestNamesFromInterestsCore()
+                    DispatchQueue.main.async {
+                        self?.InterestsTable.isHidden = false
+                        self?.NoResultView.isHidden = true
+                        self?.InterestsTable.reloadData()
+                    }
+                }
+            }else{
+//                print("fetching from COREDATA-> failure")
+            }
+            
+        }
+    }
+    @objc func stepTime(){
+    
+        if(InterestsViewModel.shared.counters.contains(where: { count in
+            count != 0
+        })){
+            for i in 0..<InterestsViewModel.shared.counters.count{
+                if(InterestsViewModel.shared.counters[i]>0){
+                    InterestsViewModel.shared.counters[i] -= 1
+                    let time = Constants.secondsToHourMinutesSeconds(InterestsViewModel.shared.counters[i])
+                    let label = Constants.hourMinutesSecondsIntoString(hour: time.0, min: time.1, sec: time.2)
+                    InterestsViewModel.shared.counterLabels[i] = label
+                }
+            }
+        }else{
+            InterestsViewModel.shared.timer.invalidate()
+        }
+        
+
+    }
+}

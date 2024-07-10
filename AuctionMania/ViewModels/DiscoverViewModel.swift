@@ -12,12 +12,17 @@ class DiscoverViewModel{
     
     static var shared = DiscoverViewModel()
     
-    let hud: JGProgressHUD = {
+    var counters = [Int]()
+    var counterLabels = [String]()
+    var timer = Timer()
+    
+    var hud: JGProgressHUD = {
         let hud = JGProgressHUD(style: .light)
+        hud.layer.backgroundColor = UIColor.black.withAlphaComponent(0.3).cgColor
         hud.hudView.layer.borderWidth = 1
-        hud.hudView.layer.borderColor = UIColor.systemYellow.cgColor
+        hud.hudView.layer.borderColor = UIColor.darkGray.cgColor
         hud.textLabel.text = "Loading"
-        hud.textLabel.textColor = .label
+             
         return hud
     }()
     
@@ -43,6 +48,12 @@ class DiscoverViewModel{
             case .success(let products):
                 self?.Products = products
                 success = true
+                for i in 0..<products.count{
+                    self?.counters.append(Range(1000...172800).randomElement()!)
+                    let time = Constants.secondsToHourMinutesSeconds(self!.counters[i])
+                    let label = Constants.hourMinutesSecondsIntoString(hour: time.0, min: time.1, sec: time.2)
+                    self?.counterLabels.append(label)
+                }
             case .failure(let error):
                 success = false
                 print(error)

@@ -14,6 +14,10 @@ class InterestsViewModel{
     
     static let shared = InterestsViewModel()
     
+    var counters = [Int]()
+    var counterLabels = [String]()
+    var timer = Timer()
+    
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
     var Products = [Product]()
     var InterestsCore = [Interest]()
@@ -75,6 +79,12 @@ class InterestsViewModel{
         do{
             let items = try context.fetch(Interest.fetchRequest())
             InterestsCore = items
+            for i in 0..<InterestsCore.count{
+                self.counters.append(Range(1000...172800).randomElement()!)
+                let time = Constants.secondsToHourMinutesSeconds(self.counters[i])
+                let label = Constants.hourMinutesSecondsIntoString(hour: time.0, min: time.1, sec: time.2)
+                self.counterLabels.append(label)
+            }
         }
         catch{
             print(error.localizedDescription)

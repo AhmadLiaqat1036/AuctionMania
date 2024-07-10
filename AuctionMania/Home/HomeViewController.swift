@@ -8,19 +8,23 @@
 import UIKit
 import SDWebImage
 import JGProgressHUD
+
+
 class HomeViewController: UIViewController {
     let viewModel = HomeViewModel()
+   
     
     //MARK: IBOutlets
     @IBOutlet weak var tableView: UITableView!
     
     //MARK: huds
     var hud: JGProgressHUD = {
-        let hud = JGProgressHUD(style: .extraLight)
+        let hud = JGProgressHUD(style: .light)
+        hud.layer.backgroundColor = UIColor.black.withAlphaComponent(0.3).cgColor
         hud.hudView.layer.borderWidth = 1
-        hud.hudView.layer.borderColor = UIColor.systemYellow.cgColor
+        hud.hudView.layer.borderColor = UIColor.darkGray.cgColor
         hud.textLabel.text = "Loading"
-        hud.textLabel.textColor = .label
+             
         return hud
     }()
     
@@ -28,14 +32,50 @@ class HomeViewController: UIViewController {
         let hud = JGProgressHUD(style: .extraLight)
         hud.indicatorView = JGProgressHUDSuccessIndicatorView()
         hud.hudView.layer.borderWidth = 1
-        hud.hudView.layer.borderColor = UIColor.systemGreen.cgColor
-        hud.textLabel.text = 
+        hud.hudView.layer.borderColor = UIColor.darkGray.cgColor
+        hud.textLabel.text =
 """
 Login
 Successful
 """
+        hud.textLabel.textColor = .black
         return hud
     }()
+    var currentHeader = 0
+    var pageControl:UIPageControl={
+        let control = UIPageControl()
+        control.currentPageIndicatorTintColor = .orange
+        control.pageIndicatorTintColor = .systemYellow.withAlphaComponent(0.5)
+        control.numberOfPages = 5
+        control.currentPage = 0
+        return control
+    }()
+    
+    let headerView = HomeTableHeader()
+    let headerView2 :HomeTableHeaderType2={
+        let view = HomeTableHeaderType2()
+       
+        view.Image.image = UIImage(named: Constants.pics[0])
+        view.Label.text = Constants.labels[0]
+        return view
+    }()
+    let headerView3 = HomeTableHeaderType3()
+    let headerView4:HomeTableHeaderType2={ 
+        let view = HomeTableHeaderType2()
+        view.Image.image = UIImage(named: Constants.pics[1])
+        view.Label.text = Constants.labels[1]
+        return view
+    }()
+    let headerView5 : HomeTableHeaderType3 = {
+        let view = HomeTableHeaderType3()
+        view.stackLabel = "Fast Shipping"
+        view.background.backgroundColor = .systemIndigo.withAlphaComponent(0.2)
+        view.labelDown.text = "Shippings arrive withing a week"
+        view.labelDown.textColor = .systemIndigo
+        view.image.image = UIImage(named: "Paper map-cuate")
+        return view
+    }()
+   
     //MARK: init
 
     override func viewDidLoad() {
@@ -46,40 +86,47 @@ Successful
         tableView.showsVerticalScrollIndicator = false
         tableView.delegate = self
         tableView.dataSource = self
-        let headerView = HomeTableHeader(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 330))
-        let footer = HomeTableFooter(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 150))
+        
+        viewModel.gestureL = UISwipeGestureRecognizer(target: self, action: #selector(gesture(_:)))
+        viewModel.gestureL.direction = .left
+        viewModel.gestureL.numberOfTouchesRequired = 1
+        viewModel.gestureR = UISwipeGestureRecognizer(target: self, action: #selector(gesture(_:)))
+        viewModel.gestureR.direction = .right
+        viewModel.gestureR.numberOfTouchesRequired = 1
+        
+        let footer = HomeTableFooter(frame: CGRect(x: 0, y: 0, width: view.bounds.width, height: 160))
         headerView.isHidden = true
         footer.isHidden = true
+        
         tableView.tableHeaderView = headerView
         tableView.tableFooterView = footer
+        tableView.tableHeaderView?.addSubview(pageControl)
         
-       
+        tableView.tableHeaderView?.addGestureRecognizer(viewModel.gestureL)
+        tableView.tableHeaderView?.addGestureRecognizer(viewModel.gestureR)
+        tableView.tableHeaderView?.isUserInteractionEnabled = true
         hud.show(in: self.view)
-        
-
         viewModel.fetchAllProducts()
+        viewModel.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stepTime), userInfo: nil, repeats: true)
+        viewModel.headerTimer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stepTimeHeader), userInfo: nil, repeats: true)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
     
-    func bindViewModel(){
-        viewModel.APISuccessDidChange = { [weak self] success in
-           if success {
-//               print("fetch success")
-               DispatchQueue.main.async {
-                   self?.hud.dismiss(afterDelay: 0.3)
-                   self?.successHud.show(in: (self?.view)!)
-                   self?.successHud.dismiss(afterDelay: 1)
-                   self?.tableView.tableHeaderView?.isHidden = false
-                   self?.tableView.tableFooterView?.isHidden = false
-                   self?.tableView.reloadData()
-               }
-           }else{
-//               print("fetch failure")
-           }
-       }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        headerView.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 330)
+        headerView2.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 330)
+        headerView3.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 330)
+        headerView4.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 330)
+        headerView5.frame = CGRect(x: 0, y: 0, width: view.bounds.width, height: 330)
+        
+        headerView.gradient.frame = CGRect(x: 10, y: 10, width: headerView.bounds.width - 20 , height: 200 + 1)
+        headerView2.gradient.frame = CGRect(x: 0, y: 0, width: headerView.bounds.width - 20, height: 330 - 20)
+        headerView4.gradient.frame = CGRect(x: 0, y: 0, width: headerView.bounds.width - 20, height: 330 - 20)
+        
+        pageControl.frame = CGRect(x: headerView.bounds.midX - 75, y: headerView.bounds.height - 40, width: 150, height: 30)
     }
     
     
@@ -98,24 +145,6 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "BigTableViewCell", for: indexPath) as? BigTableViewCell else {return UITableViewCell()}
-        //        switch indexPath.row{
-        //        case 0:
-        //            cell.CarImage.image =  UIImage(named: "images-2")
-        //            cell.CarType.text = "Sport"
-        //        case 1:
-        //            cell.CarImage.image =  UIImage(named: "images-3")
-        //            cell.CarType.text = "Hypercar"
-        //        case 2:
-        //            cell.CarImage.image =  UIImage(named: "images-4")
-        //            cell.CarType.text = "Sedan"
-        //
-        //        case 3:
-        //            cell.CarImage.image =  UIImage(named: "images")
-        //            cell.CarType.text = "SUV"
-        //        default:
-        //            break
-        //        }
-        
         let product = viewModel.Products[indexPath.row]
         
         guard let urlImg = URL(string: product.image ?? "") else {return UITableViewCell()}
@@ -147,12 +176,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
         cell.CategoryBackgroundWidth.constant =
         5+20+5+anotherlabel.intrinsicContentSize.width+5
         
-        let randomTime = Constants.timeLeft.randomElement()
-        cell.TimeLeft.text = randomTime
-        let anotheranotherlabel = UILabel()
-        anotheranotherlabel.text =  randomTime
-        anotheranotherlabel.font = .systemFont(ofSize: 14, weight: .regular)
-        cell.TimeLeftBackgroundWidth.constant = 5+20+5+anotheranotherlabel.intrinsicContentSize.width+5
+        cell.TimeLeft.text = viewModel.counterLabels[indexPath.row]
+        
+
+        
+        
         
         return cell
     }
@@ -161,6 +189,14 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
             tableView.deselectRow(at: indexPath, animated: true)
             
             let randomPrice = Constants.mergedPrices.randomElement() ?? Constants.PriceInfo(originalPrice: "$0", price100Less: "$0")
+            let randomName = Constants.fullNames.randomElement() ?? "Zayn Malik"
+            let randomImage = Constants.menNames.contains { name in
+                name == randomName
+            } ? Constants.randomProfilesMen : Constants.randomProfilesWomen
+            let sellerName = Constants.fullNames.randomElement() ?? "Zayn Malik"
+            let sellerImage = Constants.menNames.contains { name in
+                name == sellerName } ? Constants.randomProfilesMen : Constants.randomProfilesWomen
+            
 
             // Instantiate ProductDetailViewController from .xib
             
@@ -171,10 +207,11 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
             vc.configureItems(categoryName: product.category?.capitalized ?? "No Category",
                               productName: product.title,
                               productImage: product.image ?? "",
-                              topBidName: Constants.randomFullNames.randomElement() ?? "",
+                              topBidName: randomName,
                               topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "",
                               topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "No Date",
                               topBidPrice: randomPrice.originalPrice,
+                              topBidImg: randomImage,
                               prRate: String(product.rating.rate ?? 0.0),
                               prVote: String(product.rating.count ?? 0),
                               prDesc: Constants.description(for: product.rating.rate ?? 6.0),
@@ -183,40 +220,125 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource{
                               cpPercentClr: Constants.getColourOnRating(rating: product.rating.rate ?? 0.0),
                               cpPercentage: Int((product.rating.rate ?? 0.0) / 5.0) * 100,
                               cpStrokeEnd: (product.rating.rate ?? 0.0) / 5.0,
-                              sName: Constants.sellerNames.randomElement() ?? "No Name",
+                              sName: sellerName,
                               sPrice: randomPrice.price100Less,
                               sLoc: Constants.moreAsianPlaces.randomElement() ?? "No Location",
-                              description: product.description ?? "")
+                              sImg: sellerImage,
+                              description: product.description ?? "", tLeft: self!.viewModel.counters[indexPath.row])
 
             // Push ProductDetailViewController onto navigation stack
+            let backItem = UIBarButtonItem()
+            backItem.title = "Go Back"
+            self?.navigationItem.backBarButtonItem = backItem
             self?.navigationController?.pushViewController(vc, animated: true)
         }
     }
-
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        
-//        tableView.deselectRow(at: indexPath, animated: true)
-//        let randomPrice = Constants.mergedPrices.randomElement() ?? Constants.PriceInfo(originalPrice: "$0", price100Less: "$0")
-//        let product = viewModel.Products[indexPath.row]
-//            
-//
-//        DispatchQueue.main.async { [weak self] in
-////            guard let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProductDetailViewController") as? ProductDetailViewController else {
-////                return
-////            }
-//            let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ProductDetailViewController") as! ProductDetailViewController
-//            self?.navigationController?.pushViewController(vc, animated: false)
-////            let vc = ProductDetailViewController()
-////
-////            self?.navigationController?.pushViewController(vc, animated: true)
-//            
-////            performSegue(withIdentifier: "showDetail", sender: self)
-//            
-//            vc.configureItems(productName: product.title, productImage: product.image ?? "" , topBidName: Constants.randomFullNames.randomElement() ?? "", topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "", topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "No Date", topBidPrice: randomPrice.originalPrice, prRate: String(product.rating.rate ?? 0.0), prVote: String(product.rating.count ?? 0), prDesc: Constants.description(for: product.rating.rate ?? 6.0), cpBackgroundClr: UIColor.orange.withAlphaComponent(0.5).cgColor, cpPrimaryClr: UIColor.systemYellow.cgColor, cpPercentClr: .green, cpPercentage: Int((product.rating.rate ?? 0.0)/5.0)*100, cpStrokeEnd: (product.rating.rate ?? 0.0)/5.0, sName: Constants.sellerNames.randomElement() ?? "No Name", sPrice: randomPrice.price100Less, sLoc: Constants.moreAsianPlaces.randomElement() ?? "No Location", description: product.description ?? "")
-//            
-//            
-//        }
-//        
-//    }
 }
 
+extension HomeViewController{
+    @objc func stepTime(){
+        if(viewModel.count>0){
+            viewModel.count -= 1
+            let time = Constants.secondsToHourMinutesSeconds(viewModel.count)
+            let label = Constants.hourMinutesSecondsIntoString(hour: time.0, min: time.1, sec: time.2)
+            headerView.timeLabel.text = label
+            
+        }else{
+            headerView.timeLabel.text = "00:00:00"
+        }
+        
+        if(viewModel.counters.contains(where: { count in
+            count != 0
+        })){
+            for i in 0..<viewModel.counters.count{
+                if(viewModel.counters[i]>0){
+                    viewModel.counters[i] -= 1
+                    let time = Constants.secondsToHourMinutesSeconds(viewModel.counters[i])
+                    let label = Constants.hourMinutesSecondsIntoString(hour: time.0, min: time.1, sec: time.2)
+                    viewModel.counterLabels[i] = label
+                }
+            }
+        }else{
+            viewModel.timer.invalidate()
+        }
+        
+
+    }
+    @objc func stepTimeHeader(){
+        if(viewModel.headerCounter>0){
+            viewModel.headerCounter -= 1
+        }else{
+//            viewModel.gestureL.state = .began
+            viewModel.gestureL.state = .changed
+//            viewModel.gestureL.state = .ended
+            viewModel.headerCounter = 10
+        }
+    }
+    
+    func bindViewModel(){
+        viewModel.APISuccessDidChange = { [weak self] success in
+           if success {
+               DispatchQueue.main.async {
+                   self?.hud.dismiss(afterDelay: 0.3)
+                   self?.successHud.show(in: (self?.view)!)
+                   self?.successHud.dismiss(afterDelay: 1)
+                   self?.tableView.tableHeaderView?.isHidden = false
+                   self?.tableView.tableFooterView?.isHidden = false
+                   self?.tableView.reloadData()
+               }
+           }else{
+
+           }
+       }
+    }
+    
+    @objc func gesture(_ gesture: UISwipeGestureRecognizer){
+        let headers = [headerView, headerView2, headerView3, headerView4, headerView5]
+        viewModel.headerCounter = 10
+        if gesture.direction == .left{
+            print("Gesture Left")
+            if(currentHeader < headers.count - 1){
+                currentHeader += 1
+                pageControl.currentPage += 1
+            }else{
+                currentHeader = 0
+                pageControl.currentPage = 0
+            }
+            
+            let nextHeaderView = headers[currentHeader]
+            
+            UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                self.tableView.tableHeaderView = nextHeaderView
+            }, completion: { [weak self] _ in
+                // Add gesture recognizer to the new header view
+                nextHeaderView.addGestureRecognizer(gesture)
+                nextHeaderView.addGestureRecognizer(self!.viewModel.gestureR)
+                nextHeaderView.isUserInteractionEnabled = true
+                self?.tableView.tableHeaderView?.addSubview(self!.pageControl)
+            })
+        }else{
+            print("Gesture Right")
+            if(currentHeader > 0){
+                currentHeader -= 1
+                pageControl.currentPage -= 1
+            }else{
+                currentHeader = headers.count - 1
+                pageControl.currentPage = headers.count - 1
+            }
+            
+            let nextHeaderView = headers[currentHeader]
+            
+            UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                    self.tableView.tableHeaderView = nextHeaderView
+                }, completion: { [weak self] _ in
+                    // Add gesture recognizer to the new header view
+                    nextHeaderView.addGestureRecognizer(gesture)
+                    nextHeaderView.addGestureRecognizer(self!.viewModel.gestureL)
+                    nextHeaderView.isUserInteractionEnabled = true
+                    self?.tableView.tableHeaderView?.addSubview(self!.pageControl)
+                })
+        }
+        
+    }
+    
+}

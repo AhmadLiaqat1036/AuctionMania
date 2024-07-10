@@ -9,8 +9,10 @@ import UIKit
 
 class HomeTableHeader: UIView {
     
+    
+    
     static let randomPoster = Constants.posters.randomElement()
-    private let backgroundView: UIView = {
+    internal let backgroundView: UIView = {
        let view = UIView()
        view.layer.masksToBounds = false
        view.backgroundColor = .white
@@ -61,7 +63,7 @@ class HomeTableHeader: UIView {
         text.translatesAutoresizingMaskIntoConstraints = false
         return text
     }()
-    private let timeLabel:UILabel={
+    let timeLabel:UILabel={
         let text = UILabel()
         text.text = "00:00:00"
         text.textColor = .label
@@ -80,27 +82,27 @@ class HomeTableHeader: UIView {
         backgroundView.addSubview(TopBid)
         backgroundView.addSubview(timeLabel)
         applyConstraints()
-        addGradient()
+        layer.addSublayer(gradient)
         
         
     }
+    
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
     }
-    
-    private func addGradient(){
-        let gradient = CAGradientLayer()
-        gradient.colors=[
+    let gradient: CAGradientLayer = {
+        let g = CAGradientLayer()
+        g.colors=[
             UIColor.clear.cgColor,
             UIColor.clear.cgColor,
             UIColor.systemBackground.cgColor
         ]
+        return g
+    }()
         
-        gradient.frame = CGRect(x: 10, y: 10, width: bounds.width - 20 , height: 200 + 1)
-        layer.addSublayer(gradient)
-    }
+        
     private func applyConstraints(){
         let backgroundViewConstraints = [
             backgroundView.topAnchor.constraint(equalTo: topAnchor, constant: 10),
@@ -141,4 +143,6 @@ class HomeTableHeader: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    
 }

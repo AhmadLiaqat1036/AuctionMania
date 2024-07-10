@@ -16,6 +16,7 @@ class DiscoverViewController: UIViewController {
     
    let searchBar = UISearchController(searchResultsController: ResultsViewController())
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
@@ -38,12 +39,12 @@ class DiscoverViewController: UIViewController {
         showHUD()
         DiscoverViewModel.shared.fetchAllProducts()
         InterestsViewModel.shared.getAllTitlesFromCoreData()
+        DiscoverViewModel.shared.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stepTime), userInfo: nil, repeats: true)
         
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        discoverTable.isHidden = false
         discoverTable.reloadData()
         navigationController?.navigationBar.isTranslucent = false
         navigationController?.navigationBar.backgroundColor = .systemBackground
@@ -70,18 +71,26 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
         guard let cell = discoverTable.dequeueReusableCell(withIdentifier: "SmallTableCell", for: indexPath) as? SmallTableCell else {return UITableViewCell()}
         let p1:Product
         let p2:Product
+        var counterP1 = 0
+        var counterP2 = 0
         cell.secondCell.isHidden = false
         if !DiscoverViewModel.shared.categoriesSelected{
             if(DiscoverViewModel.shared.Products.count.isEven){
                 p1 = DiscoverViewModel.shared.Products[indexPath.row * 2]
                 p2 = DiscoverViewModel.shared.Products[(indexPath.row * 2) + 1]
+                counterP1 = DiscoverViewModel.shared.counters[indexPath.row * 2]
+                counterP2 = DiscoverViewModel.shared.counters[(indexPath.row * 2) + 1]
             }else{
                 p1 = DiscoverViewModel.shared.Products[indexPath.row * 2]
+                counterP1 = DiscoverViewModel.shared.counters[indexPath.row * 2]
                 if (indexPath.row * 2) + 1 == DiscoverViewModel.shared.Products.count{
                     p2 = Product(id: 0, title: "", price: 0, description: "", category: "", image: "jkgjgj", rating: Rating(rate: 0.0, count: 0))
                     cell.secondCell.isHidden = true
+                    counterP2 = 0
+                    
                 }else{
                     p2 = DiscoverViewModel.shared.Products[(indexPath.row * 2) + 1]
+                    counterP2 = DiscoverViewModel.shared.counters[(indexPath.row * 2) + 1]
                 }
             }
         }else{
@@ -109,9 +118,27 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
         cell.firstCell.addGestureRecognizer(tapFirstCell)
         cell.secondCell.addGestureRecognizer(tapSecondCell)
         
-        tapFirstCell.detail = ProductDetailViewModel(categoryName: p1.category?.capitalized ?? "", productName: p1.title, productImage: p1.image ?? "", topBidName: Constants.randomFullNames.randomElement() ?? "", topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "", topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "" , topBidPrice: p1RandomPrice?.originalPrice ?? "", prRate: String(p1Rating), prVote: String(p1.rating.count ?? 0), prDesc: Constants.description(for: p1Rating), cpBackgroundClr: Constants.getColourOnRating(rating: p1Rating).withAlphaComponent(0.5).cgColor, cpPrimaryClr: Constants.getColourOnRating(rating: p1Rating).cgColor, cpPercentClr: Constants.getColourOnRating(rating: p1Rating), cpPercentage: Int((p1Rating/5.0))*100, cpStrokeEnd: p1Rating/5.0, sName: Constants.sellerNames.randomElement() ?? "", sPrice: p1RandomPrice?.price100Less ?? "", sLoc: Constants.moreAsianPlaces.randomElement() ?? "", description: p1.description ?? "")
+        let randomName1 = Constants.fullNames.randomElement() ?? "Zayn Malik"
+        let randomImage1 = Constants.menNames.contains { name in
+            name == randomName1
+        } ? Constants.randomProfilesMen : Constants.randomProfilesWomen
         
-        tapSecondCell.detail = ProductDetailViewModel(categoryName: p2.category?.capitalized ?? "", productName: p2.title, productImage: p2.image ?? "", topBidName: Constants.randomFullNames.randomElement() ?? "", topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "", topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "" , topBidPrice: p2RandomPrice?.originalPrice ?? "", prRate: String(p2Rating), prVote: String(p2.rating.count ?? 0), prDesc: Constants.description(for: p2Rating), cpBackgroundClr: Constants.getColourOnRating(rating: p2Rating).withAlphaComponent(0.5).cgColor, cpPrimaryClr: Constants.getColourOnRating(rating: p2Rating).cgColor, cpPercentClr: Constants.getColourOnRating(rating: p2Rating), cpPercentage: Int((p2Rating/5.0))*100, cpStrokeEnd: p2Rating/5.0, sName: Constants.sellerNames.randomElement() ?? "", sPrice: p2RandomPrice?.price100Less ?? "", sLoc: Constants.moreAsianPlaces.randomElement() ?? "", description: p2.description ?? "")
+        let randomName2 = Constants.fullNames.randomElement() ?? "Zayn Malik"
+        let randomImage2 = Constants.menNames.contains { name in
+            name == randomName2
+        } ? Constants.randomProfilesMen : Constants.randomProfilesWomen
+        
+        let sellerName1 = Constants.fullNames.randomElement() ?? "Zayn Malik"
+        let sellerImage1 = Constants.menNames.contains { name in
+            name == sellerName1 } ? Constants.randomProfilesMen : Constants.randomProfilesWomen
+        
+        let sellerName2 = Constants.fullNames.randomElement() ?? "Zayn Malik"
+        let sellerImage2 = Constants.menNames.contains { name in
+            name == sellerName2 } ? Constants.randomProfilesMen : Constants.randomProfilesWomen
+        
+        tapFirstCell.detail = ProductDetailViewModel(categoryName: p1.category?.capitalized ?? "", productName: p1.title, productImage: p1.image ?? "", topBidName: randomName1, topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "", topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "" , topBidPrice: p1RandomPrice?.originalPrice ?? "", topBidImage: randomImage1, prRate: String(p1Rating), prVote: String(p1.rating.count ?? 0), prDesc: Constants.description(for: p1Rating), cpBackgroundClr: Constants.getColourOnRating(rating: p1Rating).withAlphaComponent(0.5).cgColor, cpPrimaryClr: Constants.getColourOnRating(rating: p1Rating).cgColor, cpPercentClr: Constants.getColourOnRating(rating: p1Rating), cpPercentage: Int((p1Rating/5.0))*100, cpStrokeEnd: p1Rating/5.0, sName: sellerName1, sPrice: p1RandomPrice?.price100Less ?? "", sLoc: Constants.moreAsianPlaces.randomElement() ?? "",sImage: sellerImage1, description: p1.description ?? "", timeLeft: counterP1)
+        
+        tapSecondCell.detail = ProductDetailViewModel(categoryName: p2.category?.capitalized ?? "", productName: p2.title, productImage: p2.image ?? "", topBidName: randomName2, topBidLocation: Constants.moreAsianPlaces.randomElement() ?? "", topBidTime: Constants.randomDatesAndTimes.randomElement() ?? "" , topBidPrice: p2RandomPrice?.originalPrice ?? "",topBidImage: randomImage2, prRate: String(p2Rating), prVote: String(p2.rating.count ?? 0), prDesc: Constants.description(for: p2Rating), cpBackgroundClr: Constants.getColourOnRating(rating: p2Rating).withAlphaComponent(0.5).cgColor, cpPrimaryClr: Constants.getColourOnRating(rating: p2Rating).cgColor, cpPercentClr: Constants.getColourOnRating(rating: p2Rating), cpPercentage: Int((p2Rating/5.0))*100, cpStrokeEnd: p2Rating/5.0, sName: sellerName2, sPrice: p2RandomPrice?.price100Less ?? "", sLoc: Constants.moreAsianPlaces.randomElement() ?? "", sImage: sellerImage2, description: p2.description ?? "", timeLeft: counterP2)
         
             cell.firstCell.productName.text = p1.title
             cell.secondCell.productName.text = p2 .title
@@ -122,11 +149,9 @@ extension DiscoverViewController: UITableViewDelegate, UITableViewDataSource{
             cell.firstCell.rating.rate = p1.rating.rate ?? 0
             cell.secondCell.rating.rate = p2.rating.rate ?? 0
             
-            cell.firstCell.upDownTag.text = String(p1.rating.count ?? 0)
-            cell.secondCell.upDownTag.text = String(p2.rating.count ?? 0)
+        cell.firstCell.upDownTag.text = DiscoverViewModel.shared.counterLabels[indexPath.row*2]
+            cell.secondCell.upDownTag.text = DiscoverViewModel.shared.counterLabels[(indexPath.row*2)+1]
             
-        cell.firstCell.upDownTagBackgroundWidth.constant = DiscoverViewModel.shared.findUpDownTagBackgroundWidth(p1.rating.count ?? 0)
-        cell.secondCell.upDownTagBackgroundWidth.constant = DiscoverViewModel.shared.findUpDownTagBackgroundWidth(p2.rating.count ?? 0)
             
             guard let url1 = URL(string: p1.image ?? "") else {return UITableViewCell()}
             cell.firstCell.image.sd_setImage(with: url1, completed: nil)
@@ -225,6 +250,7 @@ extension DiscoverViewController{
                           topBidLocation: product!.topBidLocation,
                           topBidTime: product!.topBidTime,
                           topBidPrice: product!.topBidPrice,
+                          topBidImg: product!.topBidImage,
                           prRate: product!.prRate,
                           prVote: product!.prVote,
                           prDesc: product!.prDesc,
@@ -236,10 +262,27 @@ extension DiscoverViewController{
                           sName: product!.sName,
                           sPrice: product!.sPrice,
                           sLoc: product!.sLoc,
-                          description: product!.description)
+                          sImg: product!.sImage,
+                          description: product!.description, tLeft: product!.timeLeft)
+        let backItem = UIBarButtonItem()
+        backItem.title = "Go Back"
+        navigationItem.backBarButtonItem = backItem
         navigationController?.pushViewController(vc, animated: true)
     }
-
+    @objc func stepTime(){
+        if(DiscoverViewModel.shared.counters.contains(where: { count in
+            count != 0
+        })){
+            for i in 0..<DiscoverViewModel.shared.counters.count{
+                if(DiscoverViewModel.shared.counters[i]>0){
+                    DiscoverViewModel.shared.counters[i] -= 1
+                }
+            }
+        }else{
+            DiscoverViewModel.shared.timer.invalidate()
+        }
+        
+    }
 }
 
 

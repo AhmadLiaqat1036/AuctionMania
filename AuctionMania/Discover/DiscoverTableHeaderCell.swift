@@ -23,7 +23,7 @@ class DiscoverTableHeaderCell: UICollectionViewCell {
         Background.layer.borderColor = UIColor.systemYellow.cgColor
     }
     func deselected(){
-        Background.layer.borderWidth = 0
+        Background.layer.borderWidth = 1
     }
    
 

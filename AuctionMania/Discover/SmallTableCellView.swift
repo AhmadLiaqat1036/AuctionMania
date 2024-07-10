@@ -29,7 +29,7 @@ class SmallTableCellView: UIView {
         viewInit()
         backgroundView.layer.cornerRadius = 10
         backgroundView.layer.borderWidth = 1
-        backgroundView.layer.borderColor = UIColor.label.cgColor
+        backgroundView.layer.borderColor = UIColor.opaqueSeparator.cgColor
         upDownTag.layer.cornerRadius = 10
         upDownTag.clipsToBounds = true
         if upDownTag.text?.count ?? 0 > 4 {
@@ -66,7 +66,7 @@ class SmallTableCellView: UIView {
     @IBAction func buttonTapped(_ sender: Any) {
         if buttonSelected{
             buttonSelected = false
-            InterestButton.tintColor = .label
+            InterestButton.tintColor = .darkGray
             InterestsViewModel.shared.interestsNames.removeAll { name in
                 name == productName.text ?? ""
             }

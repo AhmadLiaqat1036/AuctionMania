@@ -34,6 +34,8 @@ class ProfileTableHeader: UIView {
         HeaderView.frame = self.bounds
     }
     func setupView(){
+        guard let url = URL(string: Constants.randomProfilesMen) else {return}
+        ProfilePic.sd_setImage(with: url)
         ProfilePic.layer.cornerRadius = 75/2
         ProfilePic.contentMode = .scaleToFill
         Background.layer.borderWidth = 1

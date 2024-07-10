@@ -73,19 +73,34 @@ extension ResultsViewController: UITableViewDelegate, UITableViewDataSource{
         cell.firstCell.rating.rate = p1.rating.rate ?? 0
         cell.secondCell.rating.rate = p2.rating.rate ?? 0
         
-        cell.firstCell.upDownTag.text = String(p1.rating.count ?? 0)
-        cell.secondCell.upDownTag.text = String(p2.rating.count ?? 0)
+        cell.firstCell.upDownTag.text = DiscoverViewModel.shared.counterLabels[indexPath.row*2]
+        cell.secondCell.upDownTag.text = DiscoverViewModel.shared.counterLabels[(indexPath.row*2)+1]
         
-    cell.firstCell.upDownTagBackgroundWidth.constant = DiscoverViewModel.shared.findUpDownTagBackgroundWidth(p1.rating.count ?? 0)
-    cell.secondCell.upDownTagBackgroundWidth.constant = DiscoverViewModel.shared.findUpDownTagBackgroundWidth(p2.rating.count ?? 0)
+   
         
         guard let url1 = URL(string: p1.image ?? "") else {return UITableViewCell()}
         cell.firstCell.image.sd_setImage(with: url1, completed: nil)
         guard let url2 = URL(string: p2.image ?? "") else {return UITableViewCell()}
         cell.secondCell.image.sd_setImage(with: url2, completed: nil)
     
-    cell.firstCell.InterestButton.tintColor = [.systemYellow, .label].randomElement()
-    cell.secondCell.InterestButton.tintColor = [.systemYellow, .label].randomElement()
+        if InterestsViewModel.shared.InterestsCore.contains(where: { interest in
+            interest.name == p1.title
+        }){
+            cell.firstCell.buttonSelected = true
+            cell.firstCell.InterestButton.tintColor = .systemYellow
+        }else{
+            cell.firstCell.buttonSelected = false
+            cell.firstCell.InterestButton.tintColor = .label
+        }
+        if InterestsViewModel.shared.InterestsCore.contains(where: { interest in
+            interest.name == p2.title
+        }){
+            cell.secondCell.buttonSelected = true
+            cell.secondCell.InterestButton.tintColor = .systemYellow
+        }else{
+            cell.secondCell.buttonSelected = false
+            cell.secondCell.InterestButton.tintColor = .label
+        }
     
     
         return cell

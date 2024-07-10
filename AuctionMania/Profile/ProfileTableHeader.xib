@@ -22,7 +22,7 @@
             <rect key="frame" x="0.0" y="0.0" width="605" height="232"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2eo-yb-KwQ">
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2eo-yb-KwQ" customClass="Gradient" customModule="AuctionMania" customModuleProvider="target">
                     <rect key="frame" x="10" y="10" width="585" height="178"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Men's Clothing" translatesAutoresizingMaskIntoConstraints="NO" id="BSv-Uj-ZEi">
@@ -35,18 +35,18 @@
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AyJ-Gy-0wL">
                             <rect key="frame" x="91" y="88.666666666666671" width="474" height="1"/>
-                            <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="IQx-Tm-N6f"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ahmad Liaqat" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="15" translatesAutoresizingMaskIntoConstraints="NO" id="ePr-4j-3h9">
-                            <rect key="frame" x="90.999999999999986" y="51.999999999999993" width="141.66666666666663" height="28.666666666666664"/>
+                            <rect key="frame" x="90.999999999999986" y="57.999999999999993" width="141.66666666666663" height="28.666666666666664"/>
                             <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ahmedliaqat1036@gmail.com" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="ent-Y8-vgf">
-                            <rect key="frame" x="91.000000000000014" y="97.666666666666671" width="214.33333333333337" height="20.333333333333329"/>
+                            <rect key="frame" x="91.000000000000014" y="92.666666666666671" width="214.33333333333337" height="20.333333333333329"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
                             <nil key="highlightedColor"/>
                         </label>
@@ -55,14 +55,22 @@
                     <constraints>
                         <constraint firstItem="AyJ-Gy-0wL" firstAttribute="centerY" secondItem="2eo-yb-KwQ" secondAttribute="centerY" id="4tQ-nc-ebU"/>
                         <constraint firstItem="BSv-Uj-ZEi" firstAttribute="centerY" secondItem="2eo-yb-KwQ" secondAttribute="centerY" id="AcG-py-t1J"/>
-                        <constraint firstItem="AyJ-Gy-0wL" firstAttribute="top" secondItem="ePr-4j-3h9" secondAttribute="bottom" constant="8" id="AfQ-Ga-6XG"/>
+                        <constraint firstItem="AyJ-Gy-0wL" firstAttribute="top" secondItem="ePr-4j-3h9" secondAttribute="bottom" constant="2" id="AfQ-Ga-6XG"/>
                         <constraint firstItem="ent-Y8-vgf" firstAttribute="leading" secondItem="BSv-Uj-ZEi" secondAttribute="trailing" constant="8" id="Pq9-1P-SF2"/>
                         <constraint firstItem="ePr-4j-3h9" firstAttribute="leading" secondItem="BSv-Uj-ZEi" secondAttribute="trailing" constant="8" id="Psu-0G-fPT"/>
                         <constraint firstItem="BSv-Uj-ZEi" firstAttribute="leading" secondItem="2eo-yb-KwQ" secondAttribute="leading" constant="8" id="dTs-bC-do1"/>
-                        <constraint firstItem="ent-Y8-vgf" firstAttribute="top" secondItem="AyJ-Gy-0wL" secondAttribute="bottom" constant="8" id="fTP-qN-BUq"/>
+                        <constraint firstItem="ent-Y8-vgf" firstAttribute="top" secondItem="AyJ-Gy-0wL" secondAttribute="bottom" constant="3" id="fTP-qN-BUq"/>
                         <constraint firstItem="AyJ-Gy-0wL" firstAttribute="leading" secondItem="BSv-Uj-ZEi" secondAttribute="trailing" constant="8" id="otl-gt-4Zf"/>
                         <constraint firstAttribute="trailing" secondItem="AyJ-Gy-0wL" secondAttribute="trailing" constant="20" id="uie-IS-J6z"/>
                     </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="FirstColour">
+                            <color key="value" systemColor="systemGray6Color"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="color" keyPath="SecondColour">
+                            <color key="value" systemColor="systemGray5Color"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
@@ -74,19 +82,27 @@
                 <constraint firstItem="2eo-yb-KwQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="j9v-sA-ezn"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <userDefinedRuntimeAttributes>
+                <userDefinedRuntimeAttribute type="color" keyPath="FirstColour">
+                    <color key="value" red="0.11517378740000001" green="0.17131208449999999" blue="0.33333334329999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                </userDefinedRuntimeAttribute>
+                <userDefinedRuntimeAttribute type="color" keyPath="SecondColour">
+                    <color key="value" red="0.0" green="1" blue="0.91595914879999996" alpha="0.5" colorSpace="custom" customColorSpace="displayP3"/>
+                </userDefinedRuntimeAttribute>
+            </userDefinedRuntimeAttributes>
             <point key="canvasLocation" x="229.7709923664122" y="-198.59154929577466"/>
         </view>
     </objects>
     <resources>
         <image name="Men's Clothing" width="400" height="400"/>
-        <systemColor name="opaqueSeparatorColor">
-            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
             <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray6Color">
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

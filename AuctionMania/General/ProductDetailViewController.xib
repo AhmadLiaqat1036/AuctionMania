@@ -17,6 +17,7 @@
                 <outlet property="Description" destination="0vL-0J-Awt" id="eO7-Sf-Kmx"/>
                 <outlet property="Image" destination="cOb-U8-E8N" id="BN9-fG-tRH"/>
                 <outlet property="ImageBack" destination="Dne-SB-hRS" id="Gdh-1A-ZqQ"/>
+                <outlet property="PlaceBidButton" destination="XHc-uc-2KR" id="9a3-tY-sCh"/>
                 <outlet property="ProductRatingDescription" destination="rWb-0e-Iur" id="1VI-nf-vcl"/>
                 <outlet property="ProductRatingRate" destination="NZn-yM-waT" id="voG-r6-3ro"/>
                 <outlet property="ProductRatingVotes" destination="XCY-Oh-Dhx" id="XPJ-ta-Hc8"/>
@@ -45,7 +46,7 @@
                     <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0vj-F3-RvG" userLabel="ContentView">
-                            <rect key="frame" x="0.0" y="0.0" width="393" height="1813.3333333333333"/>
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="1865.3333333333333"/>
                             <subviews>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbk-EL-ES4">
                                     <rect key="frame" x="76.666666666666686" y="9.9999999999999982" width="240" height="25.333333333333329"/>
@@ -439,7 +440,7 @@
                                         </stackView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="0vL-0J-Awt">
                                             <rect key="frame" x="8" y="32" width="361" height="1203"/>
-                                            <mutableString key="text">"Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)</mutableString>
+                                            <string key="text">"Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)Easy upgrade for faster boot up, shutdown, application load and response (As compared to 5400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)400 RPM SATA 2.5” hard drive; Based on published specifications and internal benchmarking tests using PCMark vantage scores) Boosts burst write performance, making it ideal for typical PC workloads The perfect balance of performance and reliability Read/write speeds of up to 535MB/s/450MB/s (Based on internal testing; Performance may vary depending upon drive capacity, host device, OS and application.)</string>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
@@ -465,7 +466,7 @@
                                 <constraint firstItem="hlV-N1-Hen" firstAttribute="leading" secondItem="0vj-F3-RvG" secondAttribute="leadingMargin" id="9hv-ET-s0G"/>
                                 <constraint firstItem="8Em-qW-0I6" firstAttribute="trailing" secondItem="0vj-F3-RvG" secondAttribute="trailingMargin" id="CKg-fE-fFL"/>
                                 <constraint firstItem="jbk-EL-ES4" firstAttribute="leading" secondItem="0vj-F3-RvG" secondAttribute="leadingMargin" constant="68.670000000000002" id="FMU-bG-bU2"/>
-                                <constraint firstAttribute="bottom" secondItem="hlV-N1-Hen" secondAttribute="bottom" constant="8" id="MQZ-8T-iKK"/>
+                                <constraint firstAttribute="bottom" secondItem="hlV-N1-Hen" secondAttribute="bottom" constant="60" id="MQZ-8T-iKK"/>
                                 <constraint firstItem="Dne-SB-hRS" firstAttribute="top" secondItem="jbk-EL-ES4" secondAttribute="bottom" constant="8" id="PdW-7b-nLQ"/>
                                 <constraint firstItem="jbk-EL-ES4" firstAttribute="top" secondItem="0vj-F3-RvG" secondAttribute="topMargin" constant="2" id="Seb-7z-UQB"/>
                                 <constraint firstItem="8Em-qW-0I6" firstAttribute="top" secondItem="Dne-SB-hRS" secondAttribute="bottom" constant="8" id="gJ9-BY-RBs"/>
@@ -490,14 +491,31 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="cdO-ZB-aep"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="49g-rF-mfs"/>
                 </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="XHc-uc-2KR">
+                    <rect key="frame" x="20" y="795.33333333333337" width="353" height="41.666666666666629"/>
+                    <color key="tintColor" red="0.11517378740000001" green="0.17131208449999999" blue="0.33333334329999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="filled" title="Place Bid" cornerStyle="large">
+                        <fontDescription key="titleFontDescription" type="system" pointSize="23"/>
+                        <color key="baseForegroundColor" systemColor="systemGray5Color"/>
+                        <color key="baseBackgroundColor" red="0.11517378740000001" green="0.17131208449999999" blue="0.33333334329999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="BidTapped:" destination="-1" eventType="touchUpInside" id="Hj2-GQ-IiI"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="XHc-uc-2KR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="20" id="0iF-7a-IJ2"/>
                 <constraint firstItem="LYY-Av-3Xj" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="59Y-DV-Pwb"/>
                 <constraint firstAttribute="bottom" secondItem="LYY-Av-3Xj" secondAttribute="bottom" id="9co-C7-bYl"/>
+                <constraint firstAttribute="bottom" secondItem="XHc-uc-2KR" secondAttribute="bottom" constant="15" id="K13-Ec-5Np"/>
                 <constraint firstItem="0vj-F3-RvG" firstAttribute="width" secondItem="i5M-Pr-FkT" secondAttribute="width" id="MWb-60-Hbg"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XHc-uc-2KR" secondAttribute="trailing" constant="20" id="Rm5-Z5-oi6"/>
                 <constraint firstAttribute="trailing" secondItem="LYY-Av-3Xj" secondAttribute="trailing" id="cY4-sb-PQV"/>
+                <constraint firstItem="XHc-uc-2KR" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="jc7-P9-Wds"/>
                 <constraint firstItem="LYY-Av-3Xj" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="xS4-wN-iBa"/>
             </constraints>
             <userDefinedRuntimeAttributes>
@@ -523,16 +541,19 @@
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="quaternaryLabelColor">
-            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.1764705882" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.17647058823529413" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray2Color">
-            <color red="0.68235294120000001" green="0.68235294120000001" blue="0.69803921570000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.68235294117647061" green="0.68235294117647061" blue="0.69803921568627447" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray6Color">
-            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tertiarySystemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

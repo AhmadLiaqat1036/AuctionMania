@@ -35,7 +35,7 @@ class BigTableViewCell: UITableViewCell {
         super.awakeFromNib()
         BackgroundCellView.layer.cornerRadius = 10
         BackgroundCellView.layer.borderWidth = 1
-        BackgroundCellView.layer.borderColor = UIColor.label.cgColor
+        BackgroundCellView.layer.borderColor = UIColor.opaqueSeparator.cgColor
         SellerBackground.layer.cornerRadius=15
         CarTypeBackground.layer.cornerRadius=15
         TimeLeftBackground.layer.cornerRadius=15

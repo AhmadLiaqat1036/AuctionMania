@@ -72,26 +72,67 @@ class Constants{
         "15s"
     ]
     
-    static let randomFullNames = [
-        "Liam Smith", "Olivia Johnson", "Noah Williams", "Emma Brown", "Lucas Jones",
-        "Ava Garcia", "Elijah Martinez", "Isabella Lopez", "Mason Gonzalez", "Sophia Rodriguez",
-        "Jackson Davis", "Charlotte Wilson", "Aiden Moore", "Amelia Anderson", "Carter Thomas",
-        "Harper Jackson", "James White", "Evelyn Harris", "Logan Martin", "Abigail Thompson",
-        "Alexander Robinson", "Emily Clark", "Michael Lewis", "Elizabeth Lee", "Benjamin Walker",
-        "Mila Hall", "Ethan Young", "Ella Hernandez", "Jacob King", "Avery Wright",
-        "William Scott", "Sofia Green", "Daniel Baker", "Camila Adams", "Jayden Campbell",
-        "Luna Ramirez", "John Hill", "Grace Flores", "David Mitchell", "Chloe Rivera",
-        "Joseph Carter", "Victoria Torres", "Matthew Phillips", "Scarlett Evans",
-        "Samuel Edwards", "Zoey Collins", "Luke Stewart", "Penelope Sanchez", "Gabriel Morris",
-        "Lily Morgan", "Anthony Reed", "Layla Bell", "Nathan Cooper", "Audrey Perry",
-        "Caleb Butler", "Skylar Ross", "Christian Hayes", "Ellie Barnes", "Hunter Fisher",
-        "Savannah Jenkins", "Owen Marshall", "Claire Ortiz", "Landon Gomez", "Mila Sullivan",
-        "Adrian Patel", "Alice Nguyen", "Jonathan Ramirez", "Stella Kim", "Nolan Coleman",
-        "Paisley Price", "Jeremiah Powell", "Violet Perry", "Julian Long", "Mackenzie Brooks",
-        "Easton Hughes", "Aurora Washington", "Angel Ross", "Hazel Diaz", "Cameron Butler",
-        "Natalie Rogers", "Connor Stewart", "Brooklyn Murphy", "Thomas Bailey", "Bella Rivera"
+    
+    
+    
+
+    static let menNames = [
+        "Hiroshi Tanaka", "Takeshi Suzuki", "Kazuki Yamamoto", "Haruto Sato", "Ryota Ito",
+        "Yoshiro Watanabe", "Kenji Inoue", "Takumi Kato", "Daiki Nakamura", "Kaito Kobayashi",
+        "Aarav Patel", "Alok Sharma", "Arjun Singh", "Dinesh Kumar", "Gagan Verma",
+        "Ishaan Kapoor", "Jayesh Gupta", "Kunal Mehta", "Nikhil Sharma", "Pranav Reddy",
+        "Muhammad Khan", "Ahmed Ali", "Ali Hassan", "Yusuf Abdullah", "Omar Mahmoud",
+        "Hamza Khan", "Ibrahim Ahmed", "Hassan Farid", "Sami Rahman", "Mustafa Ahmed",
+        "Zayn Malik", "Faris Abdullah", "Yasin Ibrahim", "Zakariya Hassan", "Yousef Mahmoud",
+        "James Smith", "John Johnson", "William Brown", "Michael Davis", "David Wilson",
+        "Richard Miller", "Daniel Moore", "Joseph Taylor", "Thomas Anderson", "Matthew Clark",
+        "George Lewis", "Harry Hall", "Jack Walker", "Jacob Green", "Ethan Carter"
     ]
 
+    static let womenNames = [
+        "Sakura Tanaka", "Yuki Suzuki", "Hana Yamamoto", "Aiko Sato", "Mei Ito",
+        "Ayaka Watanabe", "Emi Inoue", "Hikari Kato", "Natsumi Nakamura", "Yui Kobayashi",
+        "Anaya Patel", "Divya Sharma", "Isha Singh", "Kavya Kumar", "Neha Verma",
+        "Pooja Kapoor", "Riya Gupta", "Shreya Mehta", "Tanvi Sharma", "Trisha Reddy",
+        "Aisha Khan", "Fatima Ali", "Mariam Hassan", "Khadija Abdullah", "Zahra Mahmoud",
+        "Layla Khan", "Noor Ahmed", "Sana Farid", "Huda Rahman", "Maryam Ahmed",
+        "Zara Malik", "Leila Abdullah", "Amina Ibrahim", "Sarah Hassan", "Nadia Mahmoud",
+        "Emma Smith", "Olivia Johnson", "Sophia Brown", "Isabella Davis", "Mia Wilson",
+        "Emily Miller", "Ava Moore", "Charlotte Taylor", "Amelia Anderson", "Evelyn Clark",
+        "Abigail Lewis", "Harper Hall", "Elizabeth Walker", "Grace Green", "Sophie Carter"
+    ]
+    
+    static let fullNames = ["Hiroshi Tanaka", "Takeshi Suzuki", "Kazuki Yamamoto", "Haruto Sato", "Ryota Ito",
+                            "Yoshiro Watanabe", "Kenji Inoue", "Takumi Kato", "Daiki Nakamura", "Kaito Kobayashi",
+                            "Aarav Patel", "Alok Sharma", "Arjun Singh", "Dinesh Kumar", "Gagan Verma",
+                            "Ishaan Kapoor", "Jayesh Gupta", "Kunal Mehta", "Nikhil Sharma", "Pranav Reddy",
+                            "Muhammad Khan", "Ahmed Ali", "Ali Hassan", "Yusuf Abdullah", "Omar Mahmoud",
+                            "Hamza Khan", "Ibrahim Ahmed", "Hassan Farid", "Sami Rahman", "Mustafa Ahmed",
+                            "Zayn Malik", "Faris Abdullah", "Yasin Ibrahim", "Zakariya Hassan", "Yousef Mahmoud",
+                            "James Smith", "John Johnson", "William Brown", "Michael Davis", "David Wilson",
+                            "Richard Miller", "Daniel Moore", "Joseph Taylor", "Thomas Anderson", "Matthew Clark",
+                            "George Lewis", "Harry Hall", "Jack Walker", "Jacob Green", "Ethan Carter",
+                            "Sakura Tanaka", "Yuki Suzuki", "Hana Yamamoto", "Aiko Sato", "Mei Ito",
+                            "Ayaka Watanabe", "Emi Inoue", "Hikari Kato", "Natsumi Nakamura", "Yui Kobayashi",
+                            "Anaya Patel", "Divya Sharma", "Isha Singh", "Kavya Kumar", "Neha Verma",
+                            "Pooja Kapoor", "Riya Gupta", "Shreya Mehta", "Tanvi Sharma", "Trisha Reddy",
+                            "Aisha Khan", "Fatima Ali", "Mariam Hassan", "Khadija Abdullah", "Zahra Mahmoud",
+                            "Layla Khan", "Noor Ahmed", "Sana Farid", "Huda Rahman", "Maryam Ahmed",
+                            "Zara Malik", "Leila Abdullah", "Amina Ibrahim", "Sarah Hassan", "Nadia Mahmoud",
+                            "Emma Smith", "Olivia Johnson", "Sophia Brown", "Isabella Davis", "Mia Wilson",
+                            "Emily Miller", "Ava Moore", "Charlotte Taylor", "Amelia Anderson", "Evelyn Clark",
+                            "Abigail Lewis", "Harper Hall", "Elizabeth Walker", "Grace Green", "Sophie Carter"]
+    
+    static var randomProfilesMen : String {
+        let random = Array(1...99).randomElement() ?? 1
+        return "https://randomuser.me/api/portraits/men/\(String(random)).jpg"
+    }
+
+
+    static var randomProfilesWomen : String {
+        let random = Array(1...99).randomElement() ?? 1
+        return "https://randomuser.me/api/portraits/women/\(String(random)).jpg"
+    }
     static let randomDatesAndTimes = [
         "22 May 2013, 11:45pm", "10 June 2015, 09:30am", "5 September 2018, 03:15pm",
         "18 April 2017, 01:00pm", "7 July 2014, 08:20am", "14 March 2016, 06:55pm",
@@ -175,5 +216,20 @@ class Constants{
         default:
             return .systemGreen
         }
+        
+    }
+    static let pics = ["jewelry", "Clothes.jpg"]
+    static let labels = ["Bid On High End Jewelery","Bid On Trending Branded Clothes"]
+    static func secondsToHourMinutesSeconds(_ sec:Int)->(Int, Int, Int){
+        return (sec/3600, (sec%3600)/60, (sec%3600)%60)
+    }
+    static func hourMinutesSecondsIntoString(hour: Int, min:Int, sec:Int)->String{
+        var label = ""
+        label += String(format: "%02d", hour)
+        label += ":"
+        label += String(format: "%02d", min)
+        label += ":"
+        label += String(format: "%02d", sec)
+        return label
     }
 }

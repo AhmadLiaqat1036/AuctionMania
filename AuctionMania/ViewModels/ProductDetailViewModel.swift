@@ -18,6 +18,7 @@ struct ProductDetailViewModel{
     let topBidLocation: String
     let topBidTime: String
     let topBidPrice: String
+    let topBidImage:String
     let prRate:String
     let prVote:String
     let prDesc:String
@@ -29,5 +30,7 @@ struct ProductDetailViewModel{
     let sName: String
     let sPrice: String
     let sLoc: String
+    let sImage:String
     let description: String
+    let timeLeft: Int
 }

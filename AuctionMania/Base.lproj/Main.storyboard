@@ -14,7 +14,7 @@
             <objects>
                 <viewController storyboardIdentifier="DiscoverViewController" title="Discover" id="qQo-SH-Sm8" userLabel="DiscoverViewController" customClass="DiscoverViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="yvc-AN-zRs">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="sHb-ZR-0uO">
@@ -48,7 +48,7 @@
             <objects>
                 <viewController storyboardIdentifier="InterestsViewController" id="MXc-TC-3Lp" customClass="InterestsViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="iMg-73-OY6">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wmz-rN-Ki5" customClass="NoResultView" customModule="AuctionMania" customModuleProvider="target">
@@ -88,18 +88,18 @@
             <objects>
                 <viewController storyboardIdentifier="ProfileViewController" id="sO0-o1-QKc" userLabel="ProfileViewController" customClass="ProfileViewController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xwq-cS-9zt">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="769"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6N7-u4-TzH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="6N7-u4-TzH">
                                 <rect key="frame" x="0.0" y="103" width="393" height="666"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="vGg-5x-KUd" detailTextLabel="HaF-xZ-Z1o" style="IBUITableViewCellStyleValue1" id="l1U-zp-lRQ">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="43.666667938232422"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="none" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="Cell" textLabel="vGg-5x-KUd" detailTextLabel="HaF-xZ-Z1o" style="IBUITableViewCellStyleValue1" id="l1U-zp-lRQ">
+                                        <rect key="frame" x="0.0" y="50" width="393" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l1U-zp-lRQ" id="jD6-uy-AeD">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="362.66666666666669" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vGg-5x-KUd">
@@ -110,7 +110,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Detail" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="HaF-xZ-Z1o">
-                                                    <rect key="frame" x="340.33333333333331" y="15" width="32.666666666666664" height="14.333333333333334"/>
+                                                    <rect key="frame" x="322" y="15" width="32.666666666666664" height="14.333333333333334"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="0.0"/>
                                                     <nil key="textColor"/>
@@ -143,22 +143,48 @@
         <!--Tab Bar Controller-->
         <scene sceneID="ZL1-ni-a3R">
             <objects>
-                <tabBarController id="Wsy-5r-1ol" customClass="TabBarController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="JZ2-KB-00c">
+                <tabBarController storyboardIdentifier="TabBarController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Wsy-5r-1ol" customClass="TabBarController" customModule="AuctionMania" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" translucent="NO" itemPositioning="centered" translatesAutoresizingMaskIntoConstraints="NO" id="JZ2-KB-00c" customClass="CustomTabBar" customModule="AuctionMania" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" systemColor="labelColor"/>
+                        <color key="backgroundColor" systemColor="systemGray6Color"/>
                         <color key="tintColor" systemColor="systemYellowColor"/>
-                        <color key="barTintColor" systemColor="labelColor"/>
-                        <color key="selectedImageTintColor" systemColor="systemYellowColor"/>
-                        <tabBarAppearance key="standardAppearance" stackedItemWidth="0.0">
+                        <color key="barTintColor" red="0.85062346799999999" green="0.73265717549999998" blue="0.26608840030000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="selectedImageTintColor" red="0.85062346795592647" green="0.73265717552336296" blue="0.26608840028734565" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <tabBarAppearance key="standardAppearance">
                             <color key="backgroundColor" systemColor="systemGray6Color"/>
                         </tabBarAppearance>
                         <tabBarAppearance key="scrollEdgeAppearance">
                             <color key="backgroundColor" systemColor="systemGray6Color"/>
+                            <tabBarItemAppearance key="inlineLayoutAppearance">
+                                <tabBarItemStateAppearance key="normal">
+                                    <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                    <offsetWrapper key="badgeTitlePositionAdjustment" horizontal="0.0" vertical="0.0"/>
+                                </tabBarItemStateAppearance>
+                                <tabBarItemStateAppearance key="selected"/>
+                                <tabBarItemStateAppearance key="disabled"/>
+                                <tabBarItemStateAppearance key="focused"/>
+                            </tabBarItemAppearance>
+                            <tabBarItemAppearance key="compactInlineLayoutAppearance">
+                                <tabBarItemStateAppearance key="normal">
+                                    <offsetWrapper key="titlePositionAdjustment" horizontal="0.0" vertical="8"/>
+                                    <textAttributes key="badgeTextAttributes">
+                                        <offsetWrapper key="textShadowOffset" horizontal="0.0" vertical="11"/>
+                                    </textAttributes>
+                                </tabBarItemStateAppearance>
+                                <tabBarItemStateAppearance key="selected"/>
+                                <tabBarItemStateAppearance key="disabled"/>
+                                <tabBarItemStateAppearance key="focused"/>
+                            </tabBarItemAppearance>
                         </tabBarAppearance>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="height">
+                                <real key="value" value="80"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
                     </tabBar>
                     <connections>
+                        <outlet property="tabBar" destination="JZ2-KB-00c" id="d4l-gc-an0"/>
                         <segue destination="ono-9c-4rg" kind="relationship" relationship="viewControllers" id="XnY-cR-lYr"/>
                         <segue destination="TQx-3U-qTL" kind="relationship" relationship="viewControllers" id="Zv4-ld-msg"/>
                         <segue destination="PNR-F9-KEw" kind="relationship" relationship="viewControllers" id="X31-Bw-wMV"/>
@@ -218,17 +244,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" indicatorStyle="black" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" contentViewInsetsToSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="epl-T1-Bsl">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                                <rect key="frame" x="0.0" y="0.0" width="393" height="818"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <sections/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="VOP-Zk-L3s"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                         <constraints>
                             <constraint firstItem="epl-T1-Bsl" firstAttribute="trailing" secondItem="VOP-Zk-L3s" secondAttribute="trailing" id="5ns-aZ-xTo"/>
                             <constraint firstItem="epl-T1-Bsl" firstAttribute="leading" secondItem="VOP-Zk-L3s" secondAttribute="leading" id="TuW-SV-69a"/>
-                            <constraint firstAttribute="bottom" secondItem="epl-T1-Bsl" secondAttribute="bottom" id="WRI-lq-wyR"/>
+                            <constraint firstItem="VOP-Zk-L3s" firstAttribute="bottom" secondItem="epl-T1-Bsl" secondAttribute="bottom" id="WRI-lq-wyR"/>
                             <constraint firstItem="epl-T1-Bsl" firstAttribute="top" secondItem="IMG-Iz-ScM" secondAttribute="top" id="bVS-5V-wha"/>
                         </constraints>
                     </view>
@@ -297,8 +322,8 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" largeTitles="YES" id="Brd-jo-EvI">
                         <rect key="frame" x="0.0" y="59" width="393" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="tintColor" systemColor="systemYellowColor"/>
-                        <color key="barTintColor" red="0.95865022759999996" green="1" blue="0.58641157659999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="tintColor" systemColor="labelColor"/>
+                        <color key="barTintColor" systemColor="labelColor"/>
                         <textAttributes key="titleTextAttributes">
                             <color key="textColor" systemColor="systemYellowColor"/>
                         </textAttributes>
@@ -392,9 +417,6 @@
         </systemColor>
         <systemColor name="systemGray6Color">
             <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
