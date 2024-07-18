@@ -51,6 +51,8 @@ class ProductDetailViewController: UIViewController {
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.isTranslucent = true
         navigationController?.navigationBar.backgroundColor = .systemGray6
+        
+        
         configureBack(CategoryBack)
         configureBack(ImageBack)
         configureBack(TopBidBack)
@@ -127,23 +129,30 @@ class ProductDetailViewController: UIViewController {
    
     @IBAction func BidTapped(_ sender: Any) {
         let bidView = PlaceBidController()
+       
         bidView.configure(minA: TopBidPrice.text ?? "" , sellN: SellerName.text ?? "", sellL: SellerLocation.text ?? "", topN: TopBidName.text ?? "", sellImg: product.sImage, topBidImg: product.topBidImage, tLeft: product.timeLeft)
         let nav = UINavigationController(rootViewController: bidView)
         nav.modalPresentationStyle = .pageSheet
         nav.isModalInPresentation = true
+        nav.presentingViewController?.view.isUserInteractionEnabled = true
+        
         if let sheet = nav.sheetPresentationController{
             sheet.detents = [.medium(), .large()]
             sheet.prefersScrollingExpandsWhenScrolledToEdge = true
-            sheet.prefersGrabberVisible = true
+            sheet.largestUndimmedDetentIdentifier = .medium
         }
+        
         let cancel = UIBarButtonItem(title: "Cancel", primaryAction: UIAction(handler: { _ in
-            self.dismiss(animated: true)
+            bidView.dismissPresentedView(nil)
+            
         }))
         let done = UIBarButtonItem(title: "00:00:00", primaryAction: nil)
         bidView.navigationItem.leftBarButtonItem = cancel
         bidView.navigationItem.rightBarButtonItem = done
         bidView.navigationController?.navigationBar.tintColor = .systemGray5
-        
         present(nav, animated: true, completion: nil)
     }
+    
+   
+    
 }

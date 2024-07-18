@@ -41,16 +41,20 @@ Successful
         hud.textLabel.textColor = .black
         return hud
     }()
-    var currentHeader = 0
+    
+    //MARK: pageControl
     var pageControl:UIPageControl={
         let control = UIPageControl()
         control.currentPageIndicatorTintColor = .orange
         control.pageIndicatorTintColor = .systemYellow.withAlphaComponent(0.5)
         control.numberOfPages = 5
         control.currentPage = 0
+        control.isUserInteractionEnabled = false
         return control
     }()
     
+    //MARK: headers
+    var currentHeader = 0
     let headerView = HomeTableHeader()
     let headerView2 :HomeTableHeaderType2={
         let view = HomeTableHeaderType2()
@@ -69,9 +73,9 @@ Successful
     let headerView5 : HomeTableHeaderType3 = {
         let view = HomeTableHeaderType3()
         view.stackLabel = "Fast Shipping"
-        view.background.backgroundColor = .systemIndigo.withAlphaComponent(0.2)
+        view.background.backgroundColor = .systemIndigo
         view.labelDown.text = "Shippings arrive withing a week"
-        view.labelDown.textColor = .systemIndigo
+        view.labelDown.textColor = .orange
         view.image.image = UIImage(named: "Paper map-cuate")
         return view
     }()
@@ -126,7 +130,7 @@ Successful
         headerView2.gradient.frame = CGRect(x: 0, y: 0, width: headerView.bounds.width - 20, height: 330 - 20)
         headerView4.gradient.frame = CGRect(x: 0, y: 0, width: headerView.bounds.width - 20, height: 330 - 20)
         
-        pageControl.frame = CGRect(x: headerView.bounds.midX - 75, y: headerView.bounds.height - 40, width: 150, height: 30)
+        pageControl.frame = CGRect(x: headerView.bounds.midX - 75, y: headerView.bounds.height - 45, width: 150, height: 30)
     }
     
     
@@ -265,13 +269,32 @@ extension HomeViewController{
 
     }
     @objc func stepTimeHeader(){
+        let headers = [headerView, headerView2, headerView3, headerView4, headerView5]
         if(viewModel.headerCounter>0){
             viewModel.headerCounter -= 1
         }else{
 //            viewModel.gestureL.state = .began
-            viewModel.gestureL.state = .changed
+//            viewModel.gestureL.state = .changed
 //            viewModel.gestureL.state = .ended
-            viewModel.headerCounter = 10
+            if(currentHeader < headers.count - 1){
+                currentHeader += 1
+                pageControl.currentPage += 1
+            }else{
+                currentHeader = 0
+                pageControl.currentPage = 0
+            }
+            
+            let nextHeaderView = headers[currentHeader]
+            
+            UIView.transition(with: tableView, duration: 0.3, options: .transitionCrossDissolve, animations: {
+                self.tableView.tableHeaderView = nextHeaderView
+            }, completion: { [weak self] _ in
+                nextHeaderView.addGestureRecognizer(self!.viewModel.gestureL)
+                nextHeaderView.addGestureRecognizer(self!.viewModel.gestureR)
+                nextHeaderView.isUserInteractionEnabled = true
+                self?.tableView.tableHeaderView?.addSubview(self!.pageControl)
+            })
+            viewModel.headerCounter = 7
         }
     }
     
@@ -294,7 +317,7 @@ extension HomeViewController{
     
     @objc func gesture(_ gesture: UISwipeGestureRecognizer){
         let headers = [headerView, headerView2, headerView3, headerView4, headerView5]
-        viewModel.headerCounter = 10
+        viewModel.headerCounter = 7
         if gesture.direction == .left{
             print("Gesture Left")
             if(currentHeader < headers.count - 1){

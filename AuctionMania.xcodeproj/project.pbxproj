@@ -197,8 +197,8 @@
 				57084E0A2C35B8C30033025F /* ProductDetailViewController.xib */,
 				5791B31E2C3BE33F00D7BEAD /* PlaceBidController.swift */,
 				5791B31F2C3BE33F00D7BEAD /* PlaceBidController.xib */,
-				5774A6052C294A130087C34D /* FiveStarRatingView.xib */,
 				5774A6072C294B580087C34D /* FiveStarRatingView.swift */,
+				5774A6052C294A130087C34D /* FiveStarRatingView.xib */,
 				CE3FD75A2C367ACE00FA482D /* CircleProgressBar.swift */,
 				57084E0D2C35CE400033025F /* Gradient.swift */,
 			);

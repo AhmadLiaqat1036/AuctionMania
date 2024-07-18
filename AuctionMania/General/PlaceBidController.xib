@@ -10,6 +10,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PlaceBidController" customModule="AuctionMania" customModuleProvider="target">
             <connections>
+                <outlet property="BackgroundGradient" destination="i5M-Pr-FkT" id="FaZ-JD-HPz"/>
                 <outlet property="BidAmount" destination="dK1-3B-k8k" id="G2B-Pd-yPU"/>
                 <outlet property="FirstBackground" destination="nqN-1b-6hR" id="1Z8-DI-KPu"/>
                 <outlet property="MinimumAmount" destination="rJJ-RU-l7v" id="1Qg-YN-aFn"/>
@@ -276,13 +277,13 @@
         <image name="Women's Clothing" width="400" height="400"/>
         <image name="person" catalog="system" width="128" height="121"/>
         <systemColor name="secondarySystemFillColor">
-            <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.47058823529999999" green="0.47058823529999999" blue="0.50196078430000002" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

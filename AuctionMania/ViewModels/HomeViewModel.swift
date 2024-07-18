@@ -20,7 +20,7 @@ class HomeViewModel{
     var timer = Timer()
     var count = 500
     
-    var headerCounter = 10
+    var headerCounter = 4
     var headerTimer = Timer()
     
     var gestureL = UISwipeGestureRecognizer()

@@ -22,13 +22,25 @@ class InterestsViewController: UIViewController {
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertAction.Style.cancel))
         return alert
     }
+    lazy var editButton: UIButton = {
+        let button = UIButton()
+        button.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
+        button.titleLabel?.text = "Edit"
+        button.setTitle("Edit", for: .normal)
+        button.setTitleColor(.black, for: .normal)
+        button.addTarget(self, action: #selector(editButtonPressed), for: .touchUpInside)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        return button
+    }()
     override func viewDidLoad() {
         super.viewDidLoad()
         bindViewModel()
         navigationController?.modalPresentationStyle = .overCurrentContext
         
-        navigationItem.rightBarButtonItem = editButtonItem
+//        navigationItem.rightBarButtonItem = editButtonItem
         navigationController?.navigationBar.backgroundColor = .systemBackground
+        navigationController?.navigationBar.addSubview(editButton)
+        setConstraints()
         let nib = UINib(nibName: "BigTableViewCell", bundle: nil)
         InterestsTable.register(nib, forCellReuseIdentifier: "BigTableViewCell")
         InterestsTable.showsVerticalScrollIndicator = false
@@ -52,11 +64,13 @@ class InterestsViewController: UIViewController {
         navigationController?.navigationBar.backgroundColor = .systemBackground
         self.isEditing = false
         if InterestsViewModel.shared.InterestsCore.isEmpty{
-            navigationItem.rightBarButtonItem?.isHidden = true
+            editButton.isHidden = true
+//            navigationItem.rightBarButtonItem?.isHidden = true
             InterestsTable.isHidden = true
             NoResultView.isHidden = false
         }else{
-            navigationItem.rightBarButtonItem?.isHidden = false
+            editButton.isHidden = false
+//            navigationItem.rightBarButtonItem?.isHidden = false
             InterestsTable.isHidden = false
             NoResultView.isHidden = true
         }
@@ -190,7 +204,8 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
                         tableView.deleteRows(at: [indexPath], with: .fade)
                         tableView.endUpdates()
                         if InterestsViewModel.shared.InterestsCore.isEmpty{
-                            self?.navigationItem.rightBarButtonItem?.isHidden = true
+                            self?.editButton.isHidden = true
+//                            self?.navigationItem.rightBarButtonItem?.isHidden = true
                             self?.InterestsTable.isHidden = true
                             self?.NoResultView.isHidden = false
                         }
@@ -200,6 +215,25 @@ extension InterestsViewController: UITableViewDelegate, UITableViewDataSource{
         }
     }
 extension InterestsViewController{
+    func setConstraints(){
+        let editbuttonConstraints = [
+            editButton.trailingAnchor.constraint(equalTo: (self.navigationController?.navigationBar.trailingAnchor)!, constant: -20),
+            editButton.bottomAnchor.constraint(equalTo: (self.navigationController?.navigationBar.bottomAnchor)!, constant: -10)
+        ]
+        NSLayoutConstraint.activate(editbuttonConstraints)
+    }
+    @objc func editButtonPressed(){
+        print("button pressed....")
+        if(!editButton.isSelected){
+            editButton.isSelected = true
+            editButton.setTitle("Done", for: .selected)
+            setEditing(true, animated: true)
+        }else{
+            editButton.isSelected = false
+            setEditing(false, animated: true)
+            editButton.setTitle("Edit", for: .normal)
+        }
+    }
     func bindViewModel(){
         InterestsViewModel.shared.APISuccessDidChange = {success in
            if success {

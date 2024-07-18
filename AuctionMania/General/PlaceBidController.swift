@@ -11,6 +11,7 @@ class PlaceBidController: UIViewController {
     
     var timer = Timer()
 
+    @IBOutlet var BackgroundGradient: Gradient!
     @IBOutlet weak var FirstBackground: UIView!
     @IBOutlet weak var Secondbackground: UIView!
     @IBOutlet weak var PlusButton: UIButton!
@@ -21,7 +22,6 @@ class PlaceBidController: UIViewController {
     @IBOutlet weak var SellerLocation: UILabel!
     @IBOutlet weak var TopName: UILabel!
     @IBOutlet weak var TopBid: UILabel!
-    
     @IBOutlet weak var SellerImage: UIImageView!
     @IBOutlet weak var TopBidImgae: UIImageView!
     private var amount = 0
@@ -43,9 +43,12 @@ class PlaceBidController: UIViewController {
             
         }
     }
+    lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(dismissPresentedView(_:)))
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        navigationController?.navigationBar.addGestureRecognizer(UIPanGestureRecognizer(target: self, action: #selector(panGesture(_:))))
+        presentingViewController?.view.addGestureRecognizer(tapGesture)
         FirstBackground.layer.cornerRadius = 10
         FirstBackground.layer.borderWidth = 1
         FirstBackground.layer.borderColor = UIColor.darkGray.cgColor
@@ -57,12 +60,11 @@ class PlaceBidController: UIViewController {
         SellerImage.layer.cornerRadius = SellerImage.frame.height/2
         timer = Timer.scheduledTimer(timeInterval: 1, target: self , selector: #selector(stepTime), userInfo: nil, repeats: true)
         setupData()
-        
     }
     @IBAction func MakeBid(_ sender: Any) {
         showAlert("Make Bid", message: "Place a Bid of \(BidAmount.text ?? "$0")?") {[weak self] yes in
             if yes{
-                self?.navigationController?.dismiss(animated: true)
+                self?.dismissPresentedView(nil)
             }
         }
         
@@ -100,7 +102,50 @@ class PlaceBidController: UIViewController {
             timer.invalidate()
         }
     }
+    var initialTouchPoint: CGPoint = CGPoint(x: 0,y: 0)
+    @objc func panGesture(_ sender: UIPanGestureRecognizer){
+        
+        let touchPoint = sender.location(in: self.view?.window)
 
+        if sender.state == UIGestureRecognizer.State.began {
+                initialTouchPoint = touchPoint
+        } else if sender.state == UIGestureRecognizer.State.changed {
+            navigationController?.navigationBar.tintColor = .clear
+                if touchPoint.y - initialTouchPoint.y > 0 {
+                    self.view.frame = CGRect(x: 0, y: touchPoint.y - initialTouchPoint.y, width: self.view.frame.size.width, height: self.view.frame.size.height)
+                }
+        } else if sender.state == UIGestureRecognizer.State.ended || sender.state == UIGestureRecognizer.State.cancelled {
+            navigationController?.navigationBar.tintColor = .systemGray5
+            if (touchPoint.y - initialTouchPoint.y > 150) && (self.sheetPresentationController?.selectedDetentIdentifier != .large) {
+                print("dismiss wala")
+                        dismissPresentedView(nil)
+                        
+                }else if (touchPoint.y - initialTouchPoint.y > 50) && (self.sheetPresentationController?.selectedDetentIdentifier == .large){
+                    print("medium wala")
+                        self.sheetPresentationController?.animateChanges {
+                            self.sheetPresentationController?.selectedDetentIdentifier = .medium
+                        
+                    }
+                }else if (touchPoint.y - initialTouchPoint.y < 0){
+                    print("large wala")
+                    self.sheetPresentationController?.animateChanges {
+                        self.sheetPresentationController?.selectedDetentIdentifier = .large
+                    }
+                } else {
+                    print("else wala")
+                    UIView.animate(withDuration: 0.3, animations: {
+                        self.view.frame = CGRect(x: 0, y: 0, width: self.view.frame.size.width, height: self.view.frame.size.height)
+                    })
+                }
+            }
+    }
+
+    @objc func dismissPresentedView(_ gesture: UITapGestureRecognizer?){
+        print("tap made")
+        presentingViewController?.view.removeGestureRecognizer(tapGesture)
+        self.dismiss(animated: true, completion: nil)
+        
+    }
     
     @IBAction func StepDown(_ sender: Any) {
         amount -= 1
